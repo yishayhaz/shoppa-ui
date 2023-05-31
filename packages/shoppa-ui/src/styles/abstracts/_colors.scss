@@ -1,0 +1,207 @@
+/*
+  ? Colors - What's going on?
+  ---------------------------
+
+  * Our color palette is based on something between bootstrap and flutter, with some colors from pink design.
+  this file might look, to the untrained eye, like a total mess, but it's not, ask god he'll tell you.
+
+  ? Our Colors:
+  -------------
+
+    * We have 2 kinds of colors, switcheable colors and static colors.
+
+    - Switcheable colors are colors that can be changed by the user, and they are based on the user's system theme.
+    - Switcheable colors are prefixed with `s-` (except utility classes).
+    - Static colors are colors that are not switcheable, and they are based on the theme.
+    - Within certain files, you'll come across variables that are prefixed with `p-` those are private colors, their naming should be very detailed and specific. use them wisely.
+
+  ? Cool Colors:
+  --------------
+
+    * Some colors are divided into 9 levels (100 - 900), they are called 'cool colors'.
+
+    - Cool colors are colors in common use.
+    - They are getting their own utility class, which is affecting the css bundle size, be careful.
+    - They are referred as, for example, 'blue-100' or 's-blue-300', and just 'blue' or 's-blue' is blue-500.
+    - Cool colors can be switcheable.
+
+  ? Neutral:
+  ----------
+
+    * What the hell are neutral colors? They are switchable & Cool Colors!
+
+    - They are colors from white->black, on dark theme: black->white.
+    - They are used for text and backgrounds.
+
+    ? How to use them:
+    ------------------
+
+      * They have 100-900 colors, and bg, text, and neutral colors.
+
+      - s-neutral-100 is the most of the color, which means the whitest or the blackest.
+      - s-neutral-900 is the least of the color, which means the darkest-white or the lightest-black.
+      - s-neutral-bg, and neutral-text are s-neutral-100 and s-neutral-900 respectively, for aesthetic purposes.
+      - do not use s-neutral-bg where it's not for a background, etc. I will be mad.
+      - you could also refer to neutral, then they are fixed to light theme (light->dark)
+      - neutral & s-neutral are neutral-500, note that they are the same on both themes, since the middle point of a list doesn't care if it's reversed or not.
+*/
+
+@mixin light-theme {
+  --s-neutral-bg: var(--neutral-100);
+  --s-neutral-text: var(--neutral-900);
+  --s-neutral-100: var(--neutral-100);
+  --s-neutral-200: var(--neutral-200);
+  --s-neutral-300: var(--neutral-300);
+  --s-neutral-400: var(--neutral-400);
+  --s-neutral-500: var(--neutral-500);
+  --s-neutral-600: var(--neutral-600);
+  --s-neutral-700: var(--neutral-700);
+  --s-neutral-800: var(--neutral-800);
+  --s-neutral-900: var(--neutral-900);
+}
+
+@mixin dark-theme {
+  --s-neutral-bg: var(--neutral-900);
+  --s-neutral-text: var(--neutral-100);
+  --s-neutral-100: var(--neutral-900);
+  --s-neutral-200: var(--neutral-800);
+  --s-neutral-300: var(--neutral-700);
+  --s-neutral-400: var(--neutral-600);
+  --s-neutral-500: var(--neutral-500);
+  --s-neutral-600: var(--neutral-400);
+  --s-neutral-700: var(--neutral-300);
+  --s-neutral-800: var(--neutral-200);
+  --s-neutral-900: var(--neutral-100);
+}
+
+@mixin theme() {
+  --light: 255, 255, 255;
+  --dark: 27, 27, 39;
+
+  --neutral: var(--neutral-500);
+  --neutral-bg: var(--neutral-100);
+  --neutral-text: var(--neutral-900);
+
+  --neutral-100: var(--light);
+  --neutral-200: 242, 242, 248;
+  --neutral-300: 233, 234, 241;
+  --neutral-400: 197, 199, 216;
+  --neutral-500: 96, 106, 123;
+  --neutral-600: 79, 87, 105;
+  --neutral-700: 55, 59, 78;
+  --neutral-800: 39, 41, 58;
+  --neutral-900: var(--dark);
+
+  body[data-theme="light"] {
+    @include light-theme;
+  }
+
+  body[data-theme="dark"] {
+    @include dark-theme;
+  }
+
+  --primary: 0, 123, 255;
+
+  --success: 41, 168, 71;
+
+  --warning: 255, 193, 5;
+
+  --danger: 220, 56, 72;
+}
+
+$light: rgb(var(--light));
+$dark: rgb(var(--dark));
+
+$neutral: rgb(var(--neutral));
+$s-neutral: rgb(var(--neutral));
+
+$s-neutral-bg: rgb(var(--s-neutral-bg));
+$s-neutral-text: rgb(var(--s-neutral-text));
+$s-neutral-100: rgb(var(--s-neutral-100));
+$s-neutral-200: rgb(var(--s-neutral-200));
+$s-neutral-300: rgb(var(--s-neutral-300));
+$s-neutral-400: rgb(var(--s-neutral-400));
+$s-neutral-500: rgb(var(--s-neutral-500));
+$s-neutral-600: rgb(var(--s-neutral-600));
+$s-neutral-700: rgb(var(--s-neutral-700));
+$s-neutral-800: rgb(var(--s-neutral-800));
+$s-neutral-900: rgb(var(--s-neutral-900));
+
+$neutral-bg: rgb(var(--neutral-bg));
+$neutral-text: rgb(var(--neutral-text));
+$neutral-100: rgb(var(--neutral-100));
+$neutral-200: rgb(var(--neutral-200));
+$neutral-300: rgb(var(--neutral-300));
+$neutral-400: rgb(var(--neutral-400));
+$neutral-500: rgb(var(--neutral-500));
+$neutral-600: rgb(var(--neutral-600));
+$neutral-700: rgb(var(--neutral-700));
+$neutral-800: rgb(var(--neutral-800));
+$neutral-900: rgb(var(--neutral-900));
+
+$s-neutrals: (
+  bg: $s-neutral-bg,
+  text: $s-neutral-text,
+  100: $s-neutral-100,
+  200: $s-neutral-200,
+  300: $s-neutral-300,
+  400: $s-neutral-400,
+  500: $s-neutral-500,
+  600: $s-neutral-600,
+  700: $s-neutral-700,
+  800: $s-neutral-800,
+  900: $s-neutral-900,
+);
+
+$neutrals: (
+  bg: $neutral-bg,
+  text: $neutral-text,
+  100: $neutral-100,
+  200: $neutral-200,
+  300: $neutral-300,
+  400: $neutral-400,
+  500: $neutral-500,
+  600: $neutral-600,
+  700: $neutral-700,
+  800: $neutral-800,
+  900: $neutral-900,
+);
+
+$primary: rgb(var(--primary));
+$success: rgb(var(--success));
+$warning: rgb(var(--warning));
+$danger: rgb(var(--danger));
+
+$theme: (
+  light: $light,
+  dark: $dark,
+  neutral: $neutral,
+  s-neutrals: (
+    prefix: "-s-neutral-",
+    list: $s-neutrals,
+  ),
+  neutrals: (
+    prefix: "-neutral-",
+    list: $neutrals,
+  ),
+  primary: $primary,
+  success: $success,
+  warning: $warning,
+  danger: $danger,
+);
+
+@mixin theme-color($theme: $theme, $prefix: "-") {
+  @each $name, $color in $theme {
+    @if type-of($color) == "map" {
+      @include theme-color(map-get($color, list), map-get($color, prefix));
+    } @else {
+      .color#{$prefix}#{$name} {
+        color: $color;
+      }
+
+      .bg#{$prefix}#{$name} {
+        background-color: $color;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import "./abstracts";
+
+:root {
+  @include theme();
+  @include theme-color();
+
+  @include create-fs();
+  @include create-fw();
+}

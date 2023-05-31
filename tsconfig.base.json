@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shoppa-ui/*": ["packages/shoppa-ui/src/*"],
+      "@shoppa-utils/*": ["packages/shoppa-utils/src/*"],
+      "@shoppa-hooks/*": ["packages/shoppa-hooks/src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

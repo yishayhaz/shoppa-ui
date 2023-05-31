@@ -1,0 +1,38 @@
+.iconButton {
+  svg {
+    width: 50%;
+    height: 50%;
+  }
+
+  &[data-size="sm"] {
+    width: 30px;
+    height: 30px;
+  }
+
+  &[data-size="md"] {
+    width: 40px;
+    height: 40px;
+  }
+
+  &[data-size="lg"] {
+    width: 50px;
+    height: 50px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
+
+  border-radius: 50%;
+  aspect-ratio: 1;
+
+  @include flex;
+
+  color: var(--p-text-accent, rgb(var(--p-accent)));
+  background-color: rgba(var(--p-accent), 0.3);
+
+  &:focus-visible {
+    // @include shadow(rgba(var(--p-accent), 0.6));
+  }
+}

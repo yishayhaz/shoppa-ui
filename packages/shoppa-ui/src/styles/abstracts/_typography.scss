@@ -1,0 +1,48 @@
+$fs-xxl: 4rem !default;
+$fs-xl: 3rem !default;
+$fs-l: 2.5rem !default;
+$fs-ml: 1.75rem !default;
+$fs-m: 1.5rem !default;
+$fs-ms: 1.25rem !default;
+$fs-normal: 1rem !default;
+$fs-xs: 0.825rem !default;
+$fs-xxs: 0.75rem !default;
+$fs-xxxs: 0.6rem !default;
+
+$fs: (
+  "xxl": $fs-xxl,
+  "xl": $fs-xl,
+  "l": $fs-l,
+  "ml": $fs-ml,
+  "m": $fs-m,
+  "ms": $fs-ms,
+  "normal": $fs-normal,
+  "xs": $fs-xs,
+  "xxs": $fs-xxs,
+  "xxxs": $fs-xxxs,
+);
+
+$fw: (
+  "300": 300,
+  "400": 400,
+  "600": 600,
+  "700": 700,
+  "900": 900,
+  "normal": normal,
+);
+
+@mixin create-fs {
+  @each $key, $value in $fs {
+    .fs-#{$key} {
+      font-size: $value;
+    }
+  }
+}
+
+@mixin create-fw {
+  @each $key, $value in $fw {
+    .fw-#{$key} {
+      font-weight: $value;
+    }
+  }
+}

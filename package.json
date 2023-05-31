@@ -1,0 +1,17 @@
+{
+  "name": "shoppa-ui",
+  "version": "1.0.0",
+  "description": "",
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "dev": "npm run dev --prefix docs/shoppa-ui",
+    "shoppa-ui:lint": "npm run lint --prefix docs/shoppa-ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
