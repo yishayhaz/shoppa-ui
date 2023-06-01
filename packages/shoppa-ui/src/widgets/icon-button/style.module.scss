@@ -29,8 +29,15 @@
 
   @include flex;
 
-  color: var(--p-text-accent, rgb(var(--p-accent)));
-  background-color: rgba(var(--p-accent), 0.3);
+  &[data-invert="true"] {
+    color: rgba(var(--p-accent));
+    background-color: rgb(var(--p-text-accent, rgb(var(--p-accent))));
+  }
+
+  &[data-invert="false"] {
+    color: rgb(var(--p-text-accent, rgb(var(--p-accent))));
+    background-color: rgba(var(--p-accent), 0.3);
+  }
 
   &:focus-visible {
     @include shadow(rgba(var(--p-accent), 0.6));

@@ -6,6 +6,7 @@ export type IconButtonProps = BaseButtonProps & {
   size?: IconButtonSize;
   variant?: IconButtonVariant;
   label: string;
+  invert?: boolean;
 };
 
 export type IconButtonVariant =
@@ -23,6 +24,7 @@ export function IconButton({
   label,
   size = "md",
   variant = "primary",
+  invert = false,
   ...rest
 }: IconButtonProps) {
   return (
@@ -32,6 +34,7 @@ export function IconButton({
       aria-label={label}
       data-variant={variant}
       data-size={size}
+      data-invert={invert}
     >
       {children}
     </BaseButton>

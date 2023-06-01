@@ -1,0 +1,59 @@
+.Spinner {
+  position: relative;
+  height: var(--size);
+  width: var(--size);
+
+  &[data-variant="neutral"] div::before {
+    background: $s-neutral !important;
+  }
+  &[data-variant="primary"] div::before {
+    background: $primary !important;
+  }
+  &[data-variant="success"] div::before {
+    background: $success !important;
+  }
+  &[data-variant="danger"] div::before {
+    background: $danger !important;
+  }
+  &[data-variant="warning"] div::before {
+    background: $warning !important;
+  }
+
+  div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        $crrPos: 45 * $i;
+        transform: rotate(#{$crrPos}deg);
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          margin: 15%;
+          width: 17%;
+          height: 17%;
+          border-radius: 50%;
+          animation: blink_#{$i} 0.8s infinite linear;
+          animation-delay: #{0.1 * $i}s;
+          background: var(--color);
+          transform: scale(0);
+
+          @keyframes blink_#{$i} {
+            0% {
+              transform: scale(1.25);
+            }
+            65%,
+            100% {
+              transform: scale(0);
+            }
+          }
+        }
+      }
+    }
+  }
+}

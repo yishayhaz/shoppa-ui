@@ -4,7 +4,7 @@
   transition: width $normal-transition;
 
   &[data-open="true"] {
-    width: 100%;
+    width: var(--p-max-width);
   }
 
   &[data-open="false"] {

@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 const LINKS = [
   { to: "/docs/alert", label: "Alert" },
   { to: "/docs/button", label: "Button" },
+  { to: "/docs/collapse", label: "Collapse" },
   { to: "/docs/drawer", label: "Drawer" },
   { to: "/docs/input", label: "Input" },
+  { to: "/docs/spinner", label: "Spinner" },
 ];
 
 export function Nav() {

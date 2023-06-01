@@ -4,6 +4,8 @@ import { ButtonScreen } from "./screens/button";
 import { InputScreen } from "./screens/input";
 import { AlertScreen } from "./screens/alert";
 import { DrawerScreen } from "./screens/drawer";
+import { CollapseScreen } from "./screens/collapse";
+import { SpinnerScreen } from "./screens/spinner";
 
 export default function App() {
   return (
@@ -13,8 +15,10 @@ export default function App() {
         <Route path="/docs" element={<Layout />}>
           <Route path="alert" element={<AlertScreen />} />
           <Route path="button" element={<ButtonScreen />} />
+          <Route path="collapse" element={<CollapseScreen />} />
           <Route path="drawer" element={<DrawerScreen />} />
           <Route path="input" element={<InputScreen />} />
+          <Route path="spinner" element={<SpinnerScreen />} />
         </Route>
       </Routes>
     </Router>

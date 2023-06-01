@@ -35,7 +35,10 @@
   .d-flex {
     @include flex;
   }
-
+  .flex-start {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
   .flex-column {
     flex-direction: column;
   }

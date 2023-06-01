@@ -4,6 +4,7 @@ import { BaseButton, BaseButtonProps } from "../../primitives/base-button";
 
 export type ButtonProps = BaseButtonProps & {
   variant?: ButtonVariants;
+  autoWidth?: boolean;
 };
 
 export type ButtonVariants =
@@ -17,12 +18,14 @@ export const Button = ({
   className,
   variant = "primary",
   children,
+  autoWidth,
   ...rest
 }: ButtonProps) => {
   return (
     <BaseButton
       {...rest}
       data-variant={variant}
+      data-auto-width={autoWidth}
       className={`${className || ""} ${styles.button}`}
     >
       {children}
