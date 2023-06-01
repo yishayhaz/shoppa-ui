@@ -84,6 +84,29 @@ export function ButtonScreen() {
           </IconButton>
         </div>
       </div>
+      <div className="d-flex flex-column gap-6 align-items-start">
+        <h2>Icon Button Inverted</h2>
+        <div className="d-flex gap-6">
+          <IconButton invert label="" variant="primary">
+            A
+          </IconButton>
+          <IconButton invert label="" variant="secondary">
+            A
+          </IconButton>
+          <IconButton invert label="" variant="success">
+            A
+          </IconButton>
+          <IconButton invert label="" variant="danger">
+            A
+          </IconButton>
+          <IconButton invert label="" variant="warning">
+            A
+          </IconButton>
+          <IconButton invert label="" disabled variant="primary">
+            A
+          </IconButton>
+        </div>
+      </div>
     </div>
   );
 }
