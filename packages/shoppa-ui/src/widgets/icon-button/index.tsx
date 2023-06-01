@@ -7,6 +7,7 @@ export type IconButtonProps = BaseButtonProps & {
   variant?: IconButtonVariant;
   label: string;
   invert?: boolean;
+  square?: boolean;
 };
 
 export type IconButtonVariant =
@@ -25,6 +26,7 @@ export function IconButton({
   size = "md",
   variant = "primary",
   invert = false,
+  square = false,
   ...rest
 }: IconButtonProps) {
   return (
@@ -35,6 +37,7 @@ export function IconButton({
       data-variant={variant}
       data-size={size}
       data-invert={invert}
+      data-square={square}
     >
       {children}
     </BaseButton>

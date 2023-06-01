@@ -2,8 +2,13 @@
   @include flex;
 
   border-radius: $border-radius;
-  background-color: rgb(var(--p-accent));
-  color: var(--p-text-accent, white);
+
+  &:not([data-link]),
+  &:not([data-link="true"]),
+  &[data-link="true"]:hover:not(:disabled) {
+    background-color: rgb(var(--p-accent));
+    color: var(--p-text-accent, white);
+  }
 
   line-height: 1em;
   padding: 0.75rem;

@@ -12,8 +12,7 @@ export function CollapseScreen() {
           className="d-flex justify-content-start gap-20"
           style={{ border: "1px solid black" }}
         >
-          <span>this is the header</span>
-          <Button autoWidth>Toggle</Button>
+          <p>click me plz</p>
         </div>
         <div style={{ border: "1px solid black" }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus enim

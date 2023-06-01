@@ -1,4 +1,3 @@
-import React from "react";
 import { BaseButton } from "@shoppa-ui/primitives/base-button";
 import { Button } from "@shoppa-ui/widgets/button";
 import { IconButton } from "@shoppa-ui/widgets/icon-button";
@@ -21,6 +20,25 @@ export function ButtonScreen() {
         <Button disabled>Hey I'm Disabled</Button>
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">
+        <h2>Button As Links</h2>
+        <Button asLink>Hey I'm Primary</Button>
+        <Button asLink variant="secondary">
+          Hey I'm Secondary
+        </Button>
+        <Button asLink variant="success">
+          Hey I'm Success
+        </Button>
+        <Button asLink variant="danger">
+          Hey I'm Danger
+        </Button>
+        <Button asLink variant="warning">
+          Hey I'm Warning
+        </Button>
+        <Button asLink disabled>
+          Hey I'm Disabled
+        </Button>
+      </div>
+      <div className="d-flex flex-column gap-6 align-items-start">
         <h2>Icon Button</h2>
         <div className="d-flex gap-6">
           <IconButton label="" variant="primary">
@@ -39,6 +57,29 @@ export function ButtonScreen() {
             ✨
           </IconButton>
           <IconButton label="" disabled variant="primary">
+            ✨
+          </IconButton>
+        </div>
+      </div>
+      <div className="d-flex flex-column gap-6 align-items-start">
+        <h2>Icon Button As Squares</h2>
+        <div className="d-flex gap-6">
+          <IconButton square label="" variant="primary">
+            ✨
+          </IconButton>
+          <IconButton square label="" variant="secondary">
+            ✨
+          </IconButton>
+          <IconButton square label="" variant="success">
+            ✨
+          </IconButton>
+          <IconButton square label="" variant="danger">
+            ✨
+          </IconButton>
+          <IconButton square label="" variant="warning">
+            ✨
+          </IconButton>
+          <IconButton square label="" disabled variant="primary">
             ✨
           </IconButton>
         </div>

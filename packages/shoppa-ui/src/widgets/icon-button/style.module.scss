@@ -24,7 +24,14 @@
     cursor: no-drop;
   }
 
-  border-radius: 50%;
+  &:not([data-square="true"]) {
+    border-radius: 50%;
+  }
+
+  &[data-square="true"] {
+    border-radius: $border-radius-sm;
+  }
+
   aspect-ratio: 1;
 
   @include flex;

@@ -1,0 +1,26 @@
+.d-block {
+  display: block;
+  width: 100%;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-decoration {
+  text-decoration: underline;
+}
+
+.hover-text-decoration {
+  &:hover {
+    @extend .text-decoration;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

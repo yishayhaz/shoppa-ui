@@ -5,6 +5,7 @@ import { BaseButton, BaseButtonProps } from "../../primitives/base-button";
 export type ButtonProps = BaseButtonProps & {
   variant?: ButtonVariants;
   autoWidth?: boolean;
+  asLink?: boolean;
 };
 
 export type ButtonVariants =
@@ -12,20 +13,23 @@ export type ButtonVariants =
   | "secondary"
   | "success"
   | "danger"
-  | "warning";
+  | "warning"
+  | "link";
 
 export const Button = ({
   className,
   variant = "primary",
   children,
   autoWidth,
+  asLink,
   ...rest
 }: ButtonProps) => {
   return (
     <BaseButton
       {...rest}
       data-variant={variant}
-      data-auto-width={autoWidth}
+      {...(autoWidth && { "data-auto-width": true })}
+      {...(asLink && { "data-link": true })}
       className={`${className || ""} ${styles.button}`}
     >
       {children}
