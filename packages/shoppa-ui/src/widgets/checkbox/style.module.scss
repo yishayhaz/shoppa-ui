@@ -1,0 +1,49 @@
+.checkbox {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7.5px;
+
+  label,
+  input {
+    cursor: pointer;
+  }
+
+  label {
+    font-size: $fs-xs;
+  }
+
+  .icon {
+    position: absolute;
+    color: $s-neutral-bg;
+    pointer-events: none;
+  }
+
+  input {
+    appearance: none;
+
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: $border-radius-sm;
+
+    border: 1px solid var(--p-accent);
+
+    // @include outline($border-radius: $border-radius-sm);
+
+    &:not(:checked) + .Icon {
+      display: none;
+    }
+
+    &:checked {
+      background-color: var(--p-accent);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}

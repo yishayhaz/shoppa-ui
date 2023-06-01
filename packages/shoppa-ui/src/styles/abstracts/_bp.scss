@@ -10,9 +10,9 @@
 
   * we have 5 mixins:
   - mobile: for mobile only (0 - 767px)
+  - tablet-and-mobile: for tablet and mobile (0 - 1199px)
   - tablet: for tablet and mobile (0 - 1199px)
-  - tablet-only: for tablet only (768px - 1199px)
-  - tablet-up: for tablet and desktop (768px and up)
+  - tablet-and-desktop: for tablet and desktop (768px and up)
   - desktop: for desktop only (1200px and up)
 
   Note: this file should be in sync with the useDevice hook at src/providers/device/index.js
@@ -22,37 +22,31 @@ $bp-sm: 768px;
 $bp-md: 1200px;
 
 @mixin mobile() {
-  @media (max-width: $bp-sm) {
+  @media (width < $bp-sm) {
     @content;
   }
 }
 
-@mixin mobile-up() {
-  @media (min-width: $bp-sm) {
+@mixin tablet-and-mobile {
+  @media (width < $bp-md) {
     @content;
   }
 }
 
 @mixin tablet() {
-  @media (max-width: $bp-md) {
+  @media (width < $bp-md) and (width >= $bp-sm) {
     @content;
   }
 }
 
-@mixin tablet-only() {
-  @media (min-width: $bp-sm) and (max-width: $bp-md) {
-    @content;
-  }
-}
-
-@mixin tablet-up() {
-  @media (min-width: $bp-md) {
+@mixin tablet-and-desktop {
+  @media (width >= $bp-sm) {
     @content;
   }
 }
 
 @mixin desktop() {
-  @media (min-width: $bp-md) {
+  @media (width >= $bp-md) {
     @content;
   }
 }

@@ -1,6 +1,6 @@
 import { IconButton } from "@shoppa-ui/widgets/icon-button";
-import React, { useEffect } from "react";
-import { HiMenuAlt1 } from "react-icons/hi";
+import React, { useEffect, useState } from "react";
+import { HiMenuAlt1, HiSwitchHorizontal } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { BsFillMoonStarsFill, BsGithub } from "react-icons/bs";
@@ -12,18 +12,24 @@ export type HeaderProps = {
 };
 
 export function Header({ setIsOpen, isOpen }: HeaderProps) {
-  const [isDark, setIsDark] = React.useState(
-    localStorage.getItem("theme") === "dark"
-  );
+  const [isDark, setIsDark] = useState(true);
 
   const handleTheme = () => {
     setIsDark(!isDark);
     localStorage.setItem("theme", isDark ? "light" : "dark");
   };
 
+  const handleDir = () => {
+    document.body.dir = document.body.dir === "rtl" ? "ltr" : "rtl";
+  };
+
   useEffect(() => {
     document.body.dataset.theme = isDark ? "dark" : "light";
   }, [isDark]);
+
+  useEffect(() => {
+    setIsDark(localStorage.getItem("theme") === "dark");
+  }, []);
 
   return (
     <header
@@ -40,7 +46,10 @@ export function Header({ setIsOpen, isOpen }: HeaderProps) {
           </IconButton>
           <h1>Shoppa UI</h1>
         </div>
-        <div className="d-flex gap-20">
+        <div className="d-flex gap-10">
+          <IconButton label="lang" square size="sm" onClick={handleDir}>
+            <HiSwitchHorizontal />
+          </IconButton>
           <Link
             target="_blank"
             to="https://github.com/yishayhaz/shoppa-ui"
@@ -74,7 +83,7 @@ export function Header({ setIsOpen, isOpen }: HeaderProps) {
               isDark ? "dark" : "light"
             }-theme-logo.svg`}
             alt="logo"
-            width="auto"
+            width="120px"
             height="30px"
           />
         </div>

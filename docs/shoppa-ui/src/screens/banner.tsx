@@ -5,8 +5,8 @@ export function BannerScreen() {
   return (
     <div>
       <h1>This is the doocumentation for the banner</h1>
-      <Banner src={""} alt={""}>
-        <div>Hello World</div>
+      <Banner src={"https://assets.shoppa.co.il/defaults/store-banner.svg"}>
+        <div className="bg-danger">Hello World</div>
       </Banner>
     </div>
   );

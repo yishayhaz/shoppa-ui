@@ -15,7 +15,8 @@ export function DrawerScreen() {
       <div className="d-flex flex-start gap-20">
         <Drawer
           isOpen={isOpen}
-          style={{ background: "red", height: "200px" }}
+          style={{ height: "200px" }}
+          className="bg-danger"
           maxWidth={200}
         >
           <span>Hello World</span>

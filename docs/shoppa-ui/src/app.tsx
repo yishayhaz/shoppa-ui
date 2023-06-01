@@ -7,6 +7,8 @@ import { DrawerScreen } from "./screens/drawer";
 import { CollapseScreen } from "./screens/collapse";
 import { SpinnerScreen } from "./screens/spinner";
 import { BannerScreen } from "./screens/banner";
+import { CheckboxScreen } from "./screens/checkbox";
+import { RadioScreen } from "./screens/radio";
 
 export default function App() {
   return (
@@ -17,9 +19,11 @@ export default function App() {
           <Route path="alert" element={<AlertScreen />} />
           <Route path="banner" element={<BannerScreen />} />
           <Route path="button" element={<ButtonScreen />} />
+          <Route path="checkbox" element={<CheckboxScreen />} />
           <Route path="collapse" element={<CollapseScreen />} />
           <Route path="drawer" element={<DrawerScreen />} />
           <Route path="input" element={<InputScreen />} />
+          <Route path="radio" element={<RadioScreen />} />
           <Route path="spinner" element={<SpinnerScreen />} />
         </Route>
       </Routes>
