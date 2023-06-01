@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "npm run dev --prefix docs/shoppa-ui",
-    "shoppa-ui:lint": "npm run lint --prefix docs/shoppa-ui"
+    "shoppa-ui:lint": "npm run lint --prefix docs/shoppa-ui",
+    "shoppa-ui:build": "npm run build --prefix packages/shoppa-ui"
   },
   "keywords": [],
   "author": "",

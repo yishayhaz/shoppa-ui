@@ -1,4 +1,3 @@
-import React from "react";
 import { BaseButton, BaseButtonProps } from "../../primitives/base-button";
 import styles from "./style.module.scss";
 
