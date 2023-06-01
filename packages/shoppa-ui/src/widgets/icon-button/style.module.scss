@@ -33,6 +33,6 @@
   background-color: rgba(var(--p-accent), 0.3);
 
   &:focus-visible {
-    // @include shadow(rgba(var(--p-accent), 0.6));
+    @include shadow(rgba(var(--p-accent), 0.6));
   }
 }

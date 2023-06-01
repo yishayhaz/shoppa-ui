@@ -11,7 +11,10 @@
   flex-wrap: $wrap;
   justify-content: $justify;
   align-items: $align;
-  gap: $gap;
+
+  @if $gap != 0 {
+    gap: $gap;
+  }
 
   @content;
 }

@@ -1,4 +1,4 @@
-@import "./abstracts";
+@use "./abstracts" as *;
 
 :root {
   @include theme();
@@ -6,4 +6,39 @@
 
   @include create-fs();
   @include create-fw();
+
+  @include create-flex();
+}
+
+// CSS Reset
+
+.app {
+  body[data-theme="light"] {
+    color-scheme: light;
+  }
+
+  body[data-theme="dark"] {
+    color-scheme: dark;
+  }
+}
+
+:where(.app *) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:where(.app body) {
+  min-height: 100vh;
+
+  background-color: $s-neutral-bg;
+  color: $s-neutral-text;
+}
+
+:where(.app img),
+:where(.app picture),
+:where(.app svg),
+:where(.app video) {
+  display: block;
+  max-width: 100%;
 }

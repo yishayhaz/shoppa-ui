@@ -5,22 +5,22 @@
   background-color: rgb(var(--p-accent));
   color: var(--p-text-accent, white);
 
-  &:not([data-auto-width="true"]) {
-    width: 100%;
-  }
-
   line-height: 1em;
   padding: 0.75rem;
 
   font-weight: 600;
   transition: background-color, opacity $normal-transition;
 
+  &:not([data-auto-width="true"]) {
+    width: 100%;
+  }
+
   &:focus-visible {
-    // @include shadow(rgba(var(--p-accent), 0.6));
+    @include shadow(rgba(var(--p-accent), 0.6));
   }
 
   &:disabled {
-    opacity: 0.5;
+    opacity: $disabled-opacity;
     cursor: no-drop;
   }
 }

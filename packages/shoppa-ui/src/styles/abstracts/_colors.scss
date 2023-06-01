@@ -92,7 +92,7 @@
   --neutral-800: 39, 41, 58;
   --neutral-900: var(--dark);
 
-  body[data-theme="light"] {
+  body:not([data-theme="dark"]) {
     @include light-theme;
   }
 
