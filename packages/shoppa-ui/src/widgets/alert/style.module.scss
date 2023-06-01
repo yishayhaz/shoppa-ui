@@ -1,0 +1,35 @@
+.alert {
+  width: 100%;
+
+  background-color: rgba(var(--p-accent), 0.1);
+  color: rgba(var(--p-accent), 1);
+  border: 1px solid rgba(var(--p-accent), 0.5);
+
+  padding: 0.8em 1em;
+
+  &[data-size="lg"] {
+    font-size: $fs-m;
+    border-radius: $border-radius-lg;
+  }
+
+  &[data-size="md"] {
+    font-size: $fs-ms;
+    border-radius: $border-radius;
+  }
+
+  &[data-size="sm"] {
+    font-size: $fs-normal;
+    border-radius: $border-radius-sm;
+  }
+
+  &__title {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  &__description {
+    font-size: 0.75em;
+  }
+}

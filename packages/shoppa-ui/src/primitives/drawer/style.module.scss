@@ -1,0 +1,13 @@
+.drawer {
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width $normal-transition;
+
+  &[data-open="true"] {
+    width: 100%;
+  }
+
+  &[data-open="false"] {
+    width: 0;
+  }
+}
