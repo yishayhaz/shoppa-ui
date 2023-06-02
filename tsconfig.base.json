@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@shoppa-ui/*": ["packages/shoppa-ui/src/*"],
+      "@shoppa-ui/*": ["packages/shoppa-ui/*"],
       "@shoppa-utils/*": ["packages/shoppa-utils/src/*"],
       "@shoppa-hooks/*": ["packages/shoppa-hooks/src/*"]
     }

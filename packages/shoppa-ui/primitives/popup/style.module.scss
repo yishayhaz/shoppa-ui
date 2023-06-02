@@ -1,0 +1,111 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(var(--neutral), 0.2);
+  backdrop-filter: blur(2px);
+  z-index: $zindex-modal;
+
+  @include flex;
+
+  &.animate {
+    &[aria-expanded="false"] {
+      animation: fadeout $normal-transition;
+
+      & > div {
+        animation: popout $normal-transition;
+      }
+    }
+    &[aria-expanded="true"] {
+      opacity: 1;
+
+      & > div {
+        animation: popup $normal-transition;
+      }
+    }
+  }
+
+  &__card {
+    max-width: 100%;
+    position: relative;
+    background: $s-neutral-100;
+    border-radius: $border-radius;
+    box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
+      0 2px 18px rgba(47, 64, 80, 0.25);
+
+    &Outline {
+      // @include outline;
+    }
+
+    &:not(.popup__cardOutline) {
+      outline: none;
+    }
+
+    &Padding {
+      padding: 1rem 2rem;
+    }
+
+    &__close {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+
+      @include flex;
+
+      background-color: rgba(var(--neutral-400), 0.5);
+      color: $s-neutral-100;
+
+      &:focus-visible {
+        // @include outline($border-radius: 50%);
+      }
+
+      &[data-outside="true"] {
+        right: 0;
+        top: -40px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@keyframes popup {
+  0% {
+    scale: 0.6;
+    opacity: 0;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes popout {
+  0% {
+    scale: 1;
+    opacity: 1;
+  }
+  100% {
+    scale: 0.6;
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

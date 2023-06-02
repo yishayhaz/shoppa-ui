@@ -19,7 +19,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         // ew
-        additionalData: `@use "../../packages/shoppa-ui/src/styles/abstracts" as *;`,
+        additionalData: `@use "../../packages/shoppa-ui/styles/abstracts" as *;`,
       },
     },
   },

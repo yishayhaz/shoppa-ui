@@ -8,10 +8,12 @@ const LINKS = [
   { to: "/docs/alert", label: "Alert" },
   { to: "/docs/banner", label: "Banner" },
   { to: "/docs/button", label: "Button" },
+  { to: "/docs/card", label: "Card" },
   { to: "/docs/checkbox", label: "Checkbox" },
   { to: "/docs/collapse", label: "Collapse" },
   { to: "/docs/drawer", label: "Drawer" },
   { to: "/docs/input", label: "Input" },
+  { to: "/docs/popup", label: "Popup" },
   { to: "/docs/radio", label: "Radio" },
   { to: "/docs/spinner", label: "Spinner" },
 ];
