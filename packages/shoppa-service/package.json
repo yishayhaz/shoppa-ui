@@ -1,0 +1,12 @@
+{
+  "name": "shoppa-service",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.ts",
+  "keywords": [],
+  "author": "Yishay Hazan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}
