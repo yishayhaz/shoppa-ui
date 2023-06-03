@@ -16,6 +16,7 @@ const LINKS = [
   { to: "/docs/popup", label: "Popup" },
   { to: "/docs/radio", label: "Radio" },
   { to: "/docs/spinner", label: "Spinner" },
+  { to: "/docs/table", label: "Table" },
   { to: "/docs/textarea", label: "Textarea" },
 ];
 

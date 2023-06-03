@@ -1,0 +1,22 @@
+.table__wrraper {
+  overflow: auto;
+  width: 100%;
+
+  table {
+    width: 2000px;
+
+    th,
+    td {
+      text-align: start;
+      padding: 0.5rem 1rem;
+    }
+
+    thead {
+      background-color: $s-neutral-200;
+    }
+
+    tbody tr:not(:first-child) td {
+      border-top: 1px solid $s-neutral-400;
+    }
+  }
+}
