@@ -11,6 +11,7 @@ import { CheckboxScreen } from "./screens/checkbox";
 import { RadioScreen } from "./screens/radio";
 import { PopupScreen } from "./screens/popup";
 import { CardScreen } from "./screens/card";
+import { TextareaScreen } from "./screens/textarea";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="popup" element={<PopupScreen />} />
           <Route path="radio" element={<RadioScreen />} />
           <Route path="spinner" element={<SpinnerScreen />} />
+          <Route path="textarea" element={<TextareaScreen />} />
         </Route>
       </Routes>
     </Router>

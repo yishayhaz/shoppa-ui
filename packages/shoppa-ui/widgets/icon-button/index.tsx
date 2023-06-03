@@ -5,16 +5,16 @@ export type IconButtonProps = BaseButtonProps & {
   size?: IconButtonSize;
   variant?: IconButtonVariant;
   label: string;
-  invert?: boolean;
   square?: boolean;
 };
 
 export type IconButtonVariant =
   | "primary"
-  | "secondary"
+  | "neutral"
   | "success"
   | "danger"
-  | "warning";
+  | "warning"
+  | "link";
 
 export type IconButtonSize = "sm" | "md" | "lg";
 
@@ -24,7 +24,6 @@ export function IconButton({
   label,
   size = "md",
   variant = "primary",
-  invert = false,
   square = false,
   ...rest
 }: IconButtonProps) {
@@ -32,11 +31,11 @@ export function IconButton({
     <BaseButton
       {...rest}
       className={`${styles.iconButton} ${className || ""}`}
-      aria-label={label}
-      data-variant={variant}
+      {...(label && { "aria-label": label })}
+      {...(square && { "data-square": true })}
+      {...(variant === "link" && { "data-link": true })}
       data-size={size}
-      data-invert={invert}
-      data-square={square}
+      data-variant={variant === "link" ? "neutral" : variant}
     >
       {children}
     </BaseButton>

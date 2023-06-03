@@ -1,18 +1,8 @@
 import React from "react";
-import styles from "./style.module.scss";
-import { BaseButton } from "../../primitives/base-button";
+import { InputGroup, InputGroupProps } from "../../primitives/input-group";
 
-export type InputProps = {
-  label?: string;
-  icon?: React.ReactNode;
-  btnIcon?: React.ReactNode;
-  btnIconLabel?: string;
-  isValid?: InputIsValid;
-  isLoading?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onClick">;
-
-export type InputIsValid = true | false | null;
+export type InputProps = InputGroupProps &
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, "onClick">;
 
 export function Input({
   label,
@@ -23,13 +13,13 @@ export function Input({
   className,
   isValid,
   isLoading,
+  disabled,
   onClick,
   onKeyDown,
+  required,
   id,
   ...rest
 }: InputProps) {
-  const _btnIconLabel = btnIconLabel || label;
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (onKeyDown) onKeyDown(e);
 
@@ -39,32 +29,28 @@ export function Input({
   };
 
   return (
-    <div
-      className={`${styles.inputGroup} ${className || ""}`}
-      {...(typeof isValid === "boolean" ? { "data-valid": isValid } : {})}
+    <InputGroup
+      icon={icon}
+      btnIcon={btnIcon}
+      btnIconLabel={btnIconLabel}
+      label={label}
+      title={title}
+      id={id}
+      isValid={isValid}
+      disabled={disabled}
+      className={className}
+      required={required}
+      isLoading={isLoading}
+      onClick={onClick}
     >
-      <label className={styles.inputGroup__label} htmlFor={id} hidden={!label}>
-        {rest.required && "* "}
-        {label}
-      </label>
-      <div className={styles.inputGroup__wrraper}>
-        <input {...rest} id={id} onKeyDown={handleKeyDown} />
-        {btnIcon && (
-          <BaseButton
-            className={styles.inputGroup__icon}
-            aria-label={_btnIconLabel}
-            onClick={onClick}
-            type="button"
-          >
-            {/* {isLoading &&
-              <Spinner size="16px" color="neutral" />
-            } */}
-            {!isLoading && btnIcon}
-          </BaseButton>
-        )}
-        {icon && <div className={styles.inputGroup__icon}>{icon}</div>}
-      </div>
-      {title && <span className={styles.inputGroup__title}>{title}</span>}
-    </div>
+      <input
+        {...rest}
+        {...(disabled && { disabled: true })}
+        {...(required && { required: true })}
+        {...(title && { title })}
+        id={id}
+        onKeyDown={handleKeyDown}
+      />
+    </InputGroup>
   );
 }

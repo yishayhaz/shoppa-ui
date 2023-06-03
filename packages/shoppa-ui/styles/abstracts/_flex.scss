@@ -1,18 +1,22 @@
 @mixin flex(
-  $dir: row,
-  $wrap: nowrap,
+  $dir: "undefined",
+  $wrap: "undefined",
   $justify: center,
   $align: center,
-  $gap: 0,
+  $gap: "undefined",
   $flex: flex
 ) {
   display: $flex;
-  flex-direction: $dir;
-  flex-wrap: $wrap;
   justify-content: $justify;
   align-items: $align;
 
-  @if $gap != 0 {
+  @if $dir != "undefined" {
+    flex-direction: $dir;
+  }
+  @if $wrap != "undefined" {
+    flex-wrap: $wrap;
+  }
+  @if $gap != "undefined" {
     gap: $gap;
   }
 

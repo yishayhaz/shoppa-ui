@@ -54,8 +54,6 @@
       background-color: $neutral-700;
       color: $neutral-100;
 
-      cursor: pointer;
-
       &:focus-visible {
         scale: 1.2;
         @include shadow($s-neutral-200);
@@ -66,34 +64,41 @@
       }
     }
 
-    &:hover:not(:focus-within) {
+    &[aria-disabled] {
+      * {
+        cursor: no-drop;
+      }
+      background-color: $s-neutral-200;
+    }
+
+    &:hover:not(:focus-within):not([aria-disabled]) {
       border-color: $s-neutral-900;
     }
 
     &:focus-within {
       @include shadow($s-neutral-400);
     }
-  }
 
-  input {
-    @extend .reset-outline !optional;
+    & > *:first-child {
+      @extend .reset-outline !optional;
 
-    width: 100%;
-    font-size: 16px;
+      width: 100%;
+      font-size: 16px;
 
-    padding: 0.625rem 0.75rem;
+      padding: 0.625rem 0.75rem;
 
-    border: none;
-    border-radius: $border-radius;
+      border: none;
+      border-radius: $border-radius;
 
-    color: $s-neutral-900;
-    background: transparent;
+      color: $s-neutral-900;
+      background: transparent;
 
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-      transition: background-color 5000s ease-in-out 0s;
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+      }
     }
   }
 

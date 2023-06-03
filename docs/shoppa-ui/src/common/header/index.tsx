@@ -33,7 +33,7 @@ export function Header({ setIsOpen, isOpen }: HeaderProps) {
 
   return (
     <header
-      style={{ position: "sticky", top: "0" }}
+      style={{ position: "sticky", top: "0", zIndex: 1000 }}
       className="bg-s-neutral-bg"
     >
       <div
@@ -55,13 +55,7 @@ export function Header({ setIsOpen, isOpen }: HeaderProps) {
             to="https://github.com/yishayhaz/shoppa-ui"
             className="reset-link"
           >
-            <IconButton
-              invert
-              label="github"
-              size="sm"
-              variant="secondary"
-              square
-            >
+            <IconButton label="github" size="sm" variant="neutral" square>
               <BsGithub />
             </IconButton>
           </Link>

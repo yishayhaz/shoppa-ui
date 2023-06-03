@@ -33,18 +33,17 @@
   }
 
   aspect-ratio: 1;
-
   @include flex;
 
-  &[data-invert="true"] {
-    color: rgba(var(--p-accent));
-    background-color: rgb(var(--p-text-accent, rgb(var(--p-accent))));
+  &:not([data-link]),
+  &[data-link]:hover {
+    background-color: rgb(var(--p-accent), 0.67);
+  }
+  &:focus-visible {
+    background-color: rgb(var(--p-accent));
   }
 
-  &[data-invert="false"] {
-    color: rgb(var(--p-text-accent, rgb(var(--p-accent))));
-    background-color: rgba(var(--p-accent), 0.3);
-  }
+  color: var(--p-text-accent, var(--p-accent));
 
   &:focus-visible {
     @include shadow(rgba(var(--p-accent), 0.6));

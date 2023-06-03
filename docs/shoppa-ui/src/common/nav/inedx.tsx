@@ -16,6 +16,7 @@ const LINKS = [
   { to: "/docs/popup", label: "Popup" },
   { to: "/docs/radio", label: "Radio" },
   { to: "/docs/spinner", label: "Spinner" },
+  { to: "/docs/textarea", label: "Textarea" },
 ];
 
 export function Nav() {
@@ -64,8 +65,7 @@ export function Nav() {
           <li key={idx}>
             <Link to={link.to} className="reset-link">
               <Button
-                asLink={active !== link.to}
-                variant="secondary"
+                variant={active === link.to ? "neutral" : "link"}
                 className="flex-start"
               >
                 {link.label}

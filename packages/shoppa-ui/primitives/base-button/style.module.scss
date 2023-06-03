@@ -2,10 +2,9 @@
   &[data-variant="primary"] {
     --p-accent: var(--primary);
   }
-  &[data-variant="secondary"] {
-    --p-accent: var(--s-neutral-300);
+  &[data-variant="neutral"] {
+    --p-accent: var(--neutral-300);
     --p-text-accent: var(--s-neutral-text);
-    --p-accent-hover: var(--s-neutral-400);
   }
   &[data-variant="success"] {
     --p-accent: var(--success);
@@ -23,7 +22,10 @@
   border: none;
   background-color: inherit;
   font-size: $fs-normal;
-  cursor: pointer;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
 
   svg {
     pointer-events: none;

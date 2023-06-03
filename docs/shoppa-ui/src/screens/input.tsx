@@ -34,6 +34,22 @@ export function InputScreen() {
         />
         <Input placeholder="Am I cool or what?" isValid btnIcon={"✅"} />
       </div>
+      <div className="d-flex gap-10 flex-column align-items-start">
+        <h2>Disabled</h2>
+        <Input placeholder="Am I cool or what?" btnIcon={"🏁"} disabled />
+        <Input
+          disabled
+          placeholder="Am I cool or what?"
+          isValid={false}
+          btnIcon={"❌"}
+        />
+        <Input
+          placeholder="Am I cool or what?"
+          isValid
+          btnIcon={"✅"}
+          disabled
+        />
+      </div>
     </div>
   );
 }

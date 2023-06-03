@@ -3,11 +3,11 @@
 
   border-radius: $border-radius;
 
-  &:not([data-link]),
   &:not([data-link="true"]),
-  &[data-link="true"]:hover:not(:disabled) {
-    background-color: rgb(var(--p-accent));
-    color: var(--p-text-accent, white);
+  &[data-link="true"]:hover,
+  &[data-link="true"]:focus-visible {
+    background-color: rgba(var(--p-accent));
+    color: var(--p-text-accent, $neutral-100);
   }
 
   line-height: 1em;

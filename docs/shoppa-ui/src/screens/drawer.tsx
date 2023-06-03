@@ -18,6 +18,7 @@ export function DrawerScreen() {
           style={{ height: "200px" }}
           className="bg-danger"
           maxWidth={200}
+          minWidth={30}
         >
           <span>Hello World</span>
         </Drawer>

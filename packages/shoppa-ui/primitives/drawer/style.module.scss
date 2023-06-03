@@ -3,11 +3,11 @@
   white-space: nowrap;
   transition: width $normal-transition;
 
-  &[data-open="true"] {
+  &[aria-expanded="true"] {
     width: var(--p-max-width);
   }
 
-  &[data-open="false"] {
-    width: 0;
+  &[aria-expanded="false"] {
+    width: var(--p-min-width);
   }
 }
