@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { isBetween } from "@shoppa-utils/isBetween";
-import { debounce } from "@shoppa-utils/debounce";
+import { isBetween } from "shoppa-utils/isBetween";
+import { debounce } from "shoppa-utils/debounce";
 
 export enum EDevices {
   mobile,

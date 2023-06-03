@@ -1,8 +1,18 @@
 import { BaseButton } from "@shoppa-ui/primitives/base-button";
 import { Button } from "@shoppa-ui/widgets/button";
 import { IconButton } from "@shoppa-ui/widgets/icon-button";
+import { api } from "../api";
 
 export function ButtonScreen() {
+  const handleAPI = async () => {
+    try {
+      const res = await api.get("/test");
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="d-flex gap-30 flex-column align-items-stretch">
       <h1>This is the documentation for button</h1>
@@ -12,7 +22,7 @@ export function ButtonScreen() {
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">
         <h2>Button</h2>
-        <Button>Hey I'm Primary</Button>
+        <Button onClick={handleAPI}>Hey I'm Primary</Button>
         <Button variant="secondary">Hey I'm Secondary</Button>
         <Button variant="success">Hey I'm Success</Button>
         <Button variant="danger">Hey I'm Danger</Button>

@@ -1,7 +1,7 @@
 {
   "name": "shoppa-ts",
   "version": "0.0.0",
-  "description": "",
+  "description": "Shoppa Shared Typescript",
   "main": "index.ts",
   "keywords": [],
   "author": "Yishay Hazan",

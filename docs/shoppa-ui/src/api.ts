@@ -1,5 +1,5 @@
 import { Service } from "@shoppa-service";
 
-const api = new Service({
-  baseURL: "http://localhost:3000",
+export const api = new Service({
+  baseURL: "http://localhost:8001/api/v1",
 });

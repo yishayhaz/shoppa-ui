@@ -16,10 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@shoppa-ui/*": ["packages/shoppa-ui/*"],
-      "@shoppa-utils/*": ["packages/shoppa-utils/src/*"],
-      "@shoppa-hooks/*": ["packages/shoppa-hooks/src/*"],
+      "@shoppa-utils/*": ["packages/shoppa-utils/*"],
+      "@shoppa-hooks/*": ["packages/shoppa-hooks/*"],
       "@shoppa-ts": ["packages/shoppa-ts"],
-      "@shoppa-ts/*": ["packages/shoppa-ts/*"],
       "@shoppa-service": ["packages/shoppa-service"]
     }
   },

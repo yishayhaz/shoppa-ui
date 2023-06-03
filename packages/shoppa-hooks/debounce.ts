@@ -1,4 +1,4 @@
-import { debounce } from "@shoppa-utils/debounce";
+import { debounce } from "shoppa-utils/debounce";
 import { useRef } from "react";
 
 export const DEFAULT_DEBOUNCE_WAIT = 200;
