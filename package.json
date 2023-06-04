@@ -8,9 +8,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev": "npm run dev --prefix docs/shoppa-ui",
-    "shoppa-ui:lint": "npm run lint --prefix docs/shoppa-ui",
-    "shoppa-ui:build": "npm run build --prefix packages/shoppa-ui"
+    "dev": "npm run dev --prefix docs/shoppa-ui"
   },
   "keywords": [],
   "author": "",
