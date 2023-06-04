@@ -1,9 +1,12 @@
 import React from "react";
-import { Table } from "@shoppa-ui/widgets/table";
+import { HeadCell, Table } from "@shoppa-ui/widgets/table";
 import { IconButton } from "@shoppa-ui/widgets/icon-button";
 import { BiTrash } from "react-icons/bi";
 
 export function TableScreen() {
+  const [sortDir, setSortDir] = React.useState<1 | -1 | 0>(0);
+  const [sortCol, setSortCol] = React.useState(0);
+
   return (
     <div>
       <h1>This is the documentation for the table</h1>
@@ -11,9 +14,45 @@ export function TableScreen() {
       <Table>
         <thead>
           <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
+            <HeadCell
+              sortDir={sortCol === 0 ? sortDir : 0}
+              onClick={() => {
+                setSortCol(0);
+                if (sortDir === 1) {
+                  setSortDir(-1);
+                } else {
+                  setSortDir(1);
+                }
+              }}
+            >
+              Column 1
+            </HeadCell>
+            <HeadCell
+              sortDir={sortCol === 1 ? sortDir : 0}
+              onClick={() => {
+                setSortCol(1);
+                if (sortDir === 1) {
+                  setSortDir(-1);
+                } else {
+                  setSortDir(1);
+                }
+              }}
+            >
+              Column 2
+            </HeadCell>
+            <HeadCell
+              sortDir={sortCol === 2 ? sortDir : 0}
+              onClick={() => {
+                setSortCol(2);
+                if (sortDir === 1) {
+                  setSortDir(-1);
+                } else {
+                  setSortDir(1);
+                }
+              }}
+            >
+              Column 3
+            </HeadCell>
           </tr>
         </thead>
         <tbody>

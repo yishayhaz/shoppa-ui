@@ -3,6 +3,7 @@ import { Popup } from "@shoppa-ui/primitives/popup";
 import { Button } from "@shoppa-ui/widgets/button";
 import { Dialog } from "@shoppa-ui/widgets/dialog";
 import { IoIosAlert } from "react-icons/io";
+import { BiTrash } from "react-icons/bi";
 
 export function PopupScreen() {
   const [show, setShow] = React.useState(false);
@@ -43,11 +44,13 @@ export function PopupScreen() {
         <h2>Dialog Popup</h2>
         <Button
           autoWidth
+          variant="danger"
+          className="gap-10"
           onClick={() => {
             setShowDialog(true);
           }}
         >
-          Open Popup
+          <BiTrash /> Delete Something
         </Button>
       </div>
     </>
