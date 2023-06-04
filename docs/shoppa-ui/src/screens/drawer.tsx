@@ -12,12 +12,12 @@ export function DrawerScreen() {
       <IconButton label="Toggle Drawer" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <HiArrowSmLeft /> : <HiArrowSmRight />}
       </IconButton>
-      <div className="d-flex flex-start gap-20">
+      <div className="d-flex gap-10">
         <Drawer
           isOpen={isOpen}
           style={{ height: "200px" }}
           className="bg-danger"
-          maxWidth={200}
+          maxWidth={500}
           minWidth={30}
         >
           <span>Hello World</span>

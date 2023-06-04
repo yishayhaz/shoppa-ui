@@ -29,12 +29,20 @@ export function TableScreen() {
           <tr>
             <td>Row 2</td>
             <td>Row 2</td>
-            <td>Row 2</td>
+            <td>
+              <IconButton label="trash" size="sm" variant="danger">
+                <BiTrash />
+              </IconButton>
+            </td>
           </tr>
           <tr>
             <td>Row 3</td>
             <td>Row 3</td>
-            <td>Row 3</td>
+            <td>
+              <IconButton label="trash" size="sm" variant="danger">
+                <BiTrash />
+              </IconButton>
+            </td>
           </tr>
         </tbody>
       </Table>

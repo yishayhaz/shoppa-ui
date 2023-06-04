@@ -1,9 +1,9 @@
 .table__wrraper {
   overflow: auto;
-  width: 100%;
+  max-width: 100%;
 
   table {
-    width: 2000px;
+    width: 100%;
 
     th,
     td {

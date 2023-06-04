@@ -52,6 +52,9 @@ export function ButtonScreen() {
           <IconButton label="" disabled variant="primary">
             <BiPlus />
           </IconButton>
+          <IconButton label="" variant="link">
+            <BiPlus />
+          </IconButton>
         </div>
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">

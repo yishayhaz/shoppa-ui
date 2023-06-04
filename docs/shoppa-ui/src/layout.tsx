@@ -9,7 +9,13 @@ export function Layout() {
   return (
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <main className="d-flex align-items-start" style={{ paddingBlock: 50 }}>
+      <main
+        style={{
+          paddingBlock: 50,
+          display: "grid",
+          gridTemplateColumns: "auto 1fr",
+        }}
+      >
         <Drawer
           isOpen={isOpen}
           maxWidth={300}
@@ -20,7 +26,13 @@ export function Layout() {
         >
           <Nav />
         </Drawer>
-        <div style={{ paddingInline: 50 }} className="flex-1">
+
+        <div
+          style={{
+            paddingInline: 50,
+            overflow: "auto",
+          }}
+        >
           <Outlet />
         </div>
       </main>

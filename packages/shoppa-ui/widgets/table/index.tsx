@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
+
 export type TableProps = React.HTMLAttributes<HTMLTableElement>;
 
 export function Table({ className, ...rest }: TableProps) {

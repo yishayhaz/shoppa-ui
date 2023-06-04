@@ -38,7 +38,7 @@ export function Header({ setIsOpen, isOpen }: HeaderProps) {
     >
       <div
         style={{ padding: "20px 50px" }}
-        className="d-flex justify-content-space-between"
+        className="d-flex justify-content-space-between flex-wrap gap-10"
       >
         <div className="d-flex gap-20">
           <IconButton label="menu" onClick={() => setIsOpen(!isOpen)}>
