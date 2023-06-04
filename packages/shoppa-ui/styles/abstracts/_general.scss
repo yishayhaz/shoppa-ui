@@ -1,3 +1,5 @@
+@use "vars" as *;
+
 .d-block {
   display: block;
   width: 100%;
@@ -23,4 +25,16 @@
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.rounded {
+  border-radius: $border-radius;
+}
+
+.rounded-sm {
+  border-radius: $border-radius-sm;
+}
+
+.rounded-lg {
+  border-radius: $border-radius-lg;
 }

@@ -6,6 +6,7 @@ import { Button } from "@shoppa-ui/widgets/button";
 
 const LINKS = [
   { to: "/docs/alert", label: "Alert" },
+  { to: "/docs/badge", label: "Badge" },
   { to: "/docs/banner", label: "Banner" },
   { to: "/docs/button", label: "Button" },
   { to: "/docs/card", label: "Card" },

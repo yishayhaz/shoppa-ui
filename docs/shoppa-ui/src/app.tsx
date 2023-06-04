@@ -13,6 +13,7 @@ import { PopupScreen } from "./screens/popup";
 import { CardScreen } from "./screens/card";
 import { TextareaScreen } from "./screens/textarea";
 import { TableScreen } from "./screens/table";
+import { BadgeScreen } from "./screens/badge";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<div>Home</div>} />
         <Route path="/docs" element={<Layout />}>
           <Route path="alert" element={<AlertScreen />} />
+          <Route path="badge" element={<BadgeScreen />} />
           <Route path="banner" element={<BannerScreen />} />
           <Route path="button" element={<ButtonScreen />} />
           <Route path="card" element={<CardScreen />} />

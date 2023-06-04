@@ -1,0 +1,54 @@
+.badge {
+  &[data-variant="primary"] {
+    background-color: $primary;
+    color: $neutral-100;
+  }
+
+  &[data-variant="danger"] {
+    background-color: $danger;
+    color: $neutral-100;
+  }
+
+  &[data-variant="success"] {
+    background-color: $success;
+    color: $neutral-100;
+  }
+
+  &[data-variant="neutral"] {
+    background-color: $s-neutral-300;
+  }
+
+  &[data-variant="warning"] {
+    background-color: $warning;
+    color: $neutral-900;
+  }
+
+  &[data-size="sm"] {
+    --p-size: 30px;
+    font-size: $fs-xs;
+  }
+
+  &[data-size="md"] {
+    --p-size: 40px;
+  }
+
+  &[data-size="lg"] {
+    --p-size: 50px;
+    font-size: $fs-ms;
+  }
+
+  display: inline-block;
+  width: auto;
+
+  border-radius: 25px;
+  @include flex($flex: inline-flex);
+
+  min-width: var(--p-size);
+  height: var(--p-size);
+  padding-inline: calc(var(--p-size) * 0.25);
+
+  svg {
+    width: calc(var(--p-size) * 0.5);
+    height: calc(var(--p-size) * 0.5);
+  }
+}
