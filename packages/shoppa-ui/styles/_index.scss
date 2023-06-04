@@ -8,6 +8,9 @@
   @include create-fw();
 
   @include create-flex();
+
+  @include create-base();
+  @include create-spacing();
 }
 
 // CSS Reset
