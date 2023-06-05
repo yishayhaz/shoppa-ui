@@ -1,4 +1,3 @@
-import React from "react";
 import { Select } from "@shoppa-ui/widgets/select";
 
 export function SelectScreen() {

@@ -1,10 +1,10 @@
-:where(.baseButton) {
+.baseButton {
   &[data-variant="primary"] {
     --p-accent: var(--primary);
   }
   &[data-variant="neutral"] {
     --p-accent: var(--neutral-300);
-    --p-text-accent: var(--s-neutral-text);
+    --p-text-accent: rgb(var(--neutral-text));
   }
   &[data-variant="success"] {
     --p-accent: var(--success);
@@ -14,7 +14,6 @@
   }
   &[data-variant="warning"] {
     --p-accent: var(--warning);
-    --p-text-accent: var(--neutral);
   }
 
   @extend .reset-outline !optional;

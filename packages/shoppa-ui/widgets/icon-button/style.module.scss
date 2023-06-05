@@ -39,6 +39,11 @@
   &[data-link]:hover {
     background-color: rgb(var(--p-accent), 0.67);
   }
+
+  &[data-link]:not(:hover) {
+    color: $s-neutral-text;
+  }
+
   &:focus-visible {
     background-color: rgb(var(--p-accent));
   }
