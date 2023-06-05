@@ -1,7 +1,8 @@
 import React from "react";
-import { InputGroup, InputGroupProps } from "../../primitives/input-group";
+import { BaseInput, BaseInputProps } from "../../primitives/base-input";
+import { Badge } from "../badge";
 
-export type InputProps = InputGroupProps &
+export type InputProps = BaseInputProps &
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "onClick">;
 
 export function Input({
@@ -29,7 +30,7 @@ export function Input({
   };
 
   return (
-    <InputGroup
+    <BaseInput
       icon={icon}
       btnIcon={btnIcon}
       btnIconLabel={btnIconLabel}
@@ -51,6 +52,6 @@ export function Input({
         id={id}
         onKeyDown={handleKeyDown}
       />
-    </InputGroup>
+    </BaseInput>
   );
 }

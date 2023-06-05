@@ -1,0 +1,29 @@
+.popover {
+  padding-block: 8px;
+  z-index: $zindex-popover;
+
+  & > div {
+    padding: 10px;
+    border-radius: $border-radius;
+
+    background-color: $s-neutral-bg;
+
+    @include shadow(
+      $blur: 10px,
+      $spread: 1px,
+      $color: rgba(var(--s-neutral-text), 0.1)
+    );
+    animation: popup 0.2s ease;
+  }
+
+  @keyframes popup {
+    0% {
+      scale: 0.6;
+      opacity: 0;
+    }
+    100% {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+}

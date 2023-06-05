@@ -1,15 +1,13 @@
 import React from "react";
 import { BaseInput, BaseInputProps } from "../../primitives/base-input";
 
-export type InputProps = Omit<
+export type SelectProps = Omit<
   BaseInputProps,
   "icon" | "btnIcon" | "btnIconLabel" | "isLoading" | "onClick"
 > &
-  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-    resize?: React.CSSProperties["resize"];
-  };
+  React.HTMLAttributes<HTMLSelectElement>;
 
-export function Textarea({
+export function Select({
   label,
   title,
   className,
@@ -17,9 +15,9 @@ export function Textarea({
   disabled,
   required,
   id,
-  resize,
+  children,
   ...rest
-}: InputProps) {
+}: SelectProps) {
   return (
     <BaseInput
       label={label}
@@ -30,16 +28,17 @@ export function Textarea({
       required={required}
       id={id}
     >
-      <textarea
+      <select
+        id={id}
+        required={required}
+        disabled={disabled}
         style={{
-          resize: resize || "vertical",
+          borderInlineEnd: "0.75rem solid transparent",
         }}
         {...rest}
-        {...(disabled && { disabled })}
-        {...(required && { required })}
-        {...(title && { title })}
-        id={id}
-      />
+      >
+        {children}
+      </select>
     </BaseInput>
   );
 }

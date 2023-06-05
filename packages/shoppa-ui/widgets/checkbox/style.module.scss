@@ -32,7 +32,7 @@
 
     border: 1px solid var(--p-accent);
 
-    // @include outline($border-radius: $border-radius-sm);
+    @include outline($border-radius: $border-radius-sm);
 
     &:not(:checked) + .Icon {
       display: none;

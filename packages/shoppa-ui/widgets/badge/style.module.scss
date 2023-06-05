@@ -16,6 +16,7 @@
 
   &[data-variant="neutral"] {
     background-color: $s-neutral-300;
+    color: $s-neutral-900;
   }
 
   &[data-variant="warning"] {
@@ -39,6 +40,7 @@
 
   display: inline-block;
   width: auto;
+  white-space: nowrap;
 
   border-radius: 25px;
   @include flex($flex: inline-flex);

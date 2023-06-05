@@ -1,3 +1,26 @@
+@use "colors" as *;
+@use "vars" as *;
+
 @mixin shadow($color: $s-neutral-200, $x: 0, $y: 0, $blur: 0, $spread: 0.2rem) {
   box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin outline(
+  $color: $s-neutral-400,
+  $border-color: $s-neutral-900,
+  $border-width: 1px,
+  $border-style: solid,
+  $border-radius: $border-radius
+) {
+  &:focus-visible {
+    @if $border-color != false {
+      border: $border-width $border-style $border-color;
+    }
+
+    @include shadow($color, $spread: 5px);
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: $color;
+    border-radius: $border-radius;
+  }
 }

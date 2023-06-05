@@ -37,7 +37,7 @@
       0 2px 18px rgba(47, 64, 80, 0.25);
 
     &Outline {
-      // @include outline;
+      @include outline;
     }
 
     &:not(.popup__cardOutline) {
@@ -63,7 +63,7 @@
       color: $s-neutral-100;
 
       &:focus-visible {
-        // @include outline($border-radius: 50%);
+        @include outline($border-radius: 50%);
       }
 
       &[data-outside="true"] {

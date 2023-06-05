@@ -1,0 +1,27 @@
+.tooltip {
+  display: inline-block;
+
+  .floating {
+    padding-block: 8px;
+
+    animation: fade-in $normal-transition;
+
+    @keyframes fade-in {
+      from {
+        opacity: 0.5;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    & > div {
+      padding: 4px 10px;
+      border-radius: $border-radius;
+      background-color: $s-neutral-600;
+      color: $s-neutral-100;
+
+      z-index: $zindex-tooltip;
+    }
+  }
+}

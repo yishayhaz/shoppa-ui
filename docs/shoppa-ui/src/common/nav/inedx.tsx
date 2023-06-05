@@ -14,11 +14,14 @@ const LINKS = [
   { to: "/docs/collapse", label: "Collapse" },
   { to: "/docs/drawer", label: "Drawer" },
   { to: "/docs/input", label: "Input" },
+  { to: "/docs/popover", label: "Popover" },
   { to: "/docs/popup", label: "Popup" },
   { to: "/docs/radio", label: "Radio" },
+  { to: "/docs/select", label: "Select" },
   { to: "/docs/spinner", label: "Spinner" },
   { to: "/docs/table", label: "Table" },
   { to: "/docs/textarea", label: "Textarea" },
+  { to: "/docs/tooltip", label: "Tooltip" },
 ];
 
 export function Nav() {

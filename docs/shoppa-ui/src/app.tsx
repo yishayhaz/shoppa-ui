@@ -14,6 +14,9 @@ import { CardScreen } from "./screens/card";
 import { TextareaScreen } from "./screens/textarea";
 import { TableScreen } from "./screens/table";
 import { BadgeScreen } from "./screens/badge";
+import { TooltipScreen } from "./screens/tooltip";
+import { SelectScreen } from "./screens/select";
+import { PopoverScreen } from "./screens/popover";
 
 export default function App() {
   return (
@@ -30,11 +33,14 @@ export default function App() {
           <Route path="collapse" element={<CollapseScreen />} />
           <Route path="drawer" element={<DrawerScreen />} />
           <Route path="input" element={<InputScreen />} />
+          <Route path="popover" element={<PopoverScreen />} />
           <Route path="popup" element={<PopupScreen />} />
           <Route path="radio" element={<RadioScreen />} />
+          <Route path="select" element={<SelectScreen />} />
           <Route path="spinner" element={<SpinnerScreen />} />
           <Route path="table" element={<TableScreen />} />
           <Route path="textarea" element={<TextareaScreen />} />
+          <Route path="tooltip" element={<TooltipScreen />} />
         </Route>
       </Routes>
     </Router>

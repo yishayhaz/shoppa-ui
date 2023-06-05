@@ -1,4 +1,4 @@
-.inputGroup {
+.baseInput {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -6,10 +6,10 @@
   &[data-valid="true"] {
     color: $primary;
 
-    .inputGroup__wrraper {
+    .baseInput__wrraper {
       border-color: $primary;
 
-      button.inputGroup__icon {
+      button.baseInput__icon {
         background-color: $primary;
       }
 
@@ -22,10 +22,10 @@
   &[data-valid="false"]:not(:focus-within) {
     color: $danger;
 
-    .inputGroup__wrraper {
+    .baseInput__wrraper {
       border-color: $danger;
 
-      button.inputGroup__icon {
+      button.baseInput__icon {
         background-color: $danger;
       }
 
@@ -44,7 +44,7 @@
 
     transition: border-color $normal-transition;
 
-    button.inputGroup__icon {
+    button.baseInput__icon {
       border-start-end-radius: calc($border-radius - 2px);
       border-end-end-radius: calc($border-radius - 2px);
 
@@ -80,18 +80,21 @@
     }
 
     & > *:first-child {
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      color: $s-neutral-900;
+      background: transparent;
+    }
+
+    select,
+    input,
+    textarea {
       @extend .reset-outline !optional;
 
-      width: 100%;
-      font-size: 16px;
-
-      padding: 0.625rem 0.75rem;
+      font-size: $fs-normal;
 
       border: none;
       border-radius: $border-radius;
-
-      color: $s-neutral-900;
-      background: transparent;
 
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
