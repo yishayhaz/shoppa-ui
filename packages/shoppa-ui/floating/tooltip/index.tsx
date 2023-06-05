@@ -27,6 +27,7 @@ export function Tooltip({ children, label, className, ...rest }: TooltipProps) {
         <BaseFloating
           className={styles.floating}
           floatingRef={refs.floatingRef}
+          width="max-content"
         >
           <div>{label}</div>
         </BaseFloating>

@@ -7,7 +7,7 @@ export type BaseFloatingProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export function BaseFloating({
-  width = "max-content",
+  width,
   position = "fixed",
   children,
   floatingRef,

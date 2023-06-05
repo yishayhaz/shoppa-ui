@@ -17,6 +17,8 @@ import { BadgeScreen } from "./screens/badge";
 import { TooltipScreen } from "./screens/tooltip";
 import { SelectScreen } from "./screens/select";
 import { PopoverScreen } from "./screens/popover";
+import { LinkScreen } from "./screens/link";
+import { ComboxboxScreen } from "./screens/combobox";
 
 export default function App() {
   return (
@@ -31,8 +33,10 @@ export default function App() {
           <Route path="card" element={<CardScreen />} />
           <Route path="checkbox" element={<CheckboxScreen />} />
           <Route path="collapse" element={<CollapseScreen />} />
+          <Route path="combobox" element={<ComboxboxScreen />} />
           <Route path="drawer" element={<DrawerScreen />} />
           <Route path="input" element={<InputScreen />} />
+          <Route path="link" element={<LinkScreen />} />
           <Route path="popover" element={<PopoverScreen />} />
           <Route path="popup" element={<PopupScreen />} />
           <Route path="radio" element={<RadioScreen />} />

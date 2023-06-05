@@ -1,0 +1,41 @@
+.combobox {
+  position: relative;
+
+  &__dropdown {
+    max-height: 250px;
+    overflow-y: auto;
+
+    background-color: $s-neutral-bg;
+    @include shadow(rgba(var(--s-neutral-800), 0.2), $blur: 4px, $spread: 0);
+
+    border-radius: $border-radius;
+    z-index: $zindex-dropdown;
+
+    ul {
+      list-style: none;
+      padding-block: 5px;
+
+      li {
+        width: 100%;
+
+        padding-inline: 5px;
+
+        & > button {
+          width: 100%;
+
+          @include outline;
+          padding: 5px 10px;
+          border-radius: $border-radius;
+
+          text-align: start;
+
+          &:hover,
+          &[data-active="true"] {
+            background-color: $s-neutral-200;
+          }
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

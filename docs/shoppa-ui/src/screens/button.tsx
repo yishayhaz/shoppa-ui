@@ -3,6 +3,7 @@ import { Button } from "@shoppa-ui/widgets/button";
 import { IconButton } from "@shoppa-ui/widgets/icon-button";
 import { api } from "../api";
 import { BiPlus } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 export function ButtonScreen() {
   const handleAPI = async () => {
@@ -23,7 +24,16 @@ export function ButtonScreen() {
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">
         <h2>Button</h2>
-        <Button onClick={handleAPI}>Hey I'm Primary</Button>
+        <Button
+          onClick={handleAPI}
+          link={{
+            href: "/docs/button",
+            Component: Link,
+            reloadDocument: true,
+          }}
+        >
+          Hey I'm Primary
+        </Button>
         <Button variant="neutral">Hey I'm neutral</Button>
         <Button variant="success">Hey I'm Success</Button>
         <Button variant="danger">Hey I'm Danger</Button>

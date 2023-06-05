@@ -25,17 +25,18 @@
   }
 
   &[data-size="sm"] {
+    --p-size: 20px;
+    font-size: $fs-xxs;
+  }
+
+  &[data-size="md"] {
     --p-size: 30px;
     font-size: $fs-xs;
   }
 
-  &[data-size="md"] {
-    --p-size: 40px;
-  }
-
   &[data-size="lg"] {
-    --p-size: 50px;
-    font-size: $fs-ms;
+    --p-size: 40px;
+    font-size: $fs-normal;
   }
 
   display: inline-block;
@@ -46,8 +47,7 @@
   @include flex($flex: inline-flex);
 
   min-width: var(--p-size);
-  height: var(--p-size);
-  padding-inline: calc(var(--p-size) * 0.25);
+  padding: calc(var(--p-size) * 0.1) calc(var(--p-size) * 0.25);
 
   svg {
     width: calc(var(--p-size) * 0.5);

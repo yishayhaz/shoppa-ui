@@ -116,13 +116,13 @@ export const useFloatingHover: UseFloatingHover = (
   setIsVisible,
   disableMobile
 ) => {
-  const onMouseEnter = () => {
+  const onMouseEnter = useCallback(() => {
     setIsVisible(true);
-  };
+  }, [setIsVisible]);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
     setIsVisible(false);
-  };
+  }, [setIsVisible]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -146,30 +146,33 @@ export const useFloatingHover: UseFloatingHover = (
         containerRef.current?.removeEventListener("touchcancel", onMouseLeave);
       }
     };
-  }, [containerRef, setIsVisible]);
+  }, [containerRef, setIsVisible, disableMobile, onMouseLeave, onMouseEnter]);
 };
 
 export const useFloatingFocus: UseFloatingFocus = (
   containerRef,
   setIsVisible
 ) => {
-  const handleClick = (e: MouseEvent) => {
-    if (!containerRef.current) return;
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      if (!containerRef.current) return;
 
-    const target = e.target as HTMLElement;
+      const target = e.target as HTMLElement;
 
-    if (!containerRef.current.contains(target)) {
-      setIsVisible(false);
-      return;
-    }
+      if (!containerRef.current.contains(target)) {
+        setIsVisible(false);
+        return;
+      }
 
-    if (target.dataset.close === "true") {
-      setIsVisible(false);
-      return;
-    }
+      if (target.dataset.close === "true") {
+        setIsVisible(false);
+        return;
+      }
 
-    setIsVisible(true);
-  };
+      setIsVisible(true);
+    },
+    [containerRef, setIsVisible]
+  );
 
   useEffect(() => {
     window.addEventListener("click", handleClick);
@@ -177,5 +180,36 @@ export const useFloatingFocus: UseFloatingFocus = (
     return () => {
       window.removeEventListener("click", handleClick);
     };
-  }, [containerRef, setIsVisible]);
+  }, [containerRef, setIsVisible, handleClick]);
+};
+
+export const useFloatingFocusWithin = (
+  containerRef: React.MutableRefObject<HTMLDivElement | null>,
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  const handleFocus = useCallback(
+    (e: FocusEvent) => {
+      if (!containerRef.current) return;
+
+      const target = e.target as HTMLElement;
+
+      if (!containerRef.current.contains(target)) {
+        setIsVisible(false);
+        return;
+      }
+
+      setIsVisible(true);
+    },
+    [containerRef, setIsVisible]
+  );
+
+  useEffect(() => {
+    window.addEventListener("focusin", handleFocus);
+    window.addEventListener("click", handleFocus);
+
+    return () => {
+      window.removeEventListener("focusin", handleFocus);
+      window.removeEventListener("click", handleFocus);
+    };
+  }, [containerRef, setIsVisible, handleFocus]);
 };

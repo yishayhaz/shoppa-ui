@@ -12,8 +12,10 @@ const LINKS = [
   { to: "/docs/card", label: "Card" },
   { to: "/docs/checkbox", label: "Checkbox" },
   { to: "/docs/collapse", label: "Collapse" },
+  { to: "/docs/combobox", label: "Combobox" },
   { to: "/docs/drawer", label: "Drawer" },
   { to: "/docs/input", label: "Input" },
+  { to: "/docs/link", label: "Link" },
   { to: "/docs/popover", label: "Popover" },
   { to: "/docs/popup", label: "Popup" },
   { to: "/docs/radio", label: "Radio" },
@@ -68,14 +70,16 @@ export function Nav() {
       <ul className="d-flex flex-column align-items-stretch gap-2">
         {links.map((link, idx) => (
           <li key={idx}>
-            <Link to={link.to} className="reset-link">
-              <Button
-                variant={active === link.to ? "neutral" : "link"}
-                className="flex-start"
-              >
-                {link.label}
-              </Button>
-            </Link>
+            <Button
+              variant={active === link.to ? "neutral" : "link"}
+              className="flex-start"
+              link={{
+                Component: Link,
+                to: link.to,
+              }}
+            >
+              {link.label}
+            </Button>
           </li>
         ))}
       </ul>
