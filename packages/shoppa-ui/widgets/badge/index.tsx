@@ -2,35 +2,45 @@ import React from "react";
 import styles from "./style.module.scss";
 
 export type BadgeProps = {
+  /** The content of the badge. */
+  title: string | number;
+  /** The color of the badge. */
   variant?: BadgeVariants;
+  /** Add custom className to the badge */
   className?: string;
-  size?: BadgeSize;
-} & React.HTMLAttributes<HTMLDivElement>;
+  /** The size of the badge. */
+  size?: BadgeSizes;
+  /** The roundness of the badge. */
+  roundness?: BadgeRoudness;
+};
+
+export type BadgeSizes = "sm" | "md" | "lg";
+
+export type BadgeRoudness = "sm" | "md" | "lg";
 
 export type BadgeVariants =
   | "primary"
+  | "neutral"
   | "success"
   | "danger"
-  | "warning"
-  | "neutral";
-
-export type BadgeSize = "sm" | "md" | "lg";
+  | "warning";
 
 export function Badge({
-  children,
-  variant = "neutral",
+  title,
   size = "md",
   className,
-  ...rest
+  roundness = "md",
+  variant = "primary",
 }: BadgeProps) {
   return (
     <div
-      data-variant={variant}
+      className={`${styles.badge} ${className || ""} ${
+        roundness === "md" ? "rounded" : `rounded-${roundness}`
+      }`}
       data-size={size}
-      className={`${styles.badge} ${className || ""}`}
-      {...rest}
+      data-variant={variant}
     >
-      <span>{children}</span>
+      <span>{title}</span>
     </div>
   );
 }

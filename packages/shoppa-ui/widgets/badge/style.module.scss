@@ -1,56 +1,43 @@
 .badge {
-  &[data-variant="primary"] {
-    background-color: $primary;
-    color: $neutral-100;
-  }
-
-  &[data-variant="danger"] {
-    background-color: $danger;
-    color: $neutral-100;
-  }
-
-  &[data-variant="success"] {
-    background-color: $success;
-    color: $neutral-100;
-  }
-
-  &[data-variant="neutral"] {
-    background-color: $s-neutral-300;
-    color: $s-neutral-900;
-  }
-
-  &[data-variant="warning"] {
-    background-color: $warning;
-    color: $neutral-900;
-  }
-
   &[data-size="sm"] {
-    --p-size: 20px;
-    font-size: $fs-xxs;
+    font-size: $fs-xs;
+    padding: 2px 6px;
   }
 
   &[data-size="md"] {
-    --p-size: 30px;
-    font-size: $fs-xs;
+    font-size: $fs-normal;
+    padding: 4px 8px;
   }
 
   &[data-size="lg"] {
-    --p-size: 40px;
-    font-size: $fs-normal;
+    font-size: $fs-ms;
+    padding: 6px 10px;
   }
 
-  display: inline-block;
-  width: auto;
-  white-space: nowrap;
-
-  border-radius: 25px;
-  @include flex($flex: inline-flex);
-
-  min-width: var(--p-size);
-  padding: calc(var(--p-size) * 0.1) calc(var(--p-size) * 0.25);
-
-  svg {
-    width: calc(var(--p-size) * 0.5);
-    height: calc(var(--p-size) * 0.5);
+  &[data-variant="primary"] {
+    --p-accent: var(--primary);
   }
+  &[data-variant="neutral"] {
+    --p-accent: var(--s-neutral-300);
+    --p-text-accent: rgb(var(--s-neutral-text));
+  }
+  &[data-variant="success"] {
+    --p-accent: var(--success);
+  }
+  &[data-variant="danger"] {
+    --p-accent: var(--danger);
+  }
+  &[data-variant="warning"] {
+    --p-accent: var(--warning);
+    --p-text-accent: rgb(var(--neutral-text));
+  }
+
+  background-color: rgba(var(--p-accent));
+  color: var(--p-text-accent, $neutral-100);
+
+  @include shadow(
+    rgba(var(--p-accent, var(--primary))),
+    $spread: 0px,
+    $blur: 2px
+  );
 }

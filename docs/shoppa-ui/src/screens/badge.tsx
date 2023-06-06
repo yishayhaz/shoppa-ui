@@ -11,27 +11,27 @@ export function BadgeScreen() {
       <div className="d-flex flex-start gap-10">
         {(["primary", "success", "danger", "warning", "neutral"] as const).map(
           (variant, idx) => (
-            <Badge key={idx} variant={variant} size="sm">
-              {variant}
-            </Badge>
+            <Badge key={idx} variant={variant} size="sm" title={variant} />
           )
         )}
       </div>
       <div className="d-flex flex-start gap-10">
         {(["primary", "success", "danger", "warning", "neutral"] as const).map(
           (variant, idx) => (
-            <Badge key={idx} variant={variant}>
-              {(idx + 9) ** 2}
-            </Badge>
+            <Badge key={idx} variant={variant} size="md" title={variant} />
           )
         )}
       </div>
       <div className="d-flex flex-start gap-10">
         {(["primary", "success", "danger", "warning", "neutral"] as const).map(
           (variant, idx) => (
-            <Badge key={idx} variant={variant} size="lg">
-              {variant}
-            </Badge>
+            <Badge
+              key={idx}
+              variant={variant}
+              size="lg"
+              title={idx * 10}
+              roundness="lg"
+            />
           )
         )}
       </div>

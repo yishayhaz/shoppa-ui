@@ -24,3 +24,11 @@
     border-radius: $border-radius;
   }
 }
+
+@mixin clamp-lines($n: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $n;
+  line-clamp: $n;
+  -webkit-box-orient: vertical;
+}
