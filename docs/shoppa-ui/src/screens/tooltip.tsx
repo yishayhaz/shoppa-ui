@@ -1,6 +1,4 @@
-import React from "react";
 import { Tooltip } from "@shoppa-ui/floating/tooltip";
-import { IconButton } from "@shoppa-ui/widgets/icon-button";
 import { Badge } from "@shoppa-ui/widgets/badge";
 
 export function TooltipScreen() {
@@ -9,7 +7,7 @@ export function TooltipScreen() {
       <h1>This is the documentation for the Tooltip component.</h1>
       <br />
       <Tooltip label="Nice to meet you!">
-        <Badge>hover</Badge>
+        <Badge title="Hover Me" />
       </Tooltip>
     </div>
   );

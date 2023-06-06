@@ -67,7 +67,13 @@ export function Nav() {
           <span>Oof..</span>
         </div>
       )}
-      <ul className="d-flex flex-column align-items-stretch gap-2">
+      <ul
+        className="d-flex flex-column flex-start align-items-stretch gap-2"
+        style={{
+          maxHeight: "70vh",
+          overflow: "auto",
+        }}
+      >
         {links.map((link, idx) => (
           <li key={idx}>
             <Button
