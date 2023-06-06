@@ -76,7 +76,7 @@ export class Service implements ServiceType {
 
   private throwError(
     code: number = 500,
-    message: string = "internal_server_error",
+    message: string = "unexpected_error",
     raw?: Error | unknown
   ): ApiError {
     throw new Error(
@@ -97,16 +97,15 @@ export class Service implements ServiceType {
       }
 
       return this.cleanContent(res.data.content);
-    } catch (err) {
-      if (isAxiosError(err)) {
+    } catch (error) {
+      if (isAxiosError(error)) {
         return this.throwError(
-          err.response?.data?.error_code,
-          err.response?.data?.content,
-          err
+          error.response?.data?.error_code ?? error.response?.status,
+          error.response?.data?.message,
+          error
         );
       }
-
-      return this.throwError(500, "internal_server_error", err);
+      return this.throwError(500, "internal_server_error", error);
     }
   }
 

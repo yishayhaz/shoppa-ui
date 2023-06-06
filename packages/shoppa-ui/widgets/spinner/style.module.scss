@@ -1,7 +1,7 @@
 .Spinner {
   position: relative;
-  height: var(--size);
-  width: var(--size);
+  height: var(--p-size);
+  width: var(--p-size);
 
   &[data-variant="neutral"] div::before {
     background: $s-neutral !important;
@@ -17,6 +17,12 @@
   }
   &[data-variant="warning"] div::before {
     background: $warning !important;
+  }
+  &[data-variant="light"] div::before {
+    background: $light !important;
+  }
+  &[data-variant="dark"] div::before {
+    background: $dark !important;
   }
 
   div {

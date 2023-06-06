@@ -3,12 +3,20 @@ import styles from "./style.module.scss";
 
 export type SpinnerProps = {
   size?: SpinnerSize;
-  variant?: "neutral" | "primary" | "success" | "danger" | "warning";
+  variant?:
+    | "neutral"
+    | "primary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "light"
+    | "dark";
 };
 
-export type SpinnerSize = "sm" | "md" | "lg";
+export type SpinnerSize = "inline" | "sm" | "md" | "lg";
 
 const mapSizeToPx = {
+  inline: "1em",
   sm: "25px",
   md: "50px",
   lg: "75px",
@@ -21,7 +29,7 @@ export function Spinner({ size = "md", variant = "neutral" }: SpinnerProps) {
       data-variant={variant}
       style={
         {
-          "--size": mapSizeToPx[size],
+          "--p-size": mapSizeToPx[size],
         } as React.CSSProperties
       }
     >

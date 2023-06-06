@@ -1,9 +1,12 @@
 import styles from "./style.module.scss";
 import { BaseButton, BaseButtonProps } from "../../primitives/base-button";
+import { Spinner, SpinnerProps } from "../spinner";
 
 export type ButtonProps = BaseButtonProps & {
   variant?: ButtonVariants;
   autoWidth?: boolean;
+  isLoading?: boolean;
+  spinnerProps?: Omit<SpinnerProps, "size">;
 };
 
 export type ButtonVariants =
@@ -19,6 +22,8 @@ export const Button = ({
   variant = "primary",
   children,
   autoWidth,
+  isLoading,
+  spinnerProps,
   ...rest
 }: ButtonProps) => {
   return (
@@ -29,7 +34,7 @@ export const Button = ({
       {...(variant === "link" && { "data-link": true })}
       className={`${className || ""} ${styles.button}`}
     >
-      {children}
+      {isLoading ? <Spinner size="inline" {...spinnerProps} /> : children}
     </BaseButton>
   );
 };

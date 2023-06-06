@@ -24,21 +24,23 @@ export function ButtonScreen() {
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">
         <h2>Button</h2>
+        <Button onClick={handleAPI}>Hey I'm Primary</Button>
+        <Button variant="neutral">Hey I'm neutral</Button>
+        <Button variant="success" isLoading spinnerProps={{ variant: "light" }}>
+          Hey I'm Success
+        </Button>
+        <Button variant="danger">Hey I'm Danger</Button>
+        <Button variant="warning">Hey I'm Warning</Button>
         <Button
-          onClick={handleAPI}
           link={{
             href: "/docs/button",
             Component: Link,
             reloadDocument: true,
           }}
+          variant="link"
         >
-          Hey I'm Primary
+          Hey I'm Link
         </Button>
-        <Button variant="neutral">Hey I'm neutral</Button>
-        <Button variant="success">Hey I'm Success</Button>
-        <Button variant="danger">Hey I'm Danger</Button>
-        <Button variant="warning">Hey I'm Warning</Button>
-        <Button variant="link">Hey I'm Link</Button>
         <Button disabled>Hey I'm Disabled</Button>
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">
