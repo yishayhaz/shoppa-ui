@@ -1,7 +1,7 @@
 {
   "name": "shoppa-ui",
   "private": false,
-  "version": "0.0.214",
+  "version": "0.0.215",
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
@@ -11,10 +11,10 @@
   "dependencies": {
     "@floating-ui/react": "^0.24.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "shoppa-ts": "^0.0.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "shoppa-ts": "^0.0.0",
     "@types/node": "^20.2.5",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
