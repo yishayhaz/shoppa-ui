@@ -38,9 +38,3 @@ export enum PaginationAmount {
   normal = 20,
   max = 100,
 }
-
-export type AnyObject = {
-  [key: string | number]: any;
-};
-
-export type AnyFunction = (...args: any[]) => any;

@@ -1,17 +1,12 @@
-/*
-  - Allow set baseUrl
-  - return schema should always be { content: T, error: string, success: boolean } 
-*/
-
 import axios, {
   AxiosInstance,
   CreateAxiosDefaults,
   ParamsSerializerOptions,
   isAxiosError,
 } from "axios";
+import { AnyFunction } from "shoppa-ts";
 
 export type ServiceType = {
-  api: AxiosInstance;
   get: ServiceGet;
 };
 
@@ -20,8 +15,6 @@ export type ServiceGet = <T>(
   params?: ParamsSerializerOptions,
   options?: any
 ) => Promise<T>;
-
-export type AnyFunction = (...args: any[]) => any;
 
 export type Params = {
   [key: string]: any | Params;
@@ -41,7 +34,7 @@ export type ApiError = {
 };
 
 export class Service implements ServiceType {
-  api: AxiosInstance;
+  private api: AxiosInstance;
 
   constructor(options: CreateAxiosDefaults) {
     this.api = axios.create({
@@ -79,13 +72,11 @@ export class Service implements ServiceType {
     message: string = "unexpected_error",
     raw?: Error | unknown
   ): ApiError {
-    throw new Error(
-      JSON.stringify({
-        code,
-        message,
-        raw,
-      })
-    );
+    throw {
+      code,
+      message,
+      raw,
+    };
   }
 
   public async middleware(cb: AnyFunction) {
@@ -109,7 +100,7 @@ export class Service implements ServiceType {
     }
   }
 
-  public async get<T>(
+  public async get<T = any>(
     path: string,
     params: Params = {},
     options = {}
@@ -117,19 +108,27 @@ export class Service implements ServiceType {
     return this.middleware(() => this.api.get(path, { params, ...options }));
   }
 
-  public async post<T>(path: string, data: any, options = {}): Promise<T> {
+  public async post<T = any>(
+    path: string,
+    data: any,
+    options = {}
+  ): Promise<T> {
     return this.middleware(() => this.api.post(path, data, options));
   }
 
-  public async put<T>(path: string, data: any, options = {}): Promise<T> {
+  public async put<T = any>(path: string, data: any, options = {}): Promise<T> {
     return this.middleware(() => this.api.put(path, data, options));
   }
 
-  public async patch<T>(path: string, data: any, options = {}): Promise<T> {
+  public async patch<T = any>(
+    path: string,
+    data: any,
+    options = {}
+  ): Promise<T> {
     return this.middleware(() => this.api.patch(path, data, options));
   }
 
-  public async delete<T>(
+  public async delete<T = any>(
     path: string,
     params: Params = {},
     options = {}

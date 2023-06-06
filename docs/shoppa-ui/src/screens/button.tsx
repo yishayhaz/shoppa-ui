@@ -4,16 +4,11 @@ import { IconButton } from "@shoppa-ui/widgets/icon-button";
 import { api } from "../api";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useApi } from "@shoppa-hooks/api";
 
 export function ButtonScreen() {
-  const handleAPI = async () => {
-    try {
-      const res = await api.get("/test");
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const absoluteFire = useApi(() => api.get("/test"));
+  console.log(absoluteFire);
 
   return (
     <div className="d-flex gap-30 flex-column align-items-stretch">
@@ -24,7 +19,12 @@ export function ButtonScreen() {
       </div>
       <div className="d-flex flex-column gap-6 align-items-start">
         <h2>Button</h2>
-        <Button onClick={handleAPI}>Hey I'm Primary</Button>
+        <Button
+          onClick={() => absoluteFire.fire()}
+          isLoading={absoluteFire.isLoading}
+        >
+          Hey I'm Primary
+        </Button>
         <Button variant="neutral">Hey I'm neutral</Button>
         <Button variant="success" isLoading spinnerProps={{ variant: "light" }}>
           Hey I'm Success
