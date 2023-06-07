@@ -16,6 +16,7 @@ const LINKS = [
   { to: "/docs/drawer", label: "Drawer" },
   { to: "/docs/input", label: "Input" },
   { to: "/docs/link", label: "Link" },
+  { to: "/docs/pagination", label: "Pagination" },
   { to: "/docs/popover", label: "Popover" },
   { to: "/docs/popup", label: "Popup" },
   { to: "/docs/radio", label: "Radio" },

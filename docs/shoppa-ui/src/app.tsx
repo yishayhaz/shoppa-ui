@@ -19,6 +19,7 @@ import { SelectScreen } from "./screens/select";
 import { PopoverScreen } from "./screens/popover";
 import { LinkScreen } from "./screens/link";
 import { ComboxboxScreen } from "./screens/combobox";
+import { PaginationScren } from "./screens/pagination";
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="drawer" element={<DrawerScreen />} />
           <Route path="input" element={<InputScreen />} />
           <Route path="link" element={<LinkScreen />} />
+          <Route path="pagination" element={<PaginationScren />} />
           <Route path="popover" element={<PopoverScreen />} />
           <Route path="popup" element={<PopupScreen />} />
           <Route path="radio" element={<RadioScreen />} />
