@@ -71,6 +71,10 @@
       background-color: $s-neutral-200;
     }
 
+    &:not([aria-disabled]) {
+      background-color: $s-neutral-bg;
+    }
+
     &:hover:not(:focus-within):not([aria-disabled]) {
       border-color: $s-neutral-900;
     }
@@ -83,7 +87,7 @@
       width: 100%;
       padding: 0.625rem 0.75rem;
       color: $s-neutral-900;
-      background-color: $s-neutral-bg;
+      background-color: inherit;
     }
 
     select,
