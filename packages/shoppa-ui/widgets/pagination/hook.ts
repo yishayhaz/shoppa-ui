@@ -75,7 +75,7 @@ export const usePagination: UsePagination = (
   );
 
   const items = [
-    ...(hideFirstButton || page === 0 ? [] : ["first"]),
+    ...(hideFirstButton ? [] : ["first"]),
     ...(hidePrevButton ? [] : ["prev"]),
     ...startPages,
 
@@ -95,7 +95,7 @@ export const usePagination: UsePagination = (
 
     ...endPages,
     ...(hideNextButton ? [] : ["next"]),
-    ...(hideLastButton || page === count ? [] : ["last"]),
+    ...(hideLastButton ? [] : ["last"]),
   ];
 
   return items;

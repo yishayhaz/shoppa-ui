@@ -32,9 +32,6 @@
     border-radius: $border-radius-sm;
   }
 
-  aspect-ratio: 1;
-  @include flex;
-
   &:not([data-link]),
   &[data-link]:hover {
     background-color: rgb(var(--p-accent), 0.67);
@@ -44,13 +41,13 @@
     color: $s-neutral-text;
   }
 
-  &:focus-visible {
-    background-color: rgb(var(--p-accent));
-  }
-
   color: var(--p-text-accent, var(--p-accent));
 
+  aspect-ratio: 1;
+  @include flex;
+
   &:focus-visible {
+    background-color: rgb(var(--p-accent));
     @include shadow(rgba(var(--p-accent), 0.6));
   }
 }
