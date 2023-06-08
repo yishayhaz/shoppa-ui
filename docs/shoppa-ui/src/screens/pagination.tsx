@@ -1,8 +1,15 @@
 import React from "react";
 import { Pagination } from "@shoppa-ui/widgets/pagination";
+import { usePagination } from "@shoppa-hooks/pagination";
 
 export function PaginationScren() {
-  const [page, setPage] = React.useState(1);
+  const api = usePagination(async (...args) => {
+    console.log(args);
+    return { data: [], count: 0 };
+  });
+
+  api.
+
 
   return (
     <div>
@@ -10,9 +17,9 @@ export function PaginationScren() {
         This is a the documentation for the <>Pagination</> component.
       </h1>
       <Pagination
-        page={page}
+        page={api.page}
         count={100}
-        active={page}
+        active={api.}
         onChange={(page) => {
           setPage(page);
         }}

@@ -1,11 +1,5 @@
 import { useState } from "react";
-import { UseApiFire, UseApiProps, UseApiResult, useApi } from "./api";
-
-export type UsePaginationProps<T, K extends any[]> = [
-  UseApiProps<T, K>,
-  number,
-  number
-];
+import { UseApiResult, useApi } from "./api";
 
 export type UsePaginationResult<T, K extends any[]> = UseApiResult<T, K> &
   UsePaginationFuncProps & {
@@ -55,7 +49,6 @@ export const usePagination = <T, K extends any[]>(
 
   return {
     ...api,
-    fire: api.fire as UseApiFire<any[]>,
     page,
     count,
     setPage,

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { GenericFunction } from "shoppa-ts";
 
-export type UseApiProps<T, K extends any[]> = [UseApiFunction<T, K>];
-
-export type UseApiFunction<T, K extends any[]> = (...args: K) => Promise<T>;
+export type UseApiFunction<T, K extends any[]> = GenericFunction<K, Promise<T>>;
 
 export type UseApiResult<T, K extends any[]> = {
   data: UseApiData<T>;
