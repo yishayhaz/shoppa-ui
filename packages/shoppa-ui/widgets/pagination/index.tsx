@@ -5,20 +5,17 @@ import { isRtl } from "shoppa-utils/window";
 export type PaginationProps = {
   page: number;
   count: number;
-  active?: number;
   onChange: (page: number) => void;
 };
 
 export type PaginationButtonProps = {
   item: PaginationButtonValue;
-  isActive?: boolean;
   onChange: (page: number) => void;
-
   page: number;
   count: number;
 };
 
-export function Pagination({ page, count, active, onChange }: PaginationProps) {
+export function Pagination({ page, count, onChange }: PaginationProps) {
   const pagination = usePagination(page, count, {});
 
   return (
@@ -28,7 +25,6 @@ export function Pagination({ page, count, active, onChange }: PaginationProps) {
           key={idx}
           item={item}
           onChange={onChange}
-          isActive={item === active}
           page={page}
           count={count}
         />
@@ -40,7 +36,6 @@ export function Pagination({ page, count, active, onChange }: PaginationProps) {
 const PaginationButton = ({
   item,
   onChange,
-  isActive,
   page,
   count,
 }: PaginationButtonProps) => {
@@ -160,7 +155,7 @@ const PaginationButton = ({
     return (
       <IconButton
         label={`page ${item}`}
-        variant={isActive ? "neutral" : "link"}
+        variant={item === page ? "neutral" : "link"}
         onClick={() => onChange(item)}
       >
         {item}
