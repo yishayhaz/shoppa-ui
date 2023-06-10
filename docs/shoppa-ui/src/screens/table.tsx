@@ -6,14 +6,8 @@ import { usePagination } from "@shoppa-hooks/pagination";
 import { Pagination } from "@shoppa-ui/widgets/pagination";
 import { Dialog } from "@shoppa-ui/widgets/dialog";
 
-for (let i = 0; i <= 3; i++) {
-  for (let j = 0; j <= 3; j++) {
-    console.log(i, j);
-  }
-}
-
 export function TableScreen() {
-  const api = usePagination(async ({ page, count }) => {
+  const api = usePagination(async ({ page, amount }, name: string) => {
     const _page = (page - 1) * 3;
     const data = [_page, _page + 1, _page + 2];
 
@@ -25,7 +19,7 @@ export function TableScreen() {
   const [delCol, setDelCol] = React.useState<false | number>(false);
 
   useEffect(() => {
-    api.fire({ page: api.page, count: api.count });
+    api.fire("");
   }, []);
 
   return (
@@ -108,7 +102,11 @@ export function TableScreen() {
             ))}
           </tbody>
         </Table>
-        <Pagination page={api.page} count={100} onChange={api.setPage} />
+        <Pagination
+          page={api.page}
+          count={100}
+          onChange={(page) => api.setPage(page)("")}
+        />
       </div>
     </>
   );

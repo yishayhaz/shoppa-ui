@@ -5,47 +5,64 @@ export type UsePaginationResult<T, K extends any[]> = Omit<
   UseApiResult<T, K>,
   "fire"
 > &
-  UsePaginationFuncProps & {
-    setPage: (page: number, ...args: K) => void;
-    setCount: (count: number, ...args: K) => void;
-    fire: (arg0: UsePaginationFuncProps, ...args: K) => void;
+  UsePaginationArgs & {
+    setPage: (page: number) => (...args: K) => void;
+    setAmount: (count: number) => (...args: K) => void;
+    fire: (...args: K) => void;
   };
 
-export type UsePaginationFuncProps = {
+export type UsePaginationArgs = {
   page: number;
-  count: number;
+  amount: number;
 };
 
 export type UsePaginationFunction<T, K extends any[]> = (
-  arg0: UsePaginationFuncProps,
+  aginationArgs: UsePaginationArgs,
   ...args: K
 ) => Promise<T>;
 
 export const usePagination = <T, K extends any[]>(
-  func: UsePaginationFunction<T, K>
+  func: UsePaginationFunction<T, K>,
+  defaults: UsePaginationArgs = { page: 1, amount: 20 }
 ): UsePaginationResult<T, K> => {
-  const [page, _setPage] = useState<number>(1);
-  const [count, _setCount] = useState<number>(10);
+  const [page, _setPage] = useState<number>(defaults.page);
+  const [amount, _setAmount] = useState<number>(defaults.amount);
 
   const api = useApi(func);
 
-  const setPage = (page: number, ...args: K) => {
+  const setPage = (page: number) => {
     _setPage(page);
-    api.fire(
-      {
-        page,
-        count,
-      },
-      ...args
-    );
+
+    return (...args: K) => {
+      api.fire(
+        {
+          page,
+          amount,
+        },
+        ...args
+      );
+    };
   };
 
-  const setCount = (count: number, ...args: K) => {
-    _setCount(count);
+  const setAmount = (amount: number) => {
+    _setAmount(amount);
+
+    return (...args: K) => {
+      api.fire(
+        {
+          page,
+          amount,
+        },
+        ...args
+      );
+    };
+  };
+
+  const fire = (...args: K) => {
     api.fire(
       {
         page,
-        count,
+        amount,
       },
       ...args
     );
@@ -53,9 +70,10 @@ export const usePagination = <T, K extends any[]>(
 
   return {
     ...api,
+    fire,
     page,
-    count,
+    amount,
     setPage,
-    setCount,
+    setAmount,
   };
 };

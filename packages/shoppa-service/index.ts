@@ -136,3 +136,14 @@ export class Service implements ServiceType {
     return this.middleware(() => this.api.delete(path, { params, ...options }));
   }
 }
+
+export const isServiceError = (error: ApiError): error is ApiError => {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    "message" in error &&
+    "raw" in error &&
+    Object.keys(error).length === 3
+  );
+};

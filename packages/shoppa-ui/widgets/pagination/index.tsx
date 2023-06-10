@@ -10,7 +10,7 @@ export type PaginationProps = {
 
 export type PaginationButtonProps = {
   item: PaginationButtonValue;
-  onChange: (page: number) => void;
+  onClick: (page: number) => void;
   page: number;
   count: number;
 };
@@ -24,7 +24,7 @@ export function Pagination({ page, count, onChange }: PaginationProps) {
         <PaginationButton
           key={idx}
           item={item}
-          onChange={onChange}
+          onClick={onChange}
           page={page}
           count={count}
         />
@@ -35,7 +35,7 @@ export function Pagination({ page, count, onChange }: PaginationProps) {
 
 const PaginationButton = ({
   item,
-  onChange,
+  onClick,
   page,
   count,
 }: PaginationButtonProps) => {
@@ -46,7 +46,7 @@ const PaginationButton = ({
       <IconButton
         label="next page"
         variant="link"
-        onClick={() => onChange(page + 1)}
+        onClick={() => onClick(page + 1)}
         disabled={page === count}
       >
         <svg
@@ -73,7 +73,7 @@ const PaginationButton = ({
       <IconButton
         label="previous page"
         variant="link"
-        onChange={() => onChange(page - 1)}
+        onClick={() => onClick(page - 1)}
         disabled={page === 1}
       >
         <svg
@@ -100,7 +100,7 @@ const PaginationButton = ({
       <IconButton
         label="first page"
         variant="link"
-        onClick={() => onChange(1)}
+        onClick={() => onClick(1)}
         disabled={page === 1}
       >
         <svg
@@ -128,7 +128,7 @@ const PaginationButton = ({
       <IconButton
         label="last page"
         variant="link"
-        onClick={() => onChange(count)}
+        onClick={() => onClick(count)}
         disabled={page === count}
       >
         <svg
@@ -156,7 +156,7 @@ const PaginationButton = ({
       <IconButton
         label={`page ${item}`}
         variant={item === page ? "neutral" : "link"}
-        onClick={() => onChange(item)}
+        onClick={() => onClick(item)}
       >
         {item}
       </IconButton>

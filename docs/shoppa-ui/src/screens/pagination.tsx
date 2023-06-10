@@ -1,11 +1,8 @@
 import { Pagination } from "@shoppa-ui/widgets/pagination";
-import {
-  UsePaginationFuncProps,
-  usePagination,
-} from "@shoppa-hooks/pagination";
+import { UsePaginationArgs, usePagination } from "@shoppa-hooks/pagination";
 
 export function PaginationScren() {
-  const api = usePagination(async (pagi: UsePaginationFuncProps) => {
+  const api = usePagination(async (pagi: UsePaginationArgs) => {
     return { data: [pagi], count: 0 };
   });
 
