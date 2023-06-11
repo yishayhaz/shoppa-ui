@@ -97,13 +97,11 @@ export function Popup({
       }`}
       aria-expanded="true"
       ref={popupRef}
-      tabIndex={-1}
     >
       <div
         className={`${styles.popup__card} ${
           noPadding ? "" : styles.popup__cardPadding
         }  ${noOutline ? "" : styles.popup__cardOutline}`}
-        tabIndex={0}
         style={{ width, height, ...rest.style }}
       >
         {noCloseBtn ? null : (

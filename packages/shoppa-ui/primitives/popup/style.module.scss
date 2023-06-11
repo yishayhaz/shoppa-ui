@@ -62,10 +62,6 @@
       background-color: rgba(var(--neutral-400), 0.5);
       color: $s-neutral-100;
 
-      &:focus-visible {
-        @include outline($border-radius: 50%);
-      }
-
       &[data-outside="true"] {
         right: 0;
         top: -40px;
