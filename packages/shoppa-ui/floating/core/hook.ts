@@ -4,7 +4,7 @@ import {
   autoPlacement,
   offset,
   shift,
-} from "./floating.js";
+} from "@floating-ui/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export type Alignment = "start" | "end";
