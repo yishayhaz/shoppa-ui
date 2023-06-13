@@ -1,12 +1,16 @@
 import {
   computePosition,
   autoUpdate,
-  Placement,
   autoPlacement,
   offset,
   shift,
-} from "@floating-ui/react";
+} from "./floating.js";
 import { useCallback, useEffect, useRef, useState } from "react";
+
+export type Alignment = "start" | "end";
+export type Side = "top" | "right" | "bottom" | "left";
+export type AlignedPlacement = `${Side}-${Alignment}`;
+export type Placement = Side | AlignedPlacement;
 
 export type UseFloating = (...args: UseFloatingArgs) => UseFloatingReturn;
 
@@ -58,7 +62,7 @@ export const useFloating: UseFloating = (options, defaultVisible = false) => {
         }),
         offset(options?.offset ?? DEFAULT_OFFSET),
       ],
-    }).then(({ x, y }) => {
+    }).then(({ x, y }: { x: number; y: number }) => {
       if (!containerRef.current || !floatingRef.current || !isVisible) return;
 
       Object.assign(floatingRef.current.style, {
