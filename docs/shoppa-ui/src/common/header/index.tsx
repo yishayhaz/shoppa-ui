@@ -41,7 +41,12 @@ export function Header({ setIsOpen, isOpen }: HeaderProps) {
         className="d-flex justify-content-space-between flex-wrap gap-10"
       >
         <div className="d-flex gap-20">
-          <IconButton label="menu" onClick={() => setIsOpen(!isOpen)}>
+          <IconButton
+            label="menu"
+            onClick={() => setIsOpen(!isOpen)}
+            data-drawer-target="true"
+            variant="neutral"
+          >
             {isOpen ? <IoClose /> : <HiMenuAlt1 />}
           </IconButton>
           <h1>Shoppa UI</h1>

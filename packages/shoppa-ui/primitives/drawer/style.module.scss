@@ -1,6 +1,8 @@
 .drawer {
   overflow: hidden;
   white-space: nowrap;
+  background-color: $s-neutral-bg;
+
   transition: width $normal-transition;
 
   &[aria-expanded="true"] {
@@ -9,5 +11,14 @@
 
   &[aria-expanded="false"] {
     width: var(--p-min-width);
+  }
+
+  &[data-strategy="absolute"] {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    height: 100dvh;
+
+    box-shadow: 0 0 10px 0 rgba(var(--s-neutral-900), 0.2);
   }
 }

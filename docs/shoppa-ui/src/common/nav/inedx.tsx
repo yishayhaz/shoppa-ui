@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 import { Button } from "@shoppa-ui/widgets/button";
+import { useDevice } from "@shoppa-hooks/device";
 
 const LINKS = [
   { to: "/docs/alert", label: "Alert" },
@@ -29,6 +30,7 @@ const LINKS = [
 
 export function Nav() {
   const location = useLocation();
+  const device = useDevice();
 
   const [links, setLinks] = useState(LINKS);
   const [active, setActive] = useState("/docs/alert");
@@ -71,7 +73,7 @@ export function Nav() {
       <ul
         className="d-flex flex-column flex-start align-items-stretch gap-2"
         style={{
-          maxHeight: "70vh",
+          maxHeight: device.isTabletOrMobile ? "85vh" : "70vh",
           overflow: "auto",
         }}
       >
