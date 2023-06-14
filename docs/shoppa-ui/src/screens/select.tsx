@@ -5,7 +5,7 @@ export function SelectScreen() {
     <div>
       <h1>This is the documentation for the Select component.</h1>
       <br />
-      <Select>
+      <Select value="">
         <option value="1">1</option>
         <option value="2">2</option>
       </Select>

@@ -5,7 +5,7 @@ export type SelectProps = Omit<
   BaseInputProps,
   "icon" | "btnIcon" | "btnIconLabel" | "isLoading" | "onClick"
 > &
-  React.HTMLAttributes<HTMLSelectElement>;
+  React.SelectHTMLAttributes<HTMLSelectElement>;
 
 export function Select({
   label,

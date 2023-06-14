@@ -5,8 +5,8 @@ import { useFloating, useFloatingFocusWithin } from "../core/hook";
 import { BaseFloating } from "../core/index";
 import { BaseButton } from "../../primitives/base-button";
 
-export type ComboboxProps<T extends string> = {
-  items: ComboboxItem<T>[];
+export type ComboboxProps<T extends object, K extends keyof T> = {
+  items: T[];
   /**
    * @description
    * The items to be presented in the dropdown.
@@ -17,16 +17,13 @@ export type ComboboxProps<T extends string> = {
    * @description
    * When the value of the input changes.
    */
-  onChange?: (
-    value: ComboboxItem<T>,
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ) => void;
+  onChange?: (value: T, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   /**
    * @description
    * When the user chooses an item.
    */
-  value?: ComboboxItem<T>;
-  accessor: T;
+  value?: T;
+  accessor: K;
   /**
    * @description
    * The key to be used to access the label of the item.
@@ -35,20 +32,14 @@ export type ComboboxProps<T extends string> = {
    */
 } & Omit<InputProps, "value" | "onChange" | "onInput">;
 
-export type ComboboxItem<T extends string> = {
-  [key in T]: string;
-} & {
-  [key: string]: any;
-};
-
-export function Combobox<T extends string>({
+export function Combobox<T extends object, K extends keyof T>({
   items,
   onInput,
   onChange,
   accessor,
   value,
   ...rest
-}: ComboboxProps<T>) {
+}: ComboboxProps<T, K>) {
   const { refs, isVisible, setIsVisible } = useFloating({
     placement: "bottom",
     allowedPlacements: ["bottom", "top"],
@@ -59,7 +50,7 @@ export function Combobox<T extends string>({
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (
-    item: ComboboxItem<T>,
+    item: T,
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
     if (onChange) {

@@ -11,6 +11,8 @@
         align-items: center;
 
         font-weight: 600;
+
+        @include outline;
       }
 
       &[aria-sort="ascending"] svg {
