@@ -2,6 +2,6 @@
   "name": "shoppa-utils",
   "description": "Shoppa Utils",
   "private": false,
-  "version": "0.0.12",
+  "version": "0.0.121",
   "type": "module"
 }

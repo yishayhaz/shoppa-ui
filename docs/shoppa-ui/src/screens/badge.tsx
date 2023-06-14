@@ -1,6 +1,4 @@
-import React from "react";
 import { Badge } from "@shoppa-ui/widgets/badge";
-import { BiPlus } from "react-icons/bi";
 
 export function BadgeScreen() {
   return (

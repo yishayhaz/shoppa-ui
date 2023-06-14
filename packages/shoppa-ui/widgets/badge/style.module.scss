@@ -32,6 +32,7 @@
     --p-text-accent: rgb(var(--neutral-text));
   }
 
+  display: inline-block;
   background-color: rgba(var(--p-accent));
   color: var(--p-text-accent, $neutral-100);
 

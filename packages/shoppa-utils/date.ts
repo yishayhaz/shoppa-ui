@@ -4,16 +4,28 @@ export const getDate = (days: number) => {
   return date;
 };
 
-export function formatToLocal(date: Date | number | string): string {
-  return new Date(date)
-    .toLocaleDateString("he-IL", {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    })
-    .replace(".", "/");
+export function formatToLocal(
+  date: Date | number | string,
+  includeDigits = true
+): string {
+  let d = new Date(date);
+
+  if (isNaN(d.getTime())) {
+    return "";
+  }
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  };
+
+  if (includeDigits) {
+    options.hour = "numeric";
+    options.minute = "numeric";
+  }
+
+  return d.toLocaleDateString("he-IL", options).replaceAll(".", "/");
 }
 
 export const isDateNew = (d: Date | string, newIs: 7) => {
