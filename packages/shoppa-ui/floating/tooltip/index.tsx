@@ -12,7 +12,6 @@ export function Tooltip({ children, label, className, ...rest }: TooltipProps) {
   const { refs, isVisible, setIsVisible } = useFloating({
     placement: "bottom",
     allowedPlacements: ["bottom", "top"],
-    offset: 0,
   });
   useFloatingHover(refs.containerRef, setIsVisible);
 

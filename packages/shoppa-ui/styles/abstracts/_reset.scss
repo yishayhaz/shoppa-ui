@@ -1,11 +1,11 @@
 // This file includes only resets to @extend!
 
-.app .reset-outline {
+.reset-outline {
   outline-color: transparent;
   outline-width: 0;
 }
 
-.app :where(.reset-link) {
+.reset-link {
   color: inherit;
   text-decoration: none;
 }

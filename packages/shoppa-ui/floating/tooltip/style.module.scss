@@ -2,8 +2,6 @@
   display: inline-block;
 
   .floating {
-    padding-block: 8px;
-
     animation: fade-in $normal-transition;
 
     @keyframes fade-in {
