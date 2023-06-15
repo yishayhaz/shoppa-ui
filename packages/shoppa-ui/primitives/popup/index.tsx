@@ -31,13 +31,13 @@ export function Popup({
   show,
   onHide,
   outerCloseBtn,
-  noCloseBtn,
   closeButtonClassName,
+  noCloseBtn,
   noPadding,
   noOutline,
+  noAnimation,
   width,
   height,
-  noAnimation,
   closeDelay = DEFAULT_CLOSING_DELAY,
   ...rest
 }: PopopProps) {
@@ -48,14 +48,18 @@ export function Popup({
 
     popupRef.current.setAttribute("aria-expanded", "false");
 
-    setTimeout(() => {
+    const t = setTimeout(() => {
       onHide();
 
       if (!popupRef.current) return;
 
       popupRef.current.hidden = true;
       popupRef.current.setAttribute("aria-expanded", "true");
-    }, closeDelay);
+    }, closeDelay - 50); // it's flickering without this
+
+    return () => {
+      clearTimeout(t);
+    };
   }, [closeDelay, onHide]);
 
   const close = () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Spinner } from "@shoppa-ui/widgets/spinner";
+import { LoadingScreen } from "@shoppa-ui/widgets/spinner/screen";
 
 export function SpinnerScreen() {
   return (
@@ -17,6 +18,10 @@ export function SpinnerScreen() {
         <Spinner variant="success" />
         <Spinner variant="danger" />
         <Spinner variant="warning" />
+      </div>
+      <h2>Loading Screen</h2>
+      <div>
+        <LoadingScreen className="bg-danger" width={"50vw"} height={300} />
       </div>
     </div>
   );

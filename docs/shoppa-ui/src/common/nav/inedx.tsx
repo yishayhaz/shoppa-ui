@@ -73,7 +73,7 @@ export function Nav() {
       <ul
         className="d-flex flex-column flex-start align-items-stretch gap-2"
         style={{
-          maxHeight: device.isTabletOrMobile ? "85vh" : "70vh",
+          maxHeight: device.isTabletOrMobile ? "85vh" : "calc(100vh - 220px)",
           overflow: "auto",
         }}
       >

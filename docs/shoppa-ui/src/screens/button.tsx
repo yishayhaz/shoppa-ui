@@ -5,10 +5,11 @@ import { api } from "../api";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useApi } from "@shoppa-hooks/api";
+import { LuEye } from "react-icons/lu";
+import { Tooltip } from "@shoppa-ui/floating/tooltip";
 
 export function ButtonScreen() {
   const absoluteFire = useApi(() => api.get("/test"));
-  console.log(absoluteFire);
 
   return (
     <div className="d-flex gap-30 flex-column align-items-stretch">
@@ -49,9 +50,11 @@ export function ButtonScreen() {
           <IconButton label="" variant="primary">
             <BiPlus />
           </IconButton>
-          <IconButton label="" variant="neutral">
-            <BiPlus />
-          </IconButton>
+          <Tooltip label="im a link">
+            <IconButton label="" variant="neutral" link={{ href: "/hello" }}>
+              <LuEye />
+            </IconButton>
+          </Tooltip>
           <IconButton label="" variant="success">
             <BiPlus />
           </IconButton>

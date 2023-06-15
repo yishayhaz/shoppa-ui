@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Popup } from "@shoppa-ui/primitives/popup";
 import { Button } from "@shoppa-ui/widgets/button";
 import { Dialog } from "@shoppa-ui/widgets/dialog";
@@ -6,8 +6,8 @@ import { IoIosAlert } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
 
 export function PopupScreen() {
-  const [show, setShow] = React.useState(false);
-  const [showDialog, setShowDialog] = React.useState(false);
+  const [show, setShow] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   return (
     <>

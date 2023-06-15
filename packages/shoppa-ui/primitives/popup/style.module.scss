@@ -9,7 +9,10 @@
   backdrop-filter: blur(2px);
   z-index: $zindex-modal;
 
-  @include flex;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding-block: 2rem;
 
   &.animate {
     &[aria-expanded="false"] {

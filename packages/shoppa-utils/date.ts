@@ -37,3 +37,9 @@ export const isDateNew = (d: Date | string, newIs: 7) => {
 
   return date > getDate(-newIs).getTime();
 };
+
+export namespace DateUtils {
+  export const format = formatToLocal;
+  export const get = getDate;
+  export const isNew = isDateNew;
+}

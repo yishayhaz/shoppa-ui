@@ -14,7 +14,7 @@ export function Layout() {
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <main
         style={{
-          paddingBlock: 50,
+          paddingTop: 50,
           display: "grid",
           gridTemplateColumns: "auto 1fr",
         }}
@@ -32,6 +32,8 @@ export function Layout() {
           style={{
             paddingInline: 50,
             overflow: "auto",
+            maxHeight: "calc(100vh - 133px)",
+            paddingBottom: 30,
           }}
         >
           <Outlet />
