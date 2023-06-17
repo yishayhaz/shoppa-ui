@@ -29,10 +29,10 @@ export type UsePaginationFunction<T, K extends any[]> = (
 
 export const usePagination = <T, K extends any[]>(
   func: UsePaginationFunction<T, K>,
-  defaults: UsePaginationOptions
+  defaults?: UsePaginationOptions
 ): UsePaginationResult<T, K> => {
-  const [page, _setPage] = useState<number>(defaults.page ?? 1);
-  const [amount, _setAmount] = useState<number>(defaults.amount ?? 20);
+  const [page, _setPage] = useState<number>(defaults?.page ?? 1);
+  const [amount, _setAmount] = useState<number>(defaults?.amount ?? 20);
 
   const api = useApi(func);
 
