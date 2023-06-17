@@ -9,7 +9,13 @@ export type UsePaginationResult<T, K extends any[]> = Omit<
     setPage: (page: number) => (...args: K) => void;
     setAmount: (count: number) => (...args: K) => void;
     fire: (...args: K) => void;
+    calcPages: (total: number) => number;
   };
+
+export type UsePaginationOptions = {
+  page?: number;
+  amount?: number;
+};
 
 export type UsePaginationArgs = {
   page: number;
@@ -23,10 +29,10 @@ export type UsePaginationFunction<T, K extends any[]> = (
 
 export const usePagination = <T, K extends any[]>(
   func: UsePaginationFunction<T, K>,
-  defaults: UsePaginationArgs = { page: 1, amount: 20 }
+  defaults: UsePaginationOptions
 ): UsePaginationResult<T, K> => {
-  const [page, _setPage] = useState<number>(defaults.page);
-  const [amount, _setAmount] = useState<number>(defaults.amount);
+  const [page, _setPage] = useState<number>(defaults.page ?? 1);
+  const [amount, _setAmount] = useState<number>(defaults.amount ?? 20);
 
   const api = useApi(func);
 
@@ -72,6 +78,7 @@ export const usePagination = <T, K extends any[]>(
     ...api,
     fire,
     page,
+    calcPages: (total: number) => Math.ceil(total / amount),
     amount,
     setPage,
     setAmount,
