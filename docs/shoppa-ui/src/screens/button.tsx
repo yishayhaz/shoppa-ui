@@ -9,7 +9,8 @@ import { LuEye } from "react-icons/lu";
 import { Tooltip } from "@shoppa-ui/floating/tooltip";
 
 export function ButtonScreen() {
-  const absoluteFire = useApi(() => api.get("/test"));
+  const absoluteFire = useApi(() => api.get("/variants"));
+  console.log(absoluteFire);
 
   return (
     <div className="d-flex gap-30 flex-column align-items-stretch">

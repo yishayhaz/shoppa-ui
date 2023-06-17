@@ -45,7 +45,7 @@ export class Service implements ServiceType {
 
   private cleanContent(content: any): any {
     if (Array.isArray(content)) {
-      return content.map(this.cleanContent);
+      return content.map((data) => this.cleanContent(data));
     }
 
     if (Object(content) === content) {
