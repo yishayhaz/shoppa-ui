@@ -3,16 +3,19 @@ import { MVariant } from "./variant";
 
 export type MProduct = BaseModel & {
   name: string;
-  images: ApiFile[];
+  assets: ApiFile[];
   keywords: string[];
   price: number;
   brand: ProductBrand;
   analytics?: ProductAnalytics;
   store: MProductStore;
+  warranty: string | null; // in months
+  status: MProductStatus;
 };
 
 export type MProductPopulated = MProduct & {
   description: string;
+  feature_bullet_points: string[];
   categories: MProductCategory[];
   variants: MVariant[];
   items: MProductItem[];
@@ -23,12 +26,37 @@ export type MProductItem = BaseModel & {
   price: number;
   name?: string;
   variants: MProductItemVariant[];
+  assets_refs: RefField[];
+  sku: RefField;
+  info: string | null;
+  status: MProductItemStatus;
 };
 
-export type ProductBrand = string | null;
+export enum MProductStatus {
+  Active = "active",
+  Draft = "draft",
+  Deleted = "deleted",
+  SoldOut = "sold_out",
+  Banned = "banned",
+  OnHold = "on_hold",
+  Pending = "pending",
+}
+
+export enum MProductItemStatus {
+  Active = "active",
+  InActive = "inactive",
+  Deleted = "deleted",
+  SoldOut = "sold_out",
+}
+
+export type ProductBrand = null | {
+  _id: RefField;
+  name: string;
+};
 
 export type ProductAnalytics = {
   views: number;
+  rating: number;
 };
 
 export type MProductItemVariant = {
@@ -42,6 +70,6 @@ export type MProductStore = {
 };
 
 export type MProductCategory = {
-  name: string;
-  _id: RefField;
+  names: string[];
+  _ids: RefField[];
 };

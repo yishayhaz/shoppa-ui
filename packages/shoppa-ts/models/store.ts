@@ -14,6 +14,7 @@ export type MStore = BaseModel & {
   legal_information: StoreLegalInformation;
   contact: StoreContact;
   analytics: StoreAnalytics;
+  min_order: number;
 };
 
 export type StoreLegalInformation = {
