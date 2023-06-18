@@ -15,6 +15,7 @@ const LINKS = [
   { to: "/docs/collapse", label: "Collapse" },
   { to: "/docs/combobox", label: "Combobox" },
   { to: "/docs/drawer", label: "Drawer" },
+  { to: "/docs/form", label: "Form" },
   { to: "/docs/input", label: "Input" },
   { to: "/docs/link", label: "Link" },
   { to: "/docs/pagination", label: "Pagination" },

@@ -20,6 +20,7 @@ import { PopoverScreen } from "./screens/popover";
 import { LinkScreen } from "./screens/link";
 import { ComboxboxScreen } from "./screens/combobox";
 import { PaginationScren } from "./screens/pagination";
+import { FormScreen } from "./screens/form";
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="collapse" element={<CollapseScreen />} />
           <Route path="combobox" element={<ComboxboxScreen />} />
           <Route path="drawer" element={<DrawerScreen />} />
+          <Route path="form" element={<FormScreen />} />
           <Route path="input" element={<InputScreen />} />
           <Route path="link" element={<LinkScreen />} />
           <Route path="pagination" element={<PaginationScren />} />

@@ -1,7 +1,7 @@
 import React from "react";
 import { BaseInput, BaseInputProps } from "../../primitives/base-input";
 
-export type InputProps = Omit<
+export type TextareaProps = Omit<
   BaseInputProps,
   "icon" | "btnIcon" | "btnIconLabel" | "isLoading" | "onClick"
 > &
@@ -19,7 +19,7 @@ export function Textarea({
   id,
   resize,
   ...rest
-}: InputProps) {
+}: TextareaProps) {
   return (
     <BaseInput
       label={label}
