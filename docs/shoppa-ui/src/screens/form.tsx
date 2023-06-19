@@ -1,69 +1,30 @@
-import { useEffect, useState } from "react";
-import { Form, FormField } from "@shoppa-ui/widgets/form";
-import { IoChevronBack } from "react-icons/io5";
-import { Checkbox } from "@shoppa-ui/widgets/checkbox";
+import { useState } from "react";
+import { Form, FormFields } from "@shoppa-ui/widgets/form";
 
 export function FormScreen() {
-  const [fields, setFields] = useState<FormField[]>([
-    {
-      name: "name",
+  const [fields, setFields] = useState<FormFields>({
+    name: {
       as: "input",
-      validation: [
-        {
-          message: "Name must be at least 3 characters long",
-          pattern: /^.{3,}$/,
-        },
-      ],
-      field: {
-        placeholder: "Name",
-        title: "Name",
-        label: "Name",
-      },
-    },
-    {
-      name: "age",
-      as: "input",
-      validation: [
-        {
-          message: "Age must be between 18-100",
-          pattern: /^1[8-9]$|^[2-9][0-9]$/,
-        },
-      ],
       field: {
         required: true,
-        type: "number",
-        placeholder: "age",
-        title: "age",
-        label: "age",
       },
     },
-    {
-      name: "options",
+    age: {
+      as: "textarea",
+      field: {},
+    },
+    city: {
       as: "select",
       field: {
         required: true,
         options: [
-          {
-            label: "Select an option",
-            value: "",
-            isDefault: true,
-          },
-          {
-            label: "Option 1",
-            value: "option1",
-          },
-          {
-            label: "Option 2",
-            value: "option2",
-          },
-          {
-            label: "Option 3",
-            value: "option3",
-          },
+          { label: "Select a city", value: "", isDefault: true },
+          { label: "New York", value: "new-york" },
+          { label: "London", value: "london" },
         ],
       },
     },
-  ]);
+  });
 
   return (
     <div>

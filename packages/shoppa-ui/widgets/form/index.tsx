@@ -12,22 +12,24 @@ import { Input, InputProps } from "../input";
 import { Textarea, TextareaProps } from "../textarea";
 import { Button, ButtonProps } from "../button";
 import { Select, SelectProps } from "../select";
+import { AnyObject } from "shoppa-ts";
 
 export type FormProps = {
   onSubmit: (
     data: { [key: string]: string | number },
-    fields: FormField[],
+    fields: FormFields,
     e: React.FormEvent<HTMLFormElement>
   ) => void;
-  fields: FormField[];
-  setFields: React.Dispatch<React.SetStateAction<FormField[]>>;
+  fields: FormFields;
+  setFields: React.Dispatch<React.SetStateAction<FormFields>>;
   buttonLabel?: string;
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
   children?: [React.ReactNode, React.ReactNode];
 } & PrimitiveFormProps;
 
+export type FormFields = { [key: string]: FormField };
+
 export type FormField = {
-  name: string;
   as: "input" | "textarea" | "select";
   validation?: FormValidation[];
   field: Omit<
@@ -101,18 +103,12 @@ export function Form({
   ) => {
     const { name, value } = e.target;
 
-    const newFields = fields.map((field) => {
-      if (field.name === name) {
-        return {
-          ...field,
-          field: {
-            ...field.field,
-            value,
-          },
-        };
-      }
-      return field;
-    });
+    const newFields = { ...fields };
+    const field = newFields[name];
+
+    if (!field) return;
+
+    field.field.value = value;
 
     setFields(newFields);
   };
@@ -120,46 +116,49 @@ export function Form({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (isDisabled) return;
 
-    const data = fields.reduce((acc, field) => {
-      if (field.field.type === "number" && Number(field.field.value)) {
-        return {
-          ...acc,
-          [field.name]: Number(field.field.value),
-        };
+    const data: AnyObject = {};
+
+    for (const [name, field] of Object.entries(fields)) {
+      let value = field.field.value;
+
+      if (
+        field.as === "input" &&
+        field.field.type === "number" &&
+        Number(value)
+      ) {
+        value = Number(value);
       }
-      return {
-        ...acc,
-        [field.name]: field.field.value,
-      };
-    }, {});
+
+      data[name] = value;
+    }
 
     return onSubmit(data, fields, e);
   };
 
   const isDisabled = useMemo(() => {
-    return fields.some((f) => {
-      const res = handleIsValid(f);
+    for (const [_, field] of Object.entries(fields)) {
+      const validation = handleIsValid(field);
 
-      if (res?.isValid === true) return false;
-      if (!f.field.required && res === null) return false;
+      if (validation !== null && validation.isValid === false) return true;
+      if (field.field.required && !field.field.value) return true;
+    }
 
-      return true;
-    });
+    return false;
   }, [fields]);
 
   return (
     <PrimitiveForm onSubmit={handleSubmit} {...rest}>
       {children?.[0]}
-      {fields.map(({ name, as, field }, idx) => {
+      {Object.entries(fields).map(([name, { as, field }], idx) => {
         if (as === "select") {
           field as FormFieldSelect;
           return (
             <Select
-              key={name}
+              key={idx}
               name={name}
               value={""}
               {...(field as SelectProps)}
-              {...handleIsValid(fields[idx])}
+              {...handleIsValid(fields[name])}
               onChange={handleChange}
             >
               {field.options?.map((option, idx) => {
@@ -182,22 +181,22 @@ export function Form({
         if (as === "input") {
           return (
             <Input
-              key={name}
+              key={idx}
               name={name}
               value={""}
               {...(field as InputProps)}
-              {...handleIsValid(fields[idx])}
+              {...handleIsValid(fields[name])}
               onChange={handleChange}
             />
           );
         }
         return (
           <Textarea
-            key={name}
+            key={idx}
             name={name}
             value={""}
             {...(field as TextareaProps)}
-            {...handleIsValid(fields[idx])}
+            {...handleIsValid(fields[name])}
             onChange={handleChange}
           />
         );
