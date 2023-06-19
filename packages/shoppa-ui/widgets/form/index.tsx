@@ -15,17 +15,19 @@ import { Select, SelectProps } from "../select";
 import { AnyObject } from "shoppa-ts";
 
 export type FormProps = {
-  onSubmit: (
-    data: { [key: string]: string | number },
-    fields: FormFields,
-    e: React.FormEvent<HTMLFormElement>
-  ) => void;
+  onSubmit: FormOnSubmit;
   fields: FormFields;
   setFields: React.Dispatch<React.SetStateAction<FormFields>>;
   buttonLabel?: string;
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
   children?: [React.ReactNode, React.ReactNode];
 } & PrimitiveFormProps;
+
+export type FormOnSubmit = (
+  data: { [key: string]: string | number },
+  fields: FormFields,
+  e: React.FormEvent<HTMLFormElement>
+) => void;
 
 export type FormFields = { [key: string]: FormField };
 
