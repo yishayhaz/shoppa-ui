@@ -21,7 +21,7 @@ export type FormProps = {
   buttonLabel?: string;
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
   children?: [React.ReactNode, React.ReactNode];
-} & PrimitiveFormProps;
+} & Omit<PrimitiveFormProps, "onSubmit">;
 
 export type FormOnSubmit = (
   data: { [key: string]: string | number },
