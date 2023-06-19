@@ -5,4 +5,5 @@ export type MCategory = BaseModel & {
   ancestors: RefField[];
   children: RefField[];
   parent: RefField;
+  allowed_variants: RefField[];
 };
