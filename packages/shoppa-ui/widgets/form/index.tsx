@@ -6,6 +6,7 @@ import {
 import { Input, InputProps } from "../input";
 import { Textarea, TextareaProps } from "../textarea";
 import { Button, ButtonProps } from "../button";
+import { Select, SelectProps } from "../select";
 
 export type FormProps = {
   onSubmit: (
@@ -17,11 +18,12 @@ export type FormProps = {
   setFields: React.Dispatch<React.SetStateAction<FormField[]>>;
   buttonLabel?: string;
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
+  children?: [React.ReactNode, React.ReactNode];
 } & PrimitiveFormProps;
 
 export type FormField = {
   name: string;
-  as: "input" | "textarea";
+  as: "input" | "textarea" | "select";
   validation?: FormValidation[];
   field: Omit<
     InputProps,
@@ -30,7 +32,20 @@ export type FormField = {
     Omit<
       TextareaProps,
       "onChange" | "pattern" | "name" | "onClick" | "isValid"
-    >;
+    > &
+    FormFieldSelect;
+};
+
+export type FormFieldSelect = Omit<
+  SelectProps,
+  "onChange" | "pattern" | "name" | "onClick" | "isValid" | "children"
+> & {
+  options?: {
+    label: string;
+    value: string | number;
+    disabled?: boolean;
+    isDefault?: boolean;
+  }[];
 };
 
 export type FormValidation = {
@@ -49,6 +64,7 @@ export function Form({
   buttonLabel,
   setFields,
   buttonProps,
+  children,
   ...rest
 }: FormProps) {
   const handleIsValid = (field: FormField) => {
@@ -74,7 +90,9 @@ export function Form({
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
 
@@ -126,7 +144,36 @@ export function Form({
 
   return (
     <PrimitiveForm onSubmit={handleSubmit} {...rest}>
+      {children?.[0]}
       {fields.map(({ name, as, field }, idx) => {
+        if (as === "select") {
+          field as FormFieldSelect;
+          return (
+            <Select
+              key={name}
+              name={name}
+              value={""}
+              {...(field as SelectProps)}
+              {...handleIsValid(fields[idx])}
+              onChange={handleChange}
+            >
+              {field.options?.map((option, idx) => {
+                return (
+                  <option
+                    key={idx}
+                    disabled={
+                      option.disabled ??
+                      Boolean(option.isDefault && field.value)
+                    }
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                );
+              })}
+            </Select>
+          );
+        }
         if (as === "input") {
           return (
             <Input
@@ -150,6 +197,7 @@ export function Form({
           />
         );
       })}
+      {children?.[1]}
       <Button {...buttonProps} disabled={isDisabled}>
         {buttonLabel || "אישור"}
       </Button>

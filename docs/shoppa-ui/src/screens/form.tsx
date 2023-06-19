@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, FormField } from "@shoppa-ui/widgets/form";
+import { IoChevronBack } from "react-icons/io5";
+import { Checkbox } from "@shoppa-ui/widgets/checkbox";
 
 export function FormScreen() {
   const [fields, setFields] = useState<FormField[]>([
@@ -35,11 +37,37 @@ export function FormScreen() {
         label: "age",
       },
     },
+    {
+      name: "options",
+      as: "select",
+      field: {
+        required: true,
+        options: [
+          {
+            label: "Select an option",
+            value: "",
+            isDefault: true,
+          },
+          {
+            label: "Option 1",
+            value: "option1",
+          },
+          {
+            label: "Option 2",
+            value: "option2",
+          },
+          {
+            label: "Option 3",
+            value: "option3",
+          },
+        ],
+      },
+    },
   ]);
 
   return (
     <div>
-      <h1>This is the documentation for the Form component.</h1>
+      <h1>This is the documentation for the Form component. </h1>
       <br />
       <Form
         className="d-flex gap-12 flex-column"
