@@ -1,0 +1,54 @@
+.toast {
+  position: fixed;
+  inset: 20px;
+  width: max-content;
+  max-width: calc(100dvw - 40px);
+  height: max-content;
+
+  padding: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  border-radius: $border-radius;
+
+  animation: slide-in var(--p-time) ease-in-out,
+    slide-in var(--p-time) reverse ease-in-out forwards var(--p-delay);
+
+  background: $neutral-100;
+  box-shadow: 0 0 6px rgba(var(--neutral-900), 0.2);
+
+  & > div {
+    min-width: 21px;
+    & > svg {
+      color: var(--p-color);
+
+      width: 21px;
+      height: 21px;
+    }
+  }
+
+  button {
+    min-width: 21px;
+    border-radius: 50%;
+    padding: 3px;
+
+    &:hover {
+      background: $neutral-300;
+    }
+  }
+
+  z-index: $zindex-offcanvas;
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      inset: 20px -600px;
+    }
+    to {
+      opacity: 1;
+      inset: 20px;
+    }
+  }
+}

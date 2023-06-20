@@ -21,6 +21,7 @@ import { LinkScreen } from "./screens/link";
 import { ComboxboxScreen } from "./screens/combobox";
 import { PaginationScren } from "./screens/pagination";
 import { FormScreen } from "./screens/form";
+import { ToastScreen } from "./screens/toast";
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="spinner" element={<SpinnerScreen />} />
           <Route path="table" element={<TableScreen />} />
           <Route path="textarea" element={<TextareaScreen />} />
+          <Route path="toast" element={<ToastScreen />} />
           <Route path="tooltip" element={<TooltipScreen />} />
         </Route>
       </Routes>

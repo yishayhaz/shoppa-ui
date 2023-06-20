@@ -26,6 +26,7 @@ const LINKS = [
   { to: "/docs/spinner", label: "Spinner" },
   { to: "/docs/table", label: "Table" },
   { to: "/docs/textarea", label: "Textarea" },
+  { to: "/docs/toast", label: "Toast" },
   { to: "/docs/tooltip", label: "Tooltip" },
 ];
 
