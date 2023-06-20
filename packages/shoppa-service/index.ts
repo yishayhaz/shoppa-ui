@@ -44,11 +44,7 @@ export class Service implements ServiceType {
   }
 
   private cleanContent(content: any): any {
-    if (Array.isArray(content)) {
-      return content.map((data) => this.cleanContent(data));
-    }
-
-    if (Object(content) === content) {
+    if (typeof content === "object" && content !== null) {
       for (const key in content) {
         if (typeof content[key]?.["$oid"] === "string") {
           content[key] = content[key]["$oid"];
