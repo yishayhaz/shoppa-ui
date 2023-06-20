@@ -3,7 +3,7 @@
   ! Doesn't preserve type onSubmit
 */
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   Form as PrimitiveForm,
   FormProps as PrimitiveFormProps,
@@ -21,6 +21,7 @@ export type FormProps = {
   buttonLabel?: string;
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
   children?: [React.ReactNode, React.ReactNode];
+  initialValues?: FormInitialValues;
 } & Omit<PrimitiveFormProps, "onSubmit">;
 
 export type FormOnSubmit = (
@@ -30,6 +31,8 @@ export type FormOnSubmit = (
 ) => void;
 
 export type FormFields = { [key: string]: FormField };
+
+export type FormInitialValues = { [key: string]: string | number };
 
 export type FormField = {
   as: "input" | "textarea" | "select";
@@ -74,6 +77,7 @@ export function Form({
   setFields,
   buttonProps,
   children,
+  initialValues,
   ...rest
 }: FormProps) {
   const handleIsValid = (field: FormField) => {
@@ -123,6 +127,9 @@ export function Form({
     for (const [name, field] of Object.entries(fields)) {
       let value = field.field.value;
 
+      // only send changed values
+      if (initialValues && initialValues[name] == value) continue;
+
       if (
         field.as === "input" &&
         field.field.type === "number" &&
@@ -137,16 +144,33 @@ export function Form({
     return onSubmit(data, fields, e);
   };
 
+  useEffect(() => {
+    if (!initialValues) return;
+
+    // Sync fields with initialValues
+
+    for (const [name, field] of Object.entries(fields)) {
+      if (initialValues[name]) {
+        field.field.value = initialValues[name];
+      }
+    }
+  }, [initialValues]);
+
   const isDisabled = useMemo(() => {
-    for (const [_, field] of Object.entries(fields)) {
+    let nothingChanged = Boolean(initialValues);
+
+    for (const [name, field] of Object.entries(fields)) {
       const validation = handleIsValid(field);
 
+      if (initialValues && initialValues[name] != field.field.value)
+        nothingChanged = false;
       if (validation !== null && validation.isValid === false) return true;
       if (field.field.required && !field.field.value) return true;
     }
 
-    return false;
-  }, [fields]);
+    // if nothing changed, disable submit
+    return nothingChanged;
+  }, [fields, initialValues]);
 
   return (
     <PrimitiveForm onSubmit={handleSubmit} {...rest}>

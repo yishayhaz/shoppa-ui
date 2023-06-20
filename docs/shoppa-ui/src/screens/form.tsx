@@ -35,6 +35,11 @@ export function FormScreen() {
         fields={fields}
         setFields={setFields}
         onSubmit={(d) => alert(JSON.stringify(d, null, 2))}
+        initialValues={{
+          name: "John Doe",
+          age: "20",
+          city: "london",
+        }}
         buttonLabel="Submit"
       />
     </div>

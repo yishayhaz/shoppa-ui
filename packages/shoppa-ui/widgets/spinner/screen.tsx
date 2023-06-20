@@ -9,8 +9,8 @@ export type LoadingScreenProps = {
 
 export function LoadingScreen({
   spinnerProps,
-  width = "100dvw",
-  height = "100dvh",
+  width = "100%",
+  height = "100%",
   className,
   style,
   ...rest
