@@ -13,6 +13,7 @@ import { Textarea, TextareaProps } from "../textarea";
 import { Button, ButtonProps } from "../button";
 import { Select, SelectProps } from "../select";
 import { AnyObject } from "shoppa-ts";
+import { deepClone } from "shoppa-utils/deepClone";
 
 export type FormProps = {
   onSubmit: FormOnSubmit;
@@ -22,6 +23,10 @@ export type FormProps = {
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
   children?: [React.ReactNode, React.ReactNode];
   initialValues?: FormInitialValues;
+  /*
+    ! initialValues MUST be a useMemo
+  */
+  isDisabled?: (internalDisabled: boolean) => boolean | undefined | null;
 } & Omit<PrimitiveFormProps, "onSubmit">;
 
 export type FormOnSubmit = (
@@ -78,6 +83,7 @@ export function Form({
   buttonProps,
   children,
   initialValues,
+  isDisabled,
   ...rest
 }: FormProps) {
   const handleIsValid = (field: FormField) => {
@@ -120,7 +126,7 @@ export function Form({
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (isDisabled) return;
+    if (_isDisabled) return;
 
     const data: AnyObject = {};
 
@@ -148,15 +154,18 @@ export function Form({
     if (!initialValues) return;
 
     // Sync fields with initialValues
+    const newFields = deepClone(fields);
 
-    for (const [name, field] of Object.entries(fields)) {
+    for (const [name, field] of Object.entries(newFields)) {
       if (initialValues[name]) {
         field.field.value = initialValues[name];
       }
     }
+
+    setFields(newFields);
   }, [initialValues]);
 
-  const isDisabled = useMemo(() => {
+  const _isDisabled = useMemo(() => {
     let nothingChanged = Boolean(initialValues);
 
     for (const [name, field] of Object.entries(fields)) {
@@ -164,13 +173,17 @@ export function Form({
 
       if (initialValues && initialValues[name] != field.field.value)
         nothingChanged = false;
-      if (validation !== null && validation.isValid === false) return true;
-      if (field.field.required && !field.field.value) return true;
+
+      const shouldDisable =
+        (validation !== null && validation.isValid === false) ||
+        (field.field.required && !field.field.value);
+
+      if (shouldDisable) return isDisabled?.(true) ?? true;
     }
 
     // if nothing changed, disable submit
-    return nothingChanged;
-  }, [fields, initialValues]);
+    return isDisabled?.(nothingChanged) ?? nothingChanged;
+  }, [fields, initialValues, isDisabled]);
 
   return (
     <PrimitiveForm onSubmit={handleSubmit} {...rest}>
@@ -228,7 +241,7 @@ export function Form({
         );
       })}
       {children?.[1]}
-      <Button {...buttonProps} disabled={isDisabled}>
+      <Button {...buttonProps} disabled={_isDisabled}>
         {buttonLabel || "אישור"}
       </Button>
     </PrimitiveForm>

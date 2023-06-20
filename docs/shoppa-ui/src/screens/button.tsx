@@ -51,11 +51,18 @@ export function ButtonScreen() {
           <IconButton label="" variant="primary">
             <BiPlus />
           </IconButton>
-          <Tooltip label="im a link">
-            <IconButton label="" variant="neutral" link={{ href: "/hello" }}>
-              <LuEye />
-            </IconButton>
-          </Tooltip>
+          <div style={{ color: "white" }}>
+            <Tooltip label="im a link">
+              <IconButton
+                label=""
+                variant="neutral"
+                link={{ href: "/hello" }}
+                className="reset-link"
+              >
+                <LuEye />
+              </IconButton>
+            </Tooltip>
+          </div>
           <IconButton label="" variant="success">
             <BiPlus />
           </IconButton>

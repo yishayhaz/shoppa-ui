@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Form, FormFields } from "@shoppa-ui/widgets/form";
+import { Input } from "@shoppa-ui/widgets/input";
 
 export function FormScreen() {
   const [fields, setFields] = useState<FormFields>({
@@ -26,6 +27,17 @@ export function FormScreen() {
     },
   });
 
+  const [internalValue, setInternal] = useState("");
+
+  const initialValues = useMemo(
+    () => ({
+      name: "John Doe",
+      age: "20",
+      city: "london",
+    }),
+    []
+  );
+
   return (
     <div>
       <h1>This is the documentation for the Form component. </h1>
@@ -35,13 +47,25 @@ export function FormScreen() {
         fields={fields}
         setFields={setFields}
         onSubmit={(d) => alert(JSON.stringify(d, null, 2))}
-        initialValues={{
-          name: "John Doe",
-          age: "20",
-          city: "london",
-        }}
+        initialValues={initialValues}
         buttonLabel="Submit"
-      />
+        isDisabled={(internal) =>
+          internal ? Boolean(internalValue) === false : internal
+        }
+      >
+        <Input
+          name="name"
+          label="INTERNAL Name"
+          onChange={(e) => setInternal(e.target.value)}
+          value={internalValue}
+        />
+        <Input
+          name="name"
+          label="INTERNAL Name"
+          onChange={(e) => setInternal(e.target.value)}
+          value={internalValue}
+        />
+      </Form>
     </div>
   );
 }
