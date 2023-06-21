@@ -5,7 +5,6 @@ export type MProduct = BaseModel & {
   name: string;
   assets: ApiFile[];
   keywords: string[];
-  price: number;
   brand: ProductBrand;
   analytics?: ProductAnalytics;
   store: MProductStore;
