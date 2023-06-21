@@ -25,6 +25,7 @@ const LINKS = [
   { to: "/docs/select", label: "Select" },
   { to: "/docs/spinner", label: "Spinner" },
   { to: "/docs/table", label: "Table" },
+  { to: "/docs/tag", label: "Tag" },
   { to: "/docs/textarea", label: "Textarea" },
   { to: "/docs/toast", label: "Toast" },
   { to: "/docs/tooltip", label: "Tooltip" },

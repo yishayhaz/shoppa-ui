@@ -30,6 +30,13 @@ export type ComboboxProps<T extends object, K extends keyof T> = {
    * @default
    * "value"
    */
+  noTyping?: boolean;
+  /**
+   * @description
+   * If true, the user can't type in the input.
+   * @default
+   * false
+   */
 } & Omit<InputProps, "value" | "onChange" | "onInput">;
 
 export function Combobox<T extends object, K extends keyof T>({
@@ -38,6 +45,7 @@ export function Combobox<T extends object, K extends keyof T>({
   onChange,
   accessor,
   value,
+  noTyping,
   ...rest
 }: ComboboxProps<T, K>) {
   const { refs, isVisible, setIsVisible } = useFloating({
@@ -62,6 +70,8 @@ export function Combobox<T extends object, K extends keyof T>({
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (noTyping) return;
+
     if (onInput) {
       onInput(e.target.value);
     }
@@ -84,7 +94,7 @@ export function Combobox<T extends object, K extends keyof T>({
         autoComplete="off"
         {...rest}
       />
-      {isVisible && items.length ? (
+      {isVisible && items.length && !rest.disabled ? (
         <BaseFloating
           className={styles.combobox__dropdown}
           floatingRef={refs.floatingRef}

@@ -1,0 +1,67 @@
+.tag {
+  &[data-size="sm"] {
+    font-size: $fs-xs;
+    padding: 2px 6px;
+    gap: 2px;
+  }
+
+  &[data-size="md"] {
+    font-size: $fs-normal;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  &[data-size="lg"] {
+    font-size: $fs-ms;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  &[data-variant="primary"] {
+    --p-accent: var(--primary);
+  }
+  &[data-variant="neutral"] {
+    --p-accent: var(--s-neutral-300);
+    --p-text-accent: rgb(var(--s-neutral-text));
+  }
+  &[data-variant="success"] {
+    --p-accent: var(--success);
+  }
+  &[data-variant="danger"] {
+    --p-accent: var(--danger);
+  }
+  &[data-variant="warning"] {
+    --p-accent: var(--warning);
+    --p-text-accent: rgb(var(--neutral-text));
+  }
+
+  display: inline-flex;
+  align-items: center;
+
+  background-color: rgba(var(--p-accent));
+  color: var(--p-text-accent, $neutral-100);
+
+  border-radius: $border-radius;
+
+  @include shadow(
+    rgba(var(--p-accent, var(--primary))),
+    $spread: 0px,
+    $blur: 2px
+  );
+
+  button {
+    border-radius: 50%;
+    padding: 2px;
+    color: inherit;
+
+    &:hover {
+      background-color: rgba(var(--neutral), 0.75);
+      color: $neutral-100;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

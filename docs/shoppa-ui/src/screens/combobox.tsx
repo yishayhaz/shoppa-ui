@@ -49,9 +49,10 @@ export function ComboxboxScreen() {
           setValue(item);
         }}
         onInput={handleInput}
-        isLoading={isLoading}
-        btnIcon={<BiSearch />}
+        // isLoading={isLoading}
+        // btnIcon={<BiSearch />}
         value={value}
+        noTyping
       />
       <br />
       <Card>

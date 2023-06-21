@@ -37,7 +37,9 @@ export type FormOnSubmit = (
 
 export type FormFields = { [key: string]: FormField };
 
-export type FormInitialValues = { [key: string]: string | number };
+export type FormInitialValues = {
+  [key: string]: string | number | undefined | null;
+};
 
 export type FormField = {
   as: "input" | "textarea" | "select";

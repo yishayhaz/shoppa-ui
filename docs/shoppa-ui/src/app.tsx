@@ -22,6 +22,7 @@ import { ComboxboxScreen } from "./screens/combobox";
 import { PaginationScren } from "./screens/pagination";
 import { FormScreen } from "./screens/form";
 import { ToastScreen } from "./screens/toast";
+import { TagScreen } from "./screens/tag";
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="select" element={<SelectScreen />} />
           <Route path="spinner" element={<SpinnerScreen />} />
           <Route path="table" element={<TableScreen />} />
+          <Route path="tag" element={<TagScreen />} />
           <Route path="textarea" element={<TextareaScreen />} />
           <Route path="toast" element={<ToastScreen />} />
           <Route path="tooltip" element={<TooltipScreen />} />
