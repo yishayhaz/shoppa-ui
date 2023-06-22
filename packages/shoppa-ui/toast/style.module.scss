@@ -5,7 +5,7 @@
   max-width: calc(100dvw - 40px);
   height: max-content;
 
-  padding: 15px 18px;
+  padding: 12px 18px;
 
   display: flex;
   align-items: center;
@@ -16,14 +16,18 @@
   animation: slide-in var(--p-time) ease,
     slide-in var(--p-time) reverse ease forwards var(--p-delay);
 
-  background: $s-neutral-100;
+  background-color: var(--p-bg);
   box-shadow: 0 0 6px rgba(var(--s-neutral-900), 0.2);
+
+  &,
+  svg {
+    color: var(--p-color);
+  }
 
   & > div {
     min-width: 21px;
-    & > svg {
-      color: var(--p-color);
 
+    & > svg {
       width: 21px;
       height: 21px;
     }

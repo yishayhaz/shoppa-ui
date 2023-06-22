@@ -28,17 +28,7 @@ export function ToastScreen() {
         </Select>
         <Button
           onClick={() => {
-            toast(
-              type ?? "danger",
-              msg,
-              type === "primary" ? (
-                <BsFillCheckCircleFill />
-              ) : type === "danger" ? (
-                <AiFillCloseCircle />
-              ) : (
-                <IoIosWarning />
-              )
-            );
+            toast(type ?? "danger", msg);
           }}
         >
           Trigger Toast
