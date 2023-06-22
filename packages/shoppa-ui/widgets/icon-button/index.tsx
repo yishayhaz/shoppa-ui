@@ -29,6 +29,7 @@ export function IconButton({
 }: IconButtonProps) {
   return (
     <BaseButton
+      type="button"
       {...rest}
       className={`${styles.iconButton} ${className || ""}`}
       {...(label && { "aria-label": label })}

@@ -7,12 +7,21 @@ import { Pagination } from "@shoppa-ui/widgets/pagination";
 import { Dialog } from "@shoppa-ui/widgets/dialog";
 
 export function TableScreen() {
-  const api = usePagination(async ({ page, amount }, name: string) => {
-    const _page = (page - 1) * 3;
-    const data = [_page, _page + 1, _page + 2];
+  const api = usePagination(
+    async ({ page, amount }, name: string) => {
+      const _page = (page - 1) * 3;
+      const data = [_page, _page + 1, _page + 2];
 
-    return { data, count: 0 };
-  });
+      return { data, count: 0 };
+    },
+    {
+      page: 1,
+      amount: 3,
+      onSuccess(data, args) {
+        console.log(data, args);
+      },
+    }
+  );
 
   const [sortDir, setSortDir] = React.useState<1 | -1 | 0>(0);
   const [sortCol, setSortCol] = React.useState(0);

@@ -55,7 +55,7 @@ export function Popup({
 
       popupRef.current.hidden = true;
       popupRef.current.setAttribute("aria-expanded", "true");
-    }, closeDelay - 50); // it's flickering without this
+    }, closeDelay);
 
     return () => {
       clearTimeout(t);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UseApiResult, useApi } from "./api";
+import { UseApiOptions, UseApiResult, useApi } from "./api";
 
 export type UsePaginationResult<T, K extends any[]> = Omit<
   UseApiResult<T, K>,
@@ -12,10 +12,10 @@ export type UsePaginationResult<T, K extends any[]> = Omit<
     calcPages: (total: number) => number;
   };
 
-export type UsePaginationOptions = {
+export type UsePaginationOptions<T, K extends any[]> = {
   page?: number;
   amount?: number;
-};
+} & UseApiOptions<T, [UsePaginationArgs, ...K]>;
 
 export type UsePaginationArgs = {
   page: number;
@@ -29,12 +29,15 @@ export type UsePaginationFunction<T, K extends any[]> = (
 
 export const usePagination = <T, K extends any[]>(
   func: UsePaginationFunction<T, K>,
-  defaults?: UsePaginationOptions
+  options?: UsePaginationOptions<T, K>
 ): UsePaginationResult<T, K> => {
-  const [page, _setPage] = useState<number>(defaults?.page ?? 1);
-  const [amount, _setAmount] = useState<number>(defaults?.amount ?? 20);
+  const [page, _setPage] = useState<number>(options?.page ?? 1);
+  const [amount, _setAmount] = useState<number>(options?.amount ?? 20);
 
-  const api = useApi(func);
+  const api = useApi(func, {
+    onSuccess: options?.onSuccess,
+    onError: options?.onError,
+  });
 
   const setPage = (page: number) => {
     _setPage(page);

@@ -22,8 +22,14 @@ export type ApiError = {
   raw?: Error | unknown;
 };
 
+export type UseApiOptions<T, K extends any[]> = {
+  onSuccess?: (data: T, args: K) => void;
+  onError?: (error: ApiError, args: K) => void;
+};
+
 export const useApi = <T, K extends any[]>(
-  func: UseApiFunction<T, K>
+  func: UseApiFunction<T, K>,
+  options?: UseApiOptions<T, K>
 ): UseApiResult<T, K> => {
   const [data, setData] = useState<UseApiData<T>>(null);
 
@@ -36,8 +42,10 @@ export const useApi = <T, K extends any[]>(
 
     try {
       const result = await func(...args);
+      options?.onSuccess?.(result, args);
       setData(result);
     } catch (error) {
+      let errorDoc = {} as ApiError;
       if (
         error !== null &&
         typeof error === "object" &&
@@ -46,10 +54,12 @@ export const useApi = <T, K extends any[]>(
         "raw" in error &&
         Object.keys(error).length === 3
       ) {
-        setError(error as ApiError);
+        errorDoc = error as ApiError;
       } else {
-        setError({ code: 500, message: "unexpected_error", raw: error });
+        errorDoc = { code: 500, message: "unexpected_error", raw: error };
       }
+      options?.onError?.(errorDoc, args);
+      setError(errorDoc);
     } finally {
       setIsLoading(false);
     }

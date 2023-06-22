@@ -16,10 +16,10 @@
 
   &.animate {
     &[aria-expanded="false"] {
-      animation: fadeout $normal-transition;
+      animation: fadeout $normal-transition forwards;
 
       & > div {
-        animation: popout $normal-transition;
+        animation: popout $normal-transition forwards;
       }
     }
     &[aria-expanded="true"] {
