@@ -1,9 +1,16 @@
-import React from "react";
 import { Alert } from "@shoppa-ui/widgets/alert";
+import { IoIosWarning } from "react-icons/io";
 
 export function AlertScreen() {
   return (
     <div className="page d-flex flex-column gap-20">
+      <Alert
+        size="sm"
+        variant="warning"
+        icon={<IoIosWarning />}
+        title="Watch out!"
+        description="This is a warning alert"
+      />
       <Alert size="sm" variant="danger" icon={"❗"} children="ds"></Alert>
       <Alert
         size="md"

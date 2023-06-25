@@ -44,7 +44,7 @@ export const toast = (
   icon?: React.ReactElement,
   t = 3000
 ) => {
-  const __p_color = `rgba(var(--s-neutral-${type == "warning" ? "9" : "1"}00))`;
+  const __p_color = `rgba(var(--neutral-${type == "warning" ? "9" : "1"}00))`;
   const __p_bg = `rgba(var(--${type}))`;
 
   icon ??= icons[type];
@@ -63,12 +63,7 @@ export const toast = (
     >
       {icon && <div>{icon}</div>}
       <p>{message}</p>
-      <IconButton
-        label="dismiss"
-        size="sm"
-        variant="link"
-        className="toast__close"
-      >
+      <IconButton label="dismiss" size="sm" variant="link">
         <svg
           stroke="currentColor"
           fill="currentColor"

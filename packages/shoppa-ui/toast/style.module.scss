@@ -17,7 +17,7 @@
     slide-in var(--p-time) reverse ease forwards var(--p-delay);
 
   background-color: var(--p-bg);
-  box-shadow: 0 0 6px rgba(var(--s-neutral-900), 0.2);
+  box-shadow: 0 0 6px rgba(var(--neutral-900), 0.2);
 
   &,
   svg {
@@ -33,7 +33,11 @@
     }
   }
 
-  z-index: $zindex-offcanvas;
+  button:hover svg {
+    color: $neutral-900;
+  }
+
+  z-index: $zindex-tooltip;
 
   @keyframes slide-in {
     from {

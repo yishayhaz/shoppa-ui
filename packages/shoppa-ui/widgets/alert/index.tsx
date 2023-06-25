@@ -16,7 +16,12 @@ export type AlertProps<T> = Omit<
   icon?: React.ReactNode;
 };
 
-export type AlertVariant = "neutral" | "primary" | "success" | "danger";
+export type AlertVariant =
+  | "neutral"
+  | "primary"
+  | "success"
+  | "danger"
+  | "warning";
 
 export type AlertSize = "sm" | "md" | "lg";
 
