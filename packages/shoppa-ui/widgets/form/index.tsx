@@ -30,10 +30,17 @@ export type FormProps = {
 } & Omit<PrimitiveFormProps, "onSubmit">;
 
 export type FormOnSubmit = (
-  data: { [key: string]: string | number },
+  data: { [key: string]: FormFieldValue },
   fields: FormFields,
   e: React.FormEvent<HTMLFormElement>
 ) => void;
+
+export type FormFieldValue =
+  | string
+  | number
+  | readonly string[]
+  | undefined
+  | null;
 
 export type FormFields = { [key: string]: FormField };
 
@@ -44,6 +51,7 @@ export type FormInitialValues = {
 export type FormField = {
   as: "input" | "textarea" | "select";
   validation?: FormValidation[];
+  nullWhenEmpty?: boolean; // only meant for string fields!
   field: Omit<
     InputProps,
     "onChange" | "pattern" | "name" | "onClick" | "isValid"
@@ -133,11 +141,12 @@ export function Form({
     const data: AnyObject = {};
 
     for (const [name, field] of Object.entries(fields)) {
-      let value = field.field.value;
+      let value: FormFieldValue = field.field.value;
 
       // only send changed values
       if (initialValues && initialValues[name] == value) continue;
 
+      if (field.nullWhenEmpty && !value) value = null;
       if (
         field.as === "input" &&
         field.field.type === "number" &&

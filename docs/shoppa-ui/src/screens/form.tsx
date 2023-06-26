@@ -12,6 +12,7 @@ export function FormScreen() {
     },
     age: {
       as: "textarea",
+      nullWhenEmpty: true,
       field: {},
     },
     city: {
