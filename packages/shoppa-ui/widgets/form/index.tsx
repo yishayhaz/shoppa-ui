@@ -123,12 +123,17 @@ export function Form({
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value } = e.target;
+    const name = e.target.name;
+    let value: FormFieldValue = e.target.value;
 
     const newFields = { ...fields };
     const field = newFields[name];
 
     if (!field) return;
+
+    if (field.field.type === "number" && value) {
+      value = Number(value);
+    }
 
     field.field.value = value;
 
@@ -144,16 +149,9 @@ export function Form({
       let value: FormFieldValue = field.field.value;
 
       // only send changed values
-      if (initialValues && initialValues[name] == value) continue;
+      if (initialValues && initialValues[name] === value) continue;
 
       if (field.nullWhenEmpty && !value) value = null;
-      if (
-        field.as === "input" &&
-        field.field.type === "number" &&
-        !Number.isNaN(value)
-      ) {
-        value = Number(value);
-      }
 
       data[name] = value;
     }
@@ -182,8 +180,9 @@ export function Form({
     for (const [name, field] of Object.entries(fields)) {
       const validation = handleIsValid(field);
 
-      if (initialValues && initialValues[name] != field.field.value)
+      if (initialValues && initialValues[name] !== field.field.value) {
         nothingChanged = false;
+      }
 
       const shouldDisable =
         (validation !== null && validation.isValid === false) ||

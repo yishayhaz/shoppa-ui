@@ -4,26 +4,78 @@ import { Input } from "@shoppa-ui/widgets/input";
 
 export function FormScreen() {
   const [fields, setFields] = useState<FormFields>({
-    name: {
+    status: {
+      as: "select",
+      field: {
+        label: "סטטוס",
+        required: true,
+        options: [
+          {
+            label: "סטטוס המוצר",
+            value: "",
+            isDefault: true,
+          },
+          {
+            label: "פעיל",
+            value: "active",
+          },
+          {
+            label: "נמחק",
+            value: "deleted",
+          },
+          {
+            label: "לא פעיל",
+            value: "inactive",
+          },
+        ],
+      },
+    },
+    price: {
       as: "input",
       field: {
         required: true,
+        placeholder: "מחיר",
+        label: "מחיר",
+        type: "number",
+        icon: "₪",
       },
     },
-    age: {
-      as: "textarea",
-      nullWhenEmpty: true,
-      field: {},
-    },
-    city: {
-      as: "select",
+    in_storage: {
+      as: "input",
+      validation: [
+        {
+          validate: (value) => Number(value) >= 0,
+          message: "כמות במלאי חייבת להיות גדולה מ-0",
+        },
+      ],
       field: {
-        required: true,
-        options: [
-          { label: "Select a city", value: "", isDefault: true },
-          { label: "New York", value: "new-york" },
-          { label: "London", value: "london" },
-        ],
+        type: "number",
+        placeholder: "כמות במלאי",
+        label: "כמות במלאי",
+      },
+    },
+    name: {
+      as: "input",
+      nullWhenEmpty: true,
+      field: {
+        placeholder: "שם הפריט",
+        label: "שם הפריט",
+      },
+    },
+    info: {
+      nullWhenEmpty: true,
+      as: "textarea",
+      field: {
+        placeholder: "מידע נוסף",
+        label: "מידע נוסף",
+      },
+    },
+    sku: {
+      nullWhenEmpty: true,
+      as: "input",
+      field: {
+        placeholder: `מק"ט`,
+        label: `מק"ט`,
       },
     },
   });
@@ -32,9 +84,12 @@ export function FormScreen() {
 
   const initialValues = useMemo(
     () => ({
-      name: "John Doe",
-      age: "20",
-      city: "london",
+      status: "deleted",
+      name: "מגלשיים",
+      price: 169,
+      in_storage: 0,
+      info: null,
+      sku: "54564",
     }),
     []
   );
