@@ -35,9 +35,8 @@ export enum MProductStatus {
   Active = "active",
   Draft = "draft",
   Deleted = "deleted",
-  SoldOut = "sold_out",
   Banned = "banned",
-  OnHold = "on_hold",
+  InActive = "inactive",
   Pending = "pending",
 }
 
@@ -45,7 +44,6 @@ export enum MProductItemStatus {
   Active = "active",
   InActive = "inactive",
   Deleted = "deleted",
-  SoldOut = "sold_out",
 }
 
 export type ProductBrand = null | {
