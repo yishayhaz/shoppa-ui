@@ -168,7 +168,7 @@ export function Form({
     const newFields = deepClone(fields);
 
     for (const [name, field] of Object.entries(newFields)) {
-      if (initialValues[name]) {
+      if (name in initialValues) {
         field.field.value = initialValues[name];
       }
     }
