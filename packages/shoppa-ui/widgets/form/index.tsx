@@ -137,6 +137,8 @@ export function Form({
 
     field.field.value = value;
 
+    console.log(newFields);
+
     setFields(newFields);
   };
 
@@ -186,7 +188,7 @@ export function Form({
 
       const shouldDisable =
         (validation !== null && validation.isValid === false) ||
-        (field.field.required && !field.field.value);
+        (field.field.required && field.field.value === "");
 
       if (shouldDisable) return isDisabled?.(true) ?? true;
     }

@@ -50,6 +50,7 @@ export function FormScreen() {
       ],
       field: {
         type: "number",
+        required: true,
         placeholder: "כמות במלאי",
         label: "כמות במלאי",
       },
