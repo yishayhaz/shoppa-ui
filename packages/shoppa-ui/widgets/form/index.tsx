@@ -150,7 +150,7 @@ export function Form({
       if (
         field.as === "input" &&
         field.field.type === "number" &&
-        Number(value)
+        !Number.isNaN(value)
       ) {
         value = Number(value);
       }
