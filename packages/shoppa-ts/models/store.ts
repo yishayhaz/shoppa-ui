@@ -17,6 +17,14 @@ export type MStore = BaseModel & {
   min_order: number;
 };
 
+export type MStorePreview = BaseModel & {
+  name: string;
+  description: string;
+  slogan: string;
+  banner: ApiFile | null;
+  logo: ApiFile | null;
+};
+
 export type StoreLegalInformation = {
   name: string;
   legal_id: string;

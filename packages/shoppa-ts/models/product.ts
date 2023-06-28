@@ -20,6 +20,16 @@ export type MProductPopulated = MProduct & {
   items: MProductItem[];
 };
 
+export type MProductPreview = BaseModel & {
+  name: string;
+  store: MProductStore;
+  brand: ProductBrand;
+  assets: ApiFile[];
+  analytics?: ProductAnalytics;
+  keywords: string[];
+  categories: MProductCategory[];
+};
+
 export type MProductItem = BaseModel & {
   in_storage: number;
   price: number;
