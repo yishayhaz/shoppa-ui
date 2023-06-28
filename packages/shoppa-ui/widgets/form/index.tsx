@@ -182,13 +182,18 @@ export function Form({
     for (const [name, field] of Object.entries(fields)) {
       const validation = handleIsValid(field);
 
-      if (initialValues && initialValues[name] !== field.field.value) {
+      if (initialValues && field.field.value !== initialValues[name]) {
         nothingChanged = false;
       }
 
-      const shouldDisable =
-        (validation !== null && validation.isValid === false) ||
-        (field.field.required && field.field.value === "");
+      const didNotPassValidation =
+        validation !== null && validation.isValid === false;
+
+      const hasValue = field.field.value !== "" && "value" in field.field;
+
+      const isRequiredAndEmpty = field.field.required && !hasValue;
+
+      const shouldDisable = didNotPassValidation || isRequiredAndEmpty;
 
       if (shouldDisable) return isDisabled?.(true) ?? true;
     }
