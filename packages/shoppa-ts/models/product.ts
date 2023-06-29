@@ -22,7 +22,6 @@ export type MProductPopulated = MProduct & {
 
 export type MProductPreview = BaseModel & {
   name: string;
-  price: number;
   store: MProductStore;
   brand: ProductBrand;
   assets: ApiFile[];
