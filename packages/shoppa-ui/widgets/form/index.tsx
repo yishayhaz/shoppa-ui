@@ -137,8 +137,6 @@ export function Form({
 
     field.field.value = value;
 
-    console.log(newFields);
-
     setFields(newFields);
   };
 

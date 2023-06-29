@@ -5,7 +5,7 @@ export type CheckboxProps = {
   onChange?: (checked: boolean, e: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
 
-  label?: string;
+  label?: string | React.ReactNode;
   variant?: CheckboxVariant;
 
   id?: string;

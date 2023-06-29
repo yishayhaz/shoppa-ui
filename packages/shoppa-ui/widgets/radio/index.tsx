@@ -1,7 +1,7 @@
 import React from "react";
 
 export type RadioProps = {
-  label?: string;
+  label?: string | React.ReactNode;
   variant?: RadioVariant;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">;
 
