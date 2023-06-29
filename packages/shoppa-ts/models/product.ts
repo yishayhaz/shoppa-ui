@@ -29,6 +29,7 @@ export type MProductPreview = BaseModel & {
   analytics?: ProductAnalytics;
   keywords: string[];
   categories: MProductCategory[];
+  item: MProductItem;
 };
 
 export type MProductItem = BaseModel & {
