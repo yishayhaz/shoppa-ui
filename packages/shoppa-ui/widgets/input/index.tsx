@@ -1,6 +1,5 @@
 import React from "react";
 import { BaseInput, BaseInputProps } from "../../primitives/base-input";
-import { Badge } from "../badge";
 
 export type InputProps = BaseInputProps &
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "onClick">;
