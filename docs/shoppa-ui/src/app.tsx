@@ -23,6 +23,7 @@ import { PaginationScren } from "./screens/pagination";
 import { FormScreen } from "./screens/form";
 import { ToastScreen } from "./screens/toast";
 import { TagScreen } from "./screens/tag";
+import { FiltersScreen } from "./screens/filters";
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="collapse" element={<CollapseScreen />} />
           <Route path="combobox" element={<ComboxboxScreen />} />
           <Route path="drawer" element={<DrawerScreen />} />
+          <Route path="filters" element={<FiltersScreen />} />
           <Route path="form" element={<FormScreen />} />
           <Route path="input" element={<InputScreen />} />
           <Route path="link" element={<LinkScreen />} />
