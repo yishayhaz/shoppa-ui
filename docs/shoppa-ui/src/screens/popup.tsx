@@ -4,10 +4,14 @@ import { Button } from "@shoppa-ui/widgets/button";
 import { Dialog } from "@shoppa-ui/widgets/dialog";
 import { IoIosAlert } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
+import { Select } from "@shoppa-ui/widgets/select";
 
 export function PopupScreen() {
   const [show, setShow] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
+  const [dialogVariant, setDialogVariant] = useState<
+    "primary" | "danger" | "warning" | "success" | "neutral"
+  >("danger");
 
   return (
     <>
@@ -25,7 +29,7 @@ export function PopupScreen() {
           onHide={() => setShowDialog(false)}
           text={"Are you sure you want to delete this?"}
           icon={<IoIosAlert />}
-          isDanger
+          variant={dialogVariant}
         />
       )}
       <div>
@@ -42,16 +46,30 @@ export function PopupScreen() {
         </Button>
         <br />
         <h2>Dialog Popup</h2>
-        <Button
-          autoWidth
-          variant="danger"
-          className="gap-10"
-          onClick={() => {
-            setShowDialog(true);
-          }}
-        >
-          <BiTrash /> Delete Something
-        </Button>
+        <div className="d-flex justify-content-start gap-12">
+          <div>
+            <Select
+              value={dialogVariant}
+              onChange={(e) => setDialogVariant(e.target.value as any)}
+            >
+              <option value="primary">Primary</option>
+              <option value="danger">Danger</option>
+              <option value="warning">Warning</option>
+              <option value="success">Success</option>
+              <option value="neutral">Neutral</option>
+            </Select>
+          </div>
+          <Button
+            autoWidth
+            variant={dialogVariant}
+            className="gap-10"
+            onClick={() => {
+              setShowDialog(true);
+            }}
+          >
+            <BiTrash /> Delete Something
+          </Button>
+        </div>
       </div>
     </>
   );

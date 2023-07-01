@@ -10,22 +10,11 @@
     flex-direction: column;
     gap: 10px;
 
-    &[data-danger] {
-      svg {
-        color: $danger;
-      }
-    }
-
-    &:not([data-danger]) {
-      svg {
-        color: $primary;
-      }
-    }
-
     svg {
       width: 60px;
       height: 60px;
       margin-inline: auto;
+      color: var(--p-color);
     }
 
     p {
