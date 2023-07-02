@@ -19,6 +19,8 @@ export type FormProps = {
   onSubmit: FormOnSubmit;
   fields: FormFields;
   setFields: React.Dispatch<React.SetStateAction<FormFields>>;
+  errors?: FormErrors;
+  setErrors?: React.Dispatch<React.SetStateAction<FormErrors>>;
   buttonLabel?: string;
   buttonProps?: Omit<ButtonProps, "link" | "onClick" | "disabled">;
   children?: [React.ReactNode, React.ReactNode];
@@ -28,6 +30,8 @@ export type FormProps = {
   */
   isDisabled?: (internalDisabled: boolean) => boolean | undefined | null;
 } & Omit<PrimitiveFormProps, "onSubmit">;
+
+export type FormErrors = { [key: string]: string };
 
 export type FormOnSubmit = (
   data: { [key: string]: FormFieldValue },
@@ -94,9 +98,22 @@ export function Form({
   children,
   initialValues,
   isDisabled,
+  errors,
+  setErrors,
   ...rest
 }: FormProps) {
-  const handleIsValid = (field: FormField) => {
+  const handleIsValid = (name: string) => {
+    const field = fields[name];
+
+    if (!field) return null;
+
+    if (errors && errors[name]) {
+      return {
+        isValid: false,
+        title: errors[name],
+      };
+    }
+
     if (!field.field.value) return null;
     if (!field.validation) return null;
 
@@ -138,6 +155,12 @@ export function Form({
     field.field.value = value;
 
     setFields(newFields);
+
+    if (errors && errors[name]) {
+      const newErrors = { ...errors };
+      delete newErrors[name];
+      setErrors?.(newErrors);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -178,7 +201,7 @@ export function Form({
     let nothingChanged = Boolean(initialValues);
 
     for (const [name, field] of Object.entries(fields)) {
-      const validation = handleIsValid(field);
+      const validation = handleIsValid(name);
 
       if (initialValues && field.field.value !== initialValues[name]) {
         nothingChanged = false;
@@ -205,14 +228,14 @@ export function Form({
       {children?.[0]}
       {Object.entries(fields).map(([name, { as, field }], idx) => {
         if (as === "select") {
-          field as FormFieldSelect;
+          console.log(name, handleIsValid(name), errors);
           return (
             <Select
               key={idx}
               name={name}
               value={""}
               {...(field as SelectProps)}
-              {...handleIsValid(fields[name])}
+              {...handleIsValid(name)}
               onChange={handleChange}
             >
               {field.options?.map((option, idx) => {
@@ -239,7 +262,7 @@ export function Form({
               name={name}
               value={""}
               {...(field as InputProps)}
-              {...handleIsValid(fields[name])}
+              {...handleIsValid(name)}
               onChange={handleChange}
             />
           );
@@ -250,7 +273,7 @@ export function Form({
             name={name}
             value={""}
             {...(field as TextareaProps)}
-            {...handleIsValid(fields[name])}
+            {...handleIsValid(name)}
             onChange={handleChange}
           />
         );

@@ -1,5 +1,10 @@
 import { useMemo, useState } from "react";
-import { Form, FormFields } from "@shoppa-ui/widgets/form";
+import {
+  Form,
+  FormErrors,
+  FormFields,
+  FormOnSubmit,
+} from "@shoppa-ui/widgets/form";
 import { Input } from "@shoppa-ui/widgets/input";
 
 export function FormScreen() {
@@ -80,8 +85,22 @@ export function FormScreen() {
       },
     },
   });
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
 
   const [internalValue, setInternal] = useState("");
+
+  const handleSubmit: FormOnSubmit = (doc) => {
+    if (Math.random() > 0.5) {
+      setFormErrors({
+        status: "שם הפריט חייב להיות גדול מ-3 תווים",
+        in_storage: "כמות במלאי חייבת להיות גדולה מ-0",
+      });
+    } else {
+      alert(JSON.stringify(doc, null, 2));
+    }
+
+    console.log(doc);
+  };
 
   const initialValues = useMemo(
     () => ({
@@ -103,12 +122,14 @@ export function FormScreen() {
         className="d-flex gap-12 flex-column"
         fields={fields}
         setFields={setFields}
-        onSubmit={(d) => alert(JSON.stringify(d, null, 2))}
+        onSubmit={handleSubmit}
         initialValues={initialValues}
         buttonLabel="Submit"
         isDisabled={(internal) =>
           internal ? Boolean(internalValue) === false : internal
         }
+        errors={formErrors}
+        setErrors={setFormErrors}
       >
         <Input
           name="name"
