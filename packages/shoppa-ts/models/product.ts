@@ -14,7 +14,7 @@ export type MProduct = BaseModel & {
 
 export type MProductPopulated = MProduct & {
   description: string;
-  feature_bullet_points: string[];
+  feature_bullet_points?: string[];
   categories: MProductCategory[];
   variants: MVariant[];
   items: MProductItem[];
