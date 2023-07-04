@@ -2,33 +2,31 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnyObject } from "shoppa-ts";
 import { getSearchParams } from "shoppa-utils/params";
 
-export type Filters<T extends Record<keyof T, Filter>> = T;
+export type Filters<T> = { [key in keyof T]: Filter };
 
 export type Filter = "string" | "number" | "boolean" | "date";
 
 export type UseFiltersOnChange = (key: string, value: string) => void;
 
-export type UseFiltersSearchParam<
-  T extends Record<keyof T, UseFiltersSearchParamValue>
-> = T;
+export type UseFiltersSearchParam<T> = {
+  [key in keyof T]: UseFiltersSearchParamValue;
+};
 
 export type UseFiltersSearchParamValue = string | number | boolean | Date;
 
-export type UseFiltersReturn<T extends Record<keyof T, string>> = {
+export type UseFiltersReturn<T> = {
   onChange: UseFiltersOnChange;
   searchParams: Partial<UseFiltersSearchParam<T>>;
-  asValues: T;
+  asValues: { [key in keyof T]: string };
 };
 
-export const useFilters = <T extends Record<keyof T, string>>(
-  filters: Filters<T>
-): UseFiltersReturn<T> => {
+export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
   const [searchParams, setSearchParams] = useState<
     Partial<UseFiltersSearchParam<T>>
   >({});
 
   const _extractInitialFilters = () => {
-    const searchParams = getSearchParams(...Object.keys(filters)) as Filters<T>;
+    const searchParams = getSearchParams(...Object.keys(filters));
     const params: AnyObject = {};
 
     for (const [key, value] of Object.entries(searchParams)) {
@@ -116,7 +114,7 @@ export const useFilters = <T extends Record<keyof T, string>>(
         values[key] = (value as UseFiltersSearchParamValue).toString();
       }
     }
-    return values as T;
+    return values as { [key in keyof T]: string };
   }, [searchParams]);
 
   return {
