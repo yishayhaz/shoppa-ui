@@ -75,8 +75,15 @@ export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
       for (const [key, value] of Object.entries(params)) {
         newParams[key] = (value as UseFiltersSearchParamValue).toString();
       }
-      const searchParams = new URLSearchParams(newParams);
-      window.history.pushState({}, "", `?${searchParams.toString()}`);
+      const searchParams = new URLSearchParams(newParams).toString();
+
+      let url = "";
+
+      if (searchParams !== "") {
+        url = `?${searchParams}`;
+      }
+
+      window.history.pushState({}, "", url);
     },
     [searchParams]
   );
