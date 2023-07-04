@@ -1,13 +1,13 @@
-import { MProduct } from "./product";
+import { RefField } from "../common";
 
 export type MCart = {
-  _id: string;
+  _id: RefField;
   items: TCartItem[];
+  total: number;
 };
 
 export type TCartItem = {
-  _id: string;
-  product_id: MProduct["_id"];
+  product: RefField;
+  item_id: RefField;
   quantity: number;
-  variant: string;
 };

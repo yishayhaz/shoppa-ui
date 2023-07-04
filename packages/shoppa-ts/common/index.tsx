@@ -23,6 +23,17 @@ export type ApiFile = {
   file_type: string;
 };
 
+export type Address = BaseModel & {
+  free_text?: string;
+  city: string;
+  street: string;
+  street_number: string;
+  entrance?: string;
+  floor?: string;
+  apartment?: string;
+  zip_code: string;
+};
+
 export type Paginated<TData> = {
   data: TData;
   total: number;
