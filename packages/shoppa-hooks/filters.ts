@@ -2,40 +2,47 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnyObject } from "shoppa-ts";
 import { getSearchParams } from "shoppa-utils/params";
 
-export type Filters = { [key: string]: Filter };
+export type Filters<T extends Record<keyof T, Filter>> = T;
 
 export type Filter = "string" | "number" | "boolean" | "date";
 
 export type UseFiltersOnChange = (key: string, value: string) => void;
 
-export type UseFiltersSearchParam = {
-  [key: string]: UseFiltersSearchParamValue;
-};
+export type UseFiltersSearchParam<
+  T extends Record<keyof T, UseFiltersSearchParamValue>
+> = T;
 
 export type UseFiltersSearchParamValue = string | number | boolean | Date;
 
-export type UseFiltersReturn = {
+export type UseFiltersReturn<T extends Record<keyof T, string>> = {
   onChange: UseFiltersOnChange;
-  searchParams: UseFiltersSearchParam;
-  asValues: AnyObject;
+  searchParams: Partial<UseFiltersSearchParam<T>>;
+  asValues: T;
 };
 
-export const useFilters = (filters: Filters): UseFiltersReturn => {
-  const [searchParams, setSearchParams] = useState<UseFiltersSearchParam>({});
+export const useFilters = <T extends Record<keyof T, string>>(
+  filters: Filters<T>
+): UseFiltersReturn<T> => {
+  const [searchParams, setSearchParams] = useState<
+    Partial<UseFiltersSearchParam<T>>
+  >({});
 
   const _extractInitialFilters = () => {
-    const searchParams = getSearchParams(...Object.keys(filters));
+    const searchParams = getSearchParams(...Object.keys(filters)) as Filters<T>;
     const params: AnyObject = {};
 
     for (const [key, value] of Object.entries(searchParams)) {
-      const param = _convertValueByType(filters[key], value);
+      const param = _convertValueByType(
+        filters[key as keyof T],
+        value as string
+      );
 
       if (param === null) continue;
 
       params[key] = param;
     }
 
-    setSearchParams(params);
+    setSearchParams(params as UseFiltersSearchParam<T>);
   };
 
   const _convertValueByType = (type: string, value: string) => {
@@ -68,7 +75,7 @@ export const useFilters = (filters: Filters): UseFiltersReturn => {
     (params = searchParams) => {
       const newParams: AnyObject = {};
       for (const [key, value] of Object.entries(params)) {
-        newParams[key] = value.toString();
+        newParams[key] = (value as UseFiltersSearchParamValue).toString();
       }
       const searchParams = new URLSearchParams(newParams);
       window.history.pushState({}, "", `?${searchParams.toString()}`);
@@ -85,10 +92,10 @@ export const useFilters = (filters: Filters): UseFiltersReturn => {
   }, [searchParams]);
 
   const onChange: UseFiltersOnChange = (key, value) => {
-    if (!filters[key]) return;
+    if (!filters[key as keyof T]) return;
 
-    const param = _convertValueByType(filters[key], value);
-    const newSearchParams = { ...searchParams };
+    const param = _convertValueByType(filters[key as keyof T], value);
+    const newSearchParams: AnyObject = { ...searchParams };
 
     if (param === null || typeof param === "undefined") {
       delete newSearchParams[key];
@@ -96,19 +103,20 @@ export const useFilters = (filters: Filters): UseFiltersReturn => {
       newSearchParams[key] = param;
     }
 
-    setSearchParams(newSearchParams);
+    setSearchParams(newSearchParams as UseFiltersSearchParam<T>);
   };
 
   const asValues = useMemo(() => {
     const values: AnyObject = {};
     for (const [key, value] of Object.entries(searchParams)) {
-      if (filters[key] === "date" && typeof value !== "boolean") {
-        values[key] = new Date(value).toISOString().split("T")[0];
+      value as UseFiltersSearchParamValue;
+      if (filters[key as keyof T] === "date" && typeof value !== "boolean") {
+        values[key] = new Date(value as any).toISOString().split("T")[0];
       } else {
-        values[key] = value.toString();
+        values[key] = (value as UseFiltersSearchParamValue).toString();
       }
     }
-    return values;
+    return values as T;
   }, [searchParams]);
 
   return {

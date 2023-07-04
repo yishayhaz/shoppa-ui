@@ -11,8 +11,6 @@ export function FiltersScreen() {
     include: "boolean",
   });
 
-  console.log(filters.asValues);
-
   return (
     <div>
       <h1>This is the documentation for the Filters</h1>
