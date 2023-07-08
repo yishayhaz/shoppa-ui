@@ -24,6 +24,7 @@ export const Button = ({
   autoWidth,
   isLoading,
   spinnerProps,
+  disabled,
   ...rest
 }: ButtonProps) => {
   return (
@@ -33,6 +34,7 @@ export const Button = ({
       {...(autoWidth && { "data-auto-width": true })}
       {...(variant === "link" && { "data-link": true })}
       className={`${className || ""} ${styles.button}`}
+      disabled={disabled || isLoading}
     >
       {isLoading ? <Spinner size="inline" {...spinnerProps} /> : children}
     </BaseButton>
