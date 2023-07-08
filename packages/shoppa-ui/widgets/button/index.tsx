@@ -36,7 +36,11 @@ export const Button = ({
       className={`${className || ""} ${styles.button}`}
       disabled={disabled || isLoading}
     >
-      {isLoading ? <Spinner size="inline" {...spinnerProps} /> : children}
+      {isLoading ? (
+        <Spinner size="inline" variant="inherit" {...spinnerProps} />
+      ) : (
+        children
+      )}
     </BaseButton>
   );
 };

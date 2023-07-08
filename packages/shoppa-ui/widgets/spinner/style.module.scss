@@ -24,6 +24,9 @@
   &[data-variant="dark"] div::before {
     background: $dark !important;
   }
+  &[data-variant="inherit"] div::before {
+    background: inherit !important;
+  }
 
   div {
     position: absolute;

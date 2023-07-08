@@ -10,7 +10,8 @@ export type SpinnerProps = {
     | "danger"
     | "warning"
     | "light"
-    | "dark";
+    | "dark"
+    | "inherit";
 };
 
 export type SpinnerSize = "inline" | "sm" | "md" | "lg";
