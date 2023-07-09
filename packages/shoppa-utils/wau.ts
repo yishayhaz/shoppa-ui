@@ -1,21 +1,29 @@
-const SHOPPA_ASSETS_URL = "https://assets.shoppa.co.il/";
+const SHOPPA_ASSETS_URL = "assets.shoppa.co.il";
 
-export const wau = (path: string, isDefault?: boolean) => {
-  if (path.startsWith("http")) {
-    return path;
+export class Wau {
+  url: string;
+
+  constructor(url = SHOPPA_ASSETS_URL) {
+    this.url = `https://${url}/`;
   }
 
-  let url = SHOPPA_ASSETS_URL;
+  write(path: string, isDefault?: boolean) {
+    if (path.startsWith("http")) {
+      return path;
+    }
 
-  if (isDefault) {
-    url += "defaults/";
+    let url = this.url;
+
+    if (isDefault) {
+      url += "defaults/";
+    }
+
+    if (path.startsWith("/")) {
+      url += path.slice(1);
+    } else {
+      url += path;
+    }
+
+    return url;
   }
-
-  if (path.startsWith("/")) {
-    url += path.slice(1);
-  } else {
-    url += path;
-  }
-
-  return url;
-};
+}

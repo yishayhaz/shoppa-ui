@@ -2,7 +2,7 @@
   "name": "shoppa-utils",
   "description": "Shoppa Utils",
   "private": false,
-  "version": "0.0.125",
+  "version": "0.0.126",
   "type": "module",
   "devDependencies": {
     "shoppa-ts": "^0.0.105"
