@@ -77,10 +77,10 @@ export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
       }
       const searchParams = new URLSearchParams(newParams).toString();
 
-      let url = "";
+      let url = window.location.pathname;
 
       if (searchParams !== "") {
-        url = `?${searchParams}`;
+        url += `?${searchParams}`;
       }
 
       window.history.pushState({}, "", url);

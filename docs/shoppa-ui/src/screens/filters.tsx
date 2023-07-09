@@ -1,6 +1,7 @@
 import { useFilters } from "@shoppa-hooks/filters";
 import { Input } from "@shoppa-ui/widgets/input";
 import { Radio } from "@shoppa-ui/widgets/radio";
+import { Select } from "@shoppa-ui/widgets/select";
 
 export function FiltersScreen() {
   const filters = useFilters({
@@ -9,6 +10,7 @@ export function FiltersScreen() {
     from: "date",
     to: "date",
     include: "boolean",
+    status: "string",
   });
 
   return (
@@ -19,6 +21,16 @@ export function FiltersScreen() {
         <code>{JSON.stringify(filters.searchParams, null, 2)}</code>
       </pre>
       <div className="d-flex gap-6">
+        <Select
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            filters.onChange("status", e.target.value)
+          }
+          value={filters.asValues.status}
+        >
+          <option value="">סינון סטטוס</option>
+          <option value="הכנסה">הכנסה</option>
+          <option value="הוצאה">הוצאה</option>
+        </Select>
         <Input
           name="name"
           value={filters.asValues.name ?? ""}
