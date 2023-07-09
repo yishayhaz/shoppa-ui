@@ -30,7 +30,7 @@ export type MOrderPartNote<PopulateWriter = false> = BaseModel & {
 
 export type MOrderInfo = {
   email?: string;
-  phone?: string;
+  phone_number?: string;
 };
 
 export type MOrderPart<
