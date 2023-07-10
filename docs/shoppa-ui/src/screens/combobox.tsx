@@ -61,6 +61,16 @@ export function ComboxboxScreen() {
         <br />
         <mark>Age</mark>: {value.age}
       </Card>
+      <br />
+      <h2>With interntal query</h2>
+      <Combobox items={DATA} accessor="name" internalQuery />
+      <br />
+      <Card>
+        <h1>Find Person</h1>
+        <mark>Name</mark>: {value.name}
+        <br />
+        <mark>Age</mark>: {value.age}
+      </Card>
     </div>
   );
 }

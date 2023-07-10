@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { InputProps, Input } from "../../widgets/input";
-import styles from "./style.module.scss";
 import { useFloating, useFloatingFocusWithin } from "../core/hook";
 import { BaseFloating } from "../core/index";
 import { BaseButton } from "../../primitives/base-button";
+import styles from "./style.module.scss";
 
 export type ComboboxProps<T extends object, K extends keyof T> = {
   items: T[];
@@ -22,6 +22,7 @@ export type ComboboxProps<T extends object, K extends keyof T> = {
    * @description
    * When the user chooses an item.
    */
+  internalQuery?: boolean;
   value?: T;
   accessor: K;
   /**
@@ -46,6 +47,7 @@ export function Combobox<T extends object, K extends keyof T>({
   accessor,
   value,
   noTyping,
+  internalQuery,
   ...rest
 }: ComboboxProps<T, K>) {
   const { refs, isVisible, setIsVisible } = useFloating({
@@ -85,6 +87,17 @@ export function Combobox<T extends object, K extends keyof T>({
     }
   }, [value, accessor]);
 
+  const renderItems = useMemo(() => {
+    if (!internalQuery) return items;
+
+    return items.filter((item) => {
+      const itemValue = String(item[accessor]).toLowerCase();
+      const queryValue = String(inputValue).toLowerCase();
+
+      return itemValue.includes(queryValue);
+    });
+  }, [items, internalQuery, inputValue, accessor]);
+
   return (
     <div className={styles.combobox} ref={refs.containerRef}>
       <Input
@@ -100,7 +113,7 @@ export function Combobox<T extends object, K extends keyof T>({
           floatingRef={refs.floatingRef}
         >
           <ul>
-            {items.map((item, idx) => (
+            {renderItems.map((item, idx) => (
               <li key={idx} onClick={(e) => handleChange(item, e)}>
                 <BaseButton data-active={item[accessor] === value?.[accessor]}>
                   {item[accessor]}
