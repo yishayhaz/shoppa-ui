@@ -31,6 +31,7 @@ export type ComboboxProps<T extends object, K extends keyof T> = {
    * @default
    * "value"
    */
+  renderItem?: (item: T) => React.ReactNode;
   noTyping?: boolean;
   /**
    * @description
@@ -45,6 +46,7 @@ export function Combobox<T extends object, K extends keyof T>({
   onInput,
   onChange,
   accessor,
+  renderItem,
   value,
   noTyping,
   internalQuery,
@@ -116,7 +118,7 @@ export function Combobox<T extends object, K extends keyof T>({
             {renderItems.map((item, idx) => (
               <li key={idx} onClick={(e) => handleChange(item, e)}>
                 <BaseButton data-active={item[accessor] === value?.[accessor]}>
-                  {item[accessor]}
+                  {renderItem ? renderItem(item) : item[accessor]}
                 </BaseButton>
               </li>
             ))}

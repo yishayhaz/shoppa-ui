@@ -62,8 +62,17 @@ export function ComboxboxScreen() {
         <mark>Age</mark>: {value.age}
       </Card>
       <br />
-      <h2>With interntal query</h2>
-      <Combobox items={DATA} accessor="name" internalQuery />
+      <h2>With interntal query and renderItem</h2>
+      <Combobox
+        items={DATA}
+        accessor="name"
+        internalQuery
+        renderItem={(item) => (
+          <div className="py-10 d-flex justify-contet-between">
+            {item.age}:{item.name}
+          </div>
+        )}
+      />
       <br />
       <Card>
         <h1>Find Person</h1>
