@@ -203,8 +203,17 @@ export function Form({
     for (const [name, field] of Object.entries(fields)) {
       const validation = handleIsValid(name);
 
-      if (initialValues && field.field.value !== initialValues[name]) {
-        nothingChanged = false;
+      if (initialValues) {
+        const bothEmpty = !field.field.value && !initialValues[name];
+        const areDifferent = field.field.value !== initialValues[name];
+
+        // cases
+        // 1. both empty, but diffrent types: null, "", undefined, etc. that won't be equal.
+        // 2. one/both has value, no matter the type
+
+        if (areDifferent && !bothEmpty) {
+          nothingChanged = false;
+        }
       }
 
       const didNotPassValidation =
@@ -228,14 +237,13 @@ export function Form({
       {children?.[0]}
       {Object.entries(fields).map(([name, { as, field }], idx) => {
         if (as === "select") {
-          console.log(name, handleIsValid(name), errors);
           return (
             <Select
               key={idx}
               name={name}
-              value={""}
               {...(field as SelectProps)}
               {...handleIsValid(name)}
+              value={field.value ?? ""}
               onChange={handleChange}
             >
               {field.options?.map((option, idx) => {
@@ -260,9 +268,9 @@ export function Form({
             <Input
               key={idx}
               name={name}
-              value={""}
               {...(field as InputProps)}
               {...handleIsValid(name)}
+              value={field.value ?? ""}
               onChange={handleChange}
             />
           );
@@ -271,9 +279,9 @@ export function Form({
           <Textarea
             key={idx}
             name={name}
-            value={""}
             {...(field as TextareaProps)}
             {...handleIsValid(name)}
+            value={field.value ?? ""}
             onChange={handleChange}
           />
         );

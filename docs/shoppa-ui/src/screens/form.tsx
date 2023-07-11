@@ -35,6 +35,14 @@ export function FormScreen() {
         ],
       },
     },
+    brand: {
+      as: "input",
+      nullWhenEmpty: true,
+      field: {
+        placeholder: "מותג המוצר",
+        label: "מותג המוצר",
+      },
+    },
     price: {
       as: "input",
       field: {
@@ -110,6 +118,7 @@ export function FormScreen() {
       in_storage: 0,
       info: null,
       sku: "54564",
+      brand: null,
     }),
     []
   );
