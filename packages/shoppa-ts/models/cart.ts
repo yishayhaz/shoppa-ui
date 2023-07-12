@@ -1,12 +1,12 @@
 import { RefField } from "../common";
 
 export type MCart = {
-  items: TCartItem[];
+  items: CartItem[];
   total: number;
   last_updated: string;
 };
 
-export type TCartItem = {
+export type CartItem = {
   added_at: string;
   product: RefField;
   item_id: RefField;
