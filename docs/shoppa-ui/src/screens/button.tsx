@@ -10,7 +10,6 @@ import { Tooltip } from "@shoppa-ui/floating/tooltip";
 
 export function ButtonScreen() {
   const absoluteFire = useApi(() => api.get("/variants"));
-  console.log(absoluteFire);
 
   return (
     <div className="d-flex gap-30 flex-column align-items-stretch">
@@ -28,7 +27,7 @@ export function ButtonScreen() {
           Hey I'm Primary
         </Button>
         <Button variant="neutral">Hey I'm neutral</Button>
-        <Button variant="success" isLoading spinnerProps={{ variant: "light" }}>
+        <Button variant="success" isLoading>
           Hey I'm Success
         </Button>
         <Button variant="danger">Hey I'm Danger</Button>
@@ -51,18 +50,11 @@ export function ButtonScreen() {
           <IconButton label="" variant="primary">
             <BiPlus />
           </IconButton>
-          <div style={{ color: "white" }}>
-            <Tooltip label="im a link">
-              <IconButton
-                label=""
-                variant="neutral"
-                link={{ href: "/hello" }}
-                className="reset-link"
-              >
-                <LuEye />
-              </IconButton>
-            </Tooltip>
-          </div>
+          <Tooltip label="im a link">
+            <IconButton label="" variant="neutral" link={{ href: "/hello" }}>
+              <LuEye />
+            </IconButton>
+          </Tooltip>
           <IconButton label="" variant="success">
             <BiPlus />
           </IconButton>

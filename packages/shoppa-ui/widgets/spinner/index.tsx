@@ -11,7 +11,8 @@ export type SpinnerProps = {
     | "warning"
     | "light"
     | "dark"
-    | "inherit";
+    | "inherit"
+    | "currentColor";
 };
 
 export type SpinnerSize = "inline" | "sm" | "md" | "lg";

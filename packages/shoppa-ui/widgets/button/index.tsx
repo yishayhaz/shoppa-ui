@@ -37,7 +37,7 @@ export const Button = ({
       disabled={disabled || isLoading}
     >
       {isLoading ? (
-        <Spinner size="inline" variant="inherit" {...spinnerProps} />
+        <Spinner size="inline" variant="currentColor" {...spinnerProps} />
       ) : (
         children
       )}

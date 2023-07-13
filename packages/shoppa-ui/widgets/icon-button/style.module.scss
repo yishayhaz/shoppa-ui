@@ -35,13 +35,12 @@
   &:not([data-link]),
   &[data-link]:hover {
     background-color: rgb(var(--p-accent), 0.67);
+    color: var(--p-text-accent, var(--p-accent));
   }
 
   &[data-link]:not(:hover) {
     color: $s-neutral-text;
   }
-
-  color: var(--p-text-accent, var(--p-accent));
 
   aspect-ratio: 1;
   @include flex;
