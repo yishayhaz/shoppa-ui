@@ -30,13 +30,6 @@
       }
     }
 
-    th,
-    td {
-      text-align: start;
-      padding: 0.5rem 1rem;
-      white-space: nowrap;
-    }
-
     thead {
       background-color: $s-neutral-200;
     }
@@ -47,6 +40,13 @@
 
     tr:hover {
       background-color: rgb(var(--s-neutral-200), 0.6);
+    }
+
+    th,
+    td {
+      text-align: start;
+      white-space: nowrap;
+      padding: 0.5rem 1rem;
     }
   }
 }

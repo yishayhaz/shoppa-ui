@@ -40,7 +40,7 @@ export function TableScreen() {
           onHide={() => {
             setDelCol(false);
           }}
-          isDanger
+          variant="danger"
         />
       )}
       <div>
@@ -94,7 +94,11 @@ export function TableScreen() {
             {api.data?.data.map((i, idx) => (
               <tr key={idx}>
                 <td>Row {i}</td>
-                <td>Row {i}</td>
+                <td>
+                  <a data-table-ignore-anchor="true" href="#">
+                    Hello World
+                  </a>
+                </td>
                 <td>
                   <IconButton
                     label="trash"

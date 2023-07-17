@@ -15,6 +15,7 @@ export type MStore = BaseModel & {
   contact: StoreContact;
   analytics: StoreAnalytics;
   min_order: number;
+  delivery_strategies: StoreDeliveryStrategies;
 };
 
 export type MStorePreview = BaseModel & {
@@ -70,4 +71,16 @@ export type StoreAnalyticsOrders = {
 export type StoreAnalyticsRating = {
   votes: number;
   average: number;
+};
+
+export type StoreDeliveryStrategies = {
+  default: StoreDefaultDeliveryStrategy;
+};
+
+export type StoreDefaultDeliveryStrategy = {
+  from_days: number;
+  to_days: number;
+  price: number;
+  free_above: number;
+  comment: string;
 };
