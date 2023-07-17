@@ -74,7 +74,8 @@ export type StoreAnalyticsRating = {
 };
 
 export type StoreDeliveryStrategies = {
-  default: StoreDefaultDeliveryStrategy;
+  default?: StoreDefaultDeliveryStrategy;
+  fast?: StoreFastDeliveryStrategy;
 };
 
 export type StoreDefaultDeliveryStrategy = {
@@ -82,5 +83,12 @@ export type StoreDefaultDeliveryStrategy = {
   to_days: number;
   price: number;
   free_above: number;
+  comment: string;
+};
+
+export type StoreFastDeliveryStrategy = {
+  from_days: number;
+  to_days: number;
+  price: number;
   comment: string;
 };
