@@ -19,15 +19,6 @@ export type MOrder<
   parts: MOrderPart<PStore, PProduct, PNoteWriter>[];
 };
 
-export type MOrderNote = BaseModel & {
-  text: string;
-};
-
-export type MOrderPartNote<PopulateWriter = false> = BaseModel & {
-  writer: PopulateWriter extends true ? MStoreUser : RefField;
-  text: string;
-};
-
 export type MOrderInfo = {
   email?: string;
   phone_number?: string;
@@ -49,20 +40,12 @@ export type MOrderPart<
 };
 
 export enum OrderStatus {
-  PendingStore = "pending:store",
-  PendingUser = "pending:user",
-  PendingUserCancel = "pending:user_cancel",
-  PendingStoreCancel = "pending:store_cancel",
-  PendingUserRefund = "pending:user_refund",
-  PendingStoreRefund = "pending:store_refund",
-  InProcessWarehouse = "in_process:warehouse",
-  InProcessShipping = "in_process:shipping",
-  FailedUserCancel = "failed:user_cancel",
-  FailedStoreCancel = "failed:store_cancel",
-  FailedTransaction = "failed:transaction",
-  FailedStoreReject = "failed:store-reject",
-  ArrivedPending = "arrived:pending",
-  ArrivedSuccess = "arrived:success",
+  Pending = "pending",
+  InProcess = "in_process",
+  Shipping = "shipping",
+  Delivered = "delivered",
+  Canceled = "canceled", // entire order is canceled
+  Refunded = "refunded", // entire order is refunded
 }
 
 export type MOrderProduct<PProduct = false> = {
@@ -70,4 +53,13 @@ export type MOrderProduct<PProduct = false> = {
   item: RefField;
   quantity: number;
   price: number;
+};
+
+export type MOrderNote = BaseModel & {
+  text: string;
+};
+
+export type MOrderPartNote<PopulateWriter = false> = BaseModel & {
+  writer: PopulateWriter extends true ? MStoreUser : RefField;
+  text: string;
 };

@@ -1,6 +1,6 @@
 {
   "name": "shoppa-ts",
-  "version": "0.0.119",
+  "version": "0.0.120",
   "description": "Shoppa Shared Typescript",
   "main": "index.ts",
   "keywords": [],

@@ -30,6 +30,7 @@ export type StoreLegalInformation = {
   name: string;
   legal_id: string;
   business_type: BusinessTypes;
+  address: string;
 };
 
 export enum BusinessTypes {
