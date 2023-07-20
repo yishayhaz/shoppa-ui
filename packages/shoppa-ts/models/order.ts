@@ -1,3 +1,9 @@
+// status
+// files: reciepts, refunds, cancelles.
+// 1 address
+// 1 user info (email, phone, id, cvv, transaction_uid)
+// items, total, notes (for each store)
+
 import { Address, BaseModel, RefField } from "../common";
 import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
