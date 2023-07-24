@@ -4,14 +4,17 @@ import { Radio } from "@shoppa-ui/widgets/radio";
 import { Select } from "@shoppa-ui/widgets/select";
 
 export function FiltersScreen() {
-  const filters = useFilters({
-    name: "string",
-    age: "number",
-    from: "date",
-    to: "date",
-    include: "boolean",
-    status: "string",
-  });
+  const filters = useFilters(
+    {
+      name: "string",
+      age: "number",
+      from: "date",
+      to: "date",
+      include: "boolean",
+      status: "string",
+    },
+    (asValues) => alert(JSON.stringify(asValues, null, 2))
+  );
 
   return (
     <div>
@@ -23,7 +26,7 @@ export function FiltersScreen() {
       <div className="d-flex gap-6">
         <Select
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            filters.onChange("status", e.target.value)
+            filters.onChange("status", e.target.value)()
           }
           value={filters.asValues.status}
         >

@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnyObject } from "shoppa-ts";
 import { getSearchParams } from "shoppa-utils/params";
+import { useDebounce } from "./debounce";
 
 export type Filters<T> = { [key in keyof T]: Filter };
 
 export type Filter = "string" | "number" | "boolean" | "date";
 
-export type UseFiltersOnChange = (key: string, value: string) => void;
+export type UseFiltersOnChange<T, K> = (
+  key: K,
+  value: string,
+  fire?: boolean
+) => () => void;
 
 export type UseFiltersSearchParam<T> = {
   [key in keyof T]: UseFiltersSearchParamValue;
@@ -14,13 +19,29 @@ export type UseFiltersSearchParam<T> = {
 
 export type UseFiltersSearchParamValue = string | number | boolean | Date;
 
-export type UseFiltersReturn<T> = {
-  onChange: UseFiltersOnChange;
-  searchParams: Partial<UseFiltersSearchParam<T>>;
-  asValues: { [key in keyof T]: string };
+export type UseFiltersAsValues<T> = { [key in keyof T]: string };
+
+export type UseFiltersFireSearch<T> = (asValues: UseFiltersAsValues<T>) => void;
+
+export type UseFiltersOptions = {
+  t?: number;
 };
 
-export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
+export type UseFiltersReturn<T, K extends keyof T> = {
+  searchParams: Partial<UseFiltersSearchParam<T>>;
+  asValues: UseFiltersAsValues<T>;
+  onChange: UseFiltersOnChange<T, K>;
+  onClick: () => void;
+  search: UseFiltersFireSearch<T>;
+};
+
+export const useFilters = <T, K extends keyof T>(
+  filters: Filters<T>,
+  fireSearch: UseFiltersFireSearch<T>,
+  options?: UseFiltersOptions
+): UseFiltersReturn<T, K> => {
+  const debounceSearch = useDebounce(fireSearch, options?.t || 500);
+
   const [searchParams, setSearchParams] = useState<
     Partial<UseFiltersSearchParam<T>>
   >({});
@@ -96,11 +117,12 @@ export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
     _goToParams();
   }, [searchParams]);
 
-  const onChange: UseFiltersOnChange = (key, value) => {
-    if (!filters[key as keyof T]) return;
+  const onChange: UseFiltersOnChange<T, K> = (key, value) => {
+    // eslint-disable-next-line
+    if (!filters[key as keyof T]) return () => {};
 
     const param = _convertValueByType(filters[key as keyof T], value);
-    const newSearchParams: AnyObject = { ...searchParams };
+    const newSearchParams = { ...searchParams };
 
     if (param === null || typeof param === "undefined") {
       delete newSearchParams[key];
@@ -109,6 +131,12 @@ export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
     }
 
     setSearchParams(newSearchParams as UseFiltersSearchParam<T>);
+
+    return () => debounceSearch(asValues);
+  };
+
+  const onClick = () => {
+    fireSearch(asValues);
   };
 
   const asValues = useMemo(() => {
@@ -125,8 +153,10 @@ export const useFilters = <T>(filters: Filters<T>): UseFiltersReturn<T> => {
   }, [searchParams]);
 
   return {
-    onChange,
     searchParams,
     asValues,
+    search: debounceSearch,
+    onChange,
+    onClick,
   };
 };
