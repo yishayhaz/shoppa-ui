@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Popup, PopopProps } from "../../primitives/popup";
+import { Popup, PopupProps } from "../../primitives/popup";
 import { Button } from "../button";
 import styles from "./styles.module.scss";
 
@@ -11,7 +11,7 @@ export type DialogProps = {
   confirmText?: string;
   onCancel?: () => void;
   onConfirm?: () => void;
-} & PopopProps;
+} & PopupProps;
 
 export type DialogVariant =
   | "primary"

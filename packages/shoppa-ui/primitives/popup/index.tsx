@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./style.module.scss";
 import { BaseButton } from "../base-button";
 
-export interface PopopProps {
+export type PopupProps = {
   show: boolean;
   onHide: () => void;
 
@@ -22,7 +22,7 @@ export interface PopopProps {
   closeDelay?: number;
 
   style?: React.CSSProperties;
-}
+};
 
 const DEFAULT_CLOSING_DELAY = 200;
 
@@ -40,7 +40,7 @@ export function Popup({
   height,
   closeDelay = DEFAULT_CLOSING_DELAY,
   ...rest
-}: PopopProps) {
+}: PopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
 
   const startClosing = React.useCallback(() => {
