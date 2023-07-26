@@ -10,10 +10,10 @@ import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
 import { MUser } from "./user";
 
-export type MOrder = {
-  total: number;
-  total_after_refund: number;
+export type MOrder = BaseModel & {
   refunds: MOrderRefund[];
+  total: number;
+  total_after_refunds: number;
   transaction: MOrderTransaction;
   parts: MOrderPart[];
   info: MOrderInfo;
@@ -31,8 +31,10 @@ export type MOrderTransaction = {
 export type MOrderRefund = {
   created_at: StringifiedDate;
   store_id: RefField;
+  product: RefField & MProduct;
   item_id: RefField;
   amount: number;
+  quantity: number;
   message: string;
 } & {
   created_at: StringifiedDate;
@@ -49,24 +51,23 @@ export type MOrderInfo = {
 export type MOrderPart = BaseModel & {
   status: OrderStatus;
   store: MStore & RefField;
-  products: MOrderProduct[];
+  items: MOrderItems[];
   delivery: number;
   total: number;
-  total_after_refund: number;
+  total_after_refunds: number;
   notes: MOrderPartNote[];
   receipt?: RefField & "file model";
   utm?: string;
 };
 
 export enum OrderStatus {
-  Pending = "pending",
-  InProcess = "in_process",
-  Shipping = "shipping",
-  Delivered = "delivered",
-  Refunded = "refunded", // entire order is refunded
+  Pending = "pending", // store hasn't viewed the order yet
+  InProcess = "in_process", // store is preparing the order
+  Shipping = "shipping", // order is on the way
+  Arrived = "arrived", // order arrived to the user
 }
 
-export type MOrderProduct = {
+export type MOrderItems = {
   product: RefField & MProduct;
   item: RefField & MProductItem;
   quantity: number;
