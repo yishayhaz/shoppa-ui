@@ -9,20 +9,13 @@ import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
 import { MUser } from "./user";
 
-export type MOrder<
-  PAddress = false,
-  PUser = false,
-  PNotes = false,
-  PNoteWriter = false,
-  PStore = false,
-  PProduct = false
-> = BaseModel & {
+export type MOrder = {
   total: number;
-  user: PUser extends true ? MUser : RefField;
-  address: PAddress extends true ? Address : RefField;
+  total_after_refund: number;
+  parts: MOrderPart[];
   info: MOrderInfo;
-  notes: PNotes extends true ? MOrderNote[] : RefField[];
-  parts: MOrderPart<PStore, PProduct, PNoteWriter>[];
+  user: MUser & RefField;
+  address: Address & RefField;
 };
 
 export type MOrderInfo = {
@@ -50,7 +43,6 @@ export enum OrderStatus {
   InProcess = "in_process",
   Shipping = "shipping",
   Delivered = "delivered",
-  Canceled = "canceled", // entire order is canceled
   Refunded = "refunded", // entire order is refunded
 }
 
