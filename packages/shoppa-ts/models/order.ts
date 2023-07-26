@@ -24,6 +24,8 @@ export type MOrder = {
 export type MOrderTransaction = {
   created_at: StringifiedDate;
   token: string;
+  cc_last4: string;
+  cc_length: number;
 };
 
 export type MOrderRefund = {
