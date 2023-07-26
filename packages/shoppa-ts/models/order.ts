@@ -4,7 +4,8 @@
 // 1 user info (email, phone, id, cvv, transaction_uid)
 // items, total, notes (for each store)
 
-import { Address, BaseModel, RefField } from "../common";
+import { Address, BaseModel, RefField, StringifiedDate } from "../common";
+import { MProduct, MProductItem } from "./product";
 import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
 import { MUser } from "./user";
@@ -12,10 +13,30 @@ import { MUser } from "./user";
 export type MOrder = {
   total: number;
   total_after_refund: number;
+  refunds: MOrderRefund[];
+  transaction: MOrderTransaction;
   parts: MOrderPart[];
   info: MOrderInfo;
   user: MUser & RefField;
-  address: Address & RefField;
+  address: Address;
+};
+
+export type MOrderTransaction = {
+  created_at: StringifiedDate;
+  token: string;
+};
+
+export type MOrderRefund = {
+  created_at: StringifiedDate;
+  store_id: RefField;
+  item_id: RefField;
+  amount: number;
+  message: string;
+} & {
+  created_at: StringifiedDate;
+  store_id: RefField;
+  amount: number;
+  message: string;
 };
 
 export type MOrderInfo = {
@@ -23,19 +44,16 @@ export type MOrderInfo = {
   phone_number?: string;
 };
 
-export type MOrderPart<
-  PStore = false,
-  PProduct = false,
-  PNoteWriter = false
-> = BaseModel & {
+export type MOrderPart = BaseModel & {
   status: OrderStatus;
-  store: PStore extends true ? MStore : RefField;
-  products: MOrderProduct<PProduct>[];
+  store: MStore & RefField;
+  products: MOrderProduct[];
+  delivery: number;
   total: number;
-  notes: MOrderPartNote<PNoteWriter>[];
-  receipt?: string;
+  total_after_refund: number;
+  notes: MOrderPartNote[];
+  receipt?: RefField & "file model";
   utm?: string;
-  track_id?: string;
 };
 
 export enum OrderStatus {
@@ -46,18 +64,14 @@ export enum OrderStatus {
   Refunded = "refunded", // entire order is refunded
 }
 
-export type MOrderProduct<PProduct = false> = {
-  product: PProduct extends true ? PProduct : RefField;
-  item: RefField;
+export type MOrderProduct = {
+  product: RefField & MProduct;
+  item: RefField & MProductItem;
   quantity: number;
   price: number;
 };
 
-export type MOrderNote = BaseModel & {
-  text: string;
-};
-
-export type MOrderPartNote<PopulateWriter = false> = BaseModel & {
-  writer: PopulateWriter extends true ? MStoreUser : RefField;
+export type MOrderPartNote = BaseModel & {
+  writer: MStoreUser & RefField;
   text: string;
 };
