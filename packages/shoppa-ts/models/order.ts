@@ -22,14 +22,13 @@ export type MOrder = BaseModel & {
 };
 
 export type MOrderTransaction = {
-  created_at: StringifiedDate;
   token: string;
   cc_last4: string;
   cc_length: number;
+  cc_company: string;
 };
 
-export type MOrderRefund = {
-  created_at: StringifiedDate;
+export type MOrderRefund = BaseModel & {
   store_id: RefField;
   product: RefField & MProduct;
   item_id: RefField;
