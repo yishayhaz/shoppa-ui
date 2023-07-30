@@ -5,7 +5,7 @@
 // items, total, notes (for each store)
 
 import { Address, BaseModel, RefField, StringifiedDate } from "../common";
-import { MProduct, MProductItem } from "./product";
+import { MProduct, MProductItem, MProductPreview } from "./product";
 import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
 import { MUser } from "./user";
@@ -50,7 +50,7 @@ export type MOrderInfo = {
 export type MOrderPart = BaseModel & {
   status: OrderStatus;
   store: MStore & RefField;
-  items: MOrderItems[];
+  items: MOrderItem[];
   delivery: number;
   total: number;
   total_after_refunds: number;
@@ -66,8 +66,8 @@ export enum OrderStatus {
   Arrived = "arrived", // order arrived to the user
 }
 
-export type MOrderItems = {
-  product: RefField & MProduct;
+export type MOrderItem = {
+  product: RefField & MProductPreview;
   item: RefField & MProductItem;
   quantity: number;
   price: number;
