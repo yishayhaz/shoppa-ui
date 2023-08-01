@@ -19,9 +19,9 @@ export type UseFiltersSearchParam<T> = {
 
 export type UseFiltersSearchParamValue = string | number | boolean | Date;
 
-export type UseFiltersAsValues<T> = { [key in keyof T]: string };
-
-export type UseFiltersFireSearch<T> = (asValues: UseFiltersAsValues<T>) => void;
+export type UseFiltersFireSearch<T> = (asValues: {
+  [key in keyof T]: string;
+}) => void;
 
 export type UseFiltersOptions = {
   t?: number;
@@ -29,7 +29,7 @@ export type UseFiltersOptions = {
 
 export type UseFiltersReturn<T, K extends keyof T> = {
   searchParams: Partial<UseFiltersSearchParam<T>>;
-  asValues: UseFiltersAsValues<T>;
+  asValues: { [key in keyof T]: string };
   onChange: UseFiltersOnChange<K>;
   onClick: () => void;
   search: UseFiltersFireSearch<T>;
