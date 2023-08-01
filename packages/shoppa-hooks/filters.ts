@@ -7,7 +7,7 @@ export type Filters<T> = { [key in keyof T]: Filter };
 
 export type Filter = "string" | "number" | "boolean" | "date";
 
-export type UseFiltersOnChange<T, K> = (
+export type UseFiltersOnChange<K> = (
   key: K,
   value: string,
   fire?: boolean
@@ -30,7 +30,7 @@ export type UseFiltersOptions = {
 export type UseFiltersReturn<T, K extends keyof T> = {
   searchParams: Partial<UseFiltersSearchParam<T>>;
   asValues: UseFiltersAsValues<T>;
-  onChange: UseFiltersOnChange<T, K>;
+  onChange: UseFiltersOnChange<K>;
   onClick: () => void;
   search: UseFiltersFireSearch<T>;
 };
@@ -117,7 +117,7 @@ export const useFilters = <T, K extends keyof T>(
     _goToParams();
   }, [searchParams]);
 
-  const onChange: UseFiltersOnChange<T, K> = (key, value) => {
+  const onChange: UseFiltersOnChange<K> = (key, value) => {
     // eslint-disable-next-line
     if (!filters[key as keyof T]) return () => {};
 
