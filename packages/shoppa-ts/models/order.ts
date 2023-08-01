@@ -80,6 +80,7 @@ export type MOrderPartNote = BaseModel & {
 };
 
 export type MOrderForStore = BaseModel & {
+  status: OrderStatus;
   refunds: MOrderRefund[];
   total: number;
   total_after_refunds: number;
