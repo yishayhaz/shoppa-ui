@@ -5,6 +5,7 @@
 // items, total, notes (for each store)
 
 import { Address, BaseModel, RefField, StringifiedDate } from "../common";
+import { MInvoice } from "./invoice";
 import { MProduct, MProductItem, MProductPreview } from "./product";
 import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
@@ -55,7 +56,7 @@ export type MOrderPart = BaseModel & {
   total: number;
   total_after_refunds: number;
   notes: MOrderPartNote[];
-  receipt?: RefField & "file model";
+  receipt?: RefField & MInvoice;
   utm?: string;
 };
 
@@ -76,4 +77,17 @@ export type MOrderItem = {
 export type MOrderPartNote = BaseModel & {
   writer: MStoreUser & RefField;
   text: string;
+};
+
+export type MOrderForStore = BaseModel & {
+  refunds: MOrderRefund[];
+  total: number;
+  total_after_refunds: number;
+  delivery: number;
+  info: MOrderInfo;
+  user: MUser & RefField;
+  address: Address;
+  utm?: string;
+  notes: MOrderPartNote[];
+  items: MOrderItem[];
 };
