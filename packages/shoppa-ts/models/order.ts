@@ -6,7 +6,12 @@
 
 import { Address, BaseModel, RefField, StringifiedDate } from "../common";
 import { MInvoice } from "./invoice";
-import { MProduct, MProductItem, MProductPreview } from "./product";
+import {
+  MProduct,
+  MProductItem,
+  MProductPopulated,
+  MProductPreview,
+} from "./product";
 import { MStore } from "./store";
 import { MStoreUser } from "./store-user";
 import { MUser } from "./user";
@@ -68,7 +73,7 @@ export enum OrderStatus {
 }
 
 export type MOrderItem = {
-  product: RefField & MProductPreview;
+  product: RefField & MProductPopulated;
   item: RefField & MProductItem;
   quantity: number;
   price: number;
