@@ -11,7 +11,10 @@ export type UseFiltersOnChange<K> = (
   key: K,
   value: string,
   fire?: boolean
-) => () => void;
+) => {
+  debounce: () => void;
+  fire: () => void;
+};
 
 export type UseFiltersSearchParam<T> = {
   [key in keyof T]: UseFiltersSearchParamValue;
@@ -62,6 +65,7 @@ export const useFilters = <T, K extends keyof T>(
     }
 
     setSearchParams(params as UseFiltersSearchParam<T>);
+    fireSearch(_toAsValues(params as UseFiltersSearchParam<T>));
   };
 
   const _convertValueByType = (type: string, value: string) => {
@@ -109,6 +113,19 @@ export const useFilters = <T, K extends keyof T>(
     [searchParams]
   );
 
+  const _toAsValues = (params = searchParams) => {
+    const values: AnyObject = {};
+    for (const [key, value] of Object.entries(params)) {
+      value as UseFiltersSearchParamValue;
+      if (filters[key as keyof T] === "date" && typeof value !== "boolean") {
+        values[key] = new Date(value as any).toISOString().split("T")[0];
+      } else {
+        values[key] = (value as UseFiltersSearchParamValue).toString();
+      }
+    }
+    return values as { [key in keyof T]: string };
+  };
+
   useEffect(() => {
     _extractInitialFilters();
   }, []);
@@ -119,7 +136,11 @@ export const useFilters = <T, K extends keyof T>(
 
   const onChange: UseFiltersOnChange<K> = (key, value) => {
     // eslint-disable-next-line
-    if (!filters[key as keyof T]) return () => {};
+    if (!filters[key as keyof T])
+      return {
+        debounce: () => debounceSearch(asValues),
+        fire: () => fireSearch(asValues),
+      };
 
     const param = _convertValueByType(filters[key as keyof T], value);
     const newSearchParams = { ...searchParams };
@@ -132,25 +153,19 @@ export const useFilters = <T, K extends keyof T>(
 
     setSearchParams(newSearchParams as UseFiltersSearchParam<T>);
 
-    return () => debounceSearch(asValues);
+    const asValues = _toAsValues(newSearchParams as UseFiltersSearchParam<T>);
+
+    return {
+      debounce: () => debounceSearch(asValues),
+      fire: () => fireSearch(asValues),
+    };
   };
 
   const onClick = () => {
     fireSearch(asValues);
   };
 
-  const asValues = useMemo(() => {
-    const values: AnyObject = {};
-    for (const [key, value] of Object.entries(searchParams)) {
-      value as UseFiltersSearchParamValue;
-      if (filters[key as keyof T] === "date" && typeof value !== "boolean") {
-        values[key] = new Date(value as any).toISOString().split("T")[0];
-      } else {
-        values[key] = (value as UseFiltersSearchParamValue).toString();
-      }
-    }
-    return values as { [key in keyof T]: string };
-  }, [searchParams]);
+  const asValues = useMemo(_toAsValues, [searchParams]);
 
   return {
     searchParams,
