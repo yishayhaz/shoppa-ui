@@ -1,5 +1,6 @@
 import { ApiFile, BaseModel, RefField } from "../common";
 import { MVariant } from "./variant";
+import { MStore } from "./store";
 
 export type MProduct = BaseModel & {
   name: string;
@@ -18,6 +19,7 @@ export type MProductPopulated = MProduct & {
   categories: MProductCategory[];
   variants: MVariant[];
   items: MProductItem[];
+  store: MStore;
 };
 
 export type MProductPreview = BaseModel & {
