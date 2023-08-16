@@ -26,7 +26,7 @@ export function FiltersScreen() {
       <div className="d-flex gap-6">
         <Select
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            filters.onChange("status", e.target.value)()
+            filters.onChange("status", e.target.value).fire()
           }
           value={filters.asValues.status}
         >
@@ -37,24 +37,24 @@ export function FiltersScreen() {
         <Input
           name="name"
           value={filters.asValues.name ?? ""}
-          onChange={(e) => filters.onChange("name", e.target.value)}
+          onChange={(e) => filters.onChange("name", e.target.value).debounce()}
         />
         <Input
           name="age"
           value={filters.asValues.age ?? ""}
-          onChange={(e) => filters.onChange("age", e.target.value)}
+          onChange={(e) => filters.onChange("age", e.target.value).debounce()}
         />
         <Input
           name="from"
           value={filters.asValues.from ?? ""}
-          onChange={(e) => filters.onChange("from", e.target.value)}
+          onChange={(e) => filters.onChange("from", e.target.value).debounce()}
           type="date"
           max={filters.asValues.to ?? ""}
         />
         <Input
           name="to"
           value={filters.asValues.to ?? ""}
-          onChange={(e) => filters.onChange("to", e.target.value)}
+          onChange={(e) => filters.onChange("to", e.target.value).debounce()}
           min={filters.asValues.from ?? ""}
           type="date"
         />
